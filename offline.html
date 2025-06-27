@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="es" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#1E3A8A">
+    <title>INVERTAX - Sin Conexión</title>
+    <style>
+        :root {
+            --color-primary: #1E3A8A;
+            --color-secondary: #21808D;
+            --color-accent: #F59E0B;
+            --color-background: #f8fafc;
+            --color-text: #334155;
+            --color-card: #ffffff;
+            --border-radius: 12px;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--color-background);
+            color: var(--color-text);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+        }
+        
+        .offline-container {
+            background: var(--color-card);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            padding: 3rem 2rem;
+            text-align: center;
+            max-width: 500px;
+            width: 100%;
+        }
+        
+        .offline-icon {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        
+        h1 {
+            color: var(--color-primary);
+            font-size: 1.875rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+        
+        .description {
+            color: var(--color-text);
+            font-size: 1.125rem;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+        }
+        
+        .feature-list {
+            background: var(--color-background);
+            border-radius: var(--border-radius);
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            text-align: left;
+        }
+        
+        .feature-list h3 {
+            color: var(--color-primary);
+            margin-bottom: 1rem;
+            font-size: 1.25rem;
+        }
+        
+        .feature-list ul {
+            list-style: none;
+        }
+        
+        .feature-list li {
+            padding: 0.5rem 0;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+        
+        .feature-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--color-secondary);
+            font-weight: bold;
+        }
+        
+        .retry-button {
+            background: var(--color-primary);
+            color: white;
+            border: none;
+            padding: 0.75rem 2rem;
+            border-radius: var(--border-radius);
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            margin-right: 1rem;
+        }
+        
+        .retry-button:hover {
+            background: #1e40af;
+        }
+        
+        .home-button {
+            background: transparent;
+            color: var(--color-primary);
+            border: 2px solid var(--color-primary);
+            padding: 0.75rem 2rem;
+            border-radius: var(--border-radius);
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.2s;
+        }
+        
+        .home-button:hover {
+            background: var(--color-primary);
+            color: white;
+        }
+        
+        .connection-status {
+            margin-top: 2rem;
+            padding: 1rem;
+            border-radius: var(--border-radius);
+            background: #fef3c7;
+            color: #92400e;
+            font-size: 0.875rem;
+        }
+        
+        .connection-status.online {
+            background: #d1fae5;
+            color: #065f46;
+        }
+        
+        @media (max-width: 640px) {
+            .offline-container {
+                padding: 2rem 1rem;
+            }
+            
+            h1 {
+                font-size: 1.5rem;
+            }
+            
+            .description {
+                font-size: 1rem;
+            }
+            
+            .retry-button,
+            .home-button {
+                display: block;
+                width: 100%;
+                margin: 0.5rem 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="offline-container">
+        <div class="offline-icon">📱</div>
+        
+        <h1>INVERTAX Offline</h1>
+        
+        <p class="description">
+            No tienes conexión a internet, pero INVERTAX sigue funcionando. 
+            Puedes seguir usando el simulador fiscal y todas las funciones guardadas localmente.
+        </p>
+        
+        <div class="feature-list">
+            <h3>Funciones disponibles sin conexión:</h3>
+            <ul>
+                <li>Simulador fiscal completo</li>
+                <li>Calculadora de deducciones por CCAA</li>
+                <li>Simulaciones Monte Carlo</li>
+                <li>Exportación de resultados en PDF/JSON</li>
+                <li>Historial de simulaciones guardadas</li>
+                <li>Marco normativo y guías</li>
+            </ul>
+        </div>
+        
+        <div>
+            <button class="retry-button" onclick="checkConnection()">
+                ↻ Verificar Conexión
+            </button>
+            <a href="/" class="home-button">
+                🏠 Ir al Inicio
+            </a>
+        </div>
+        
+        <div class="connection-status" id="connectionStatus">
+            ⚠️ Sin conexión a internet. Los datos se sincronizarán automáticamente cuando se restablezca la conexión.
+        </div>
+    </div>
+
+    <script>
+        // Verificar el estado de la conexión
+        function checkConnection() {
+            if (navigator.onLine) {
+                document.getElementById('connectionStatus').innerHTML = 
+                    '✅ Conexión restablecida. Redirigiendo...';
+                document.getElementById('connectionStatus').className = 'connection-status online';
+                
+                setTimeout(() => {
+                    window.location.href = '/';
+                }, 1500);
+            } else {
+                document.getElementById('connectionStatus').innerHTML = 
+                    '❌ Aún sin conexión. Inténtalo de nuevo en unos momentos.';
+                
+                // Efecto visual del botón
+                const button = document.querySelector('.retry-button');
+                button.style.transform = 'scale(0.95)';
+                setTimeout(() => {
+                    button.style.transform = 'scale(1)';
+                }, 150);
+            }
+        }
+        
+        // Listeners para eventos de conexión
+        window.addEventListener('online', () => {
+            document.getElementById('connectionStatus').innerHTML = 
+                '🎉 Conexión restablecida automáticamente. ¡Ya puedes sincronizar tus datos!';
+            document.getElementById('connectionStatus').className = 'connection-status online';
+            
+            // Auto-redirect después de mostrar el mensaje
+            setTimeout(() => {
+                window.location.href = '/';
+            }, 2000);
+        });
+        
+        window.addEventListener('offline', () => {
+            document.getElementById('connectionStatus').innerHTML = 
+                '⚠️ Conexión perdida. El modo offline sigue activo.';
+            document.getElementById('connectionStatus').className = 'connection-status';
+        });
+        
+        // Verificar conexión inicial
+        if (navigator.onLine) {
+            checkConnection();
+        }
+        
+        // Intentar reconectar cada 30 segundos
+        setInterval(() => {
+            if (navigator.onLine && !document.getElementById('connectionStatus').classList.contains('online')) {
+                checkConnection();
+            }
+        }, 30000);
+    </script>
+</body>
+</html>

@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>INVERTAX - Optimización Fiscal para Inversiones en Startups</title>
+    <meta name="description" content="Plataforma líder en optimización fiscal para inversiones en startups. Aprovecha las deducciones IRPF estatales y autonómicas con nuestra tecnología avanzada.">
+    <meta name="theme-color" content="#21808D">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E💰%3C/text%3E%3C/svg%3E">
+    <link rel="manifest" href="manifest.json">
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- OpenGraph -->
+    <meta property="og:title" content="INVERTAX - Optimización Fiscal para Startups">
+    <meta property="og:description" content="Maximiza tu rentabilidad fiscal con deducciones IRPF hasta 100% legalmente">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://invertax.ai">
+    
+    <!-- Schema.org -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FinancialService",
+      "name": "INVERTAX",
+      "description": "Plataforma de optimización fiscal para inversiones en startups",
+      "url": "https://invertax.ai",
+      "serviceType": "Tax Optimization"
+    }
+    </script>
+</head>
+<body>
+    <!-- Header Navigation -->
+    <header class="header" role="banner">
+        <nav class="nav container" aria-label="Navegación principal">
+            <div class="nav__brand">
+                <h1 class="nav__logo">INVERTAX</h1>
+                <span class="nav__tagline">Optimización Fiscal</span>
+            </div>
+            <ul class="nav__menu" role="menubar">
+                <li role="none"><a href="#hero" class="nav__link" role="menuitem">Inicio</a></li>
+                <li role="none"><a href="#simulator" class="nav__link" role="menuitem">Simulador</a></li>
+                <li role="none"><a href="#analytics" class="nav__link" role="menuitem">Análisis</a></li>
+                <li role="none"><a href="#projects" class="nav__link" role="menuitem">Proyectos</a></li>
+                <li role="none"><a href="#legal" class="nav__link" role="menuitem">Legal</a></li>
+                <li role="none"><a href="#contact" class="nav__link btn btn--primary" role="menuitem">Contacto</a></li>
+            </ul>
+            <button class="nav__toggle" aria-label="Menú de navegación" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero" id="hero">
+            <div class="container">
+                <div class="hero__content">
+                    <div class="hero__text">
+                        <h2 class="hero__title">Maximiza tu Rentabilidad Fiscal en Startups</h2>
+                        <p class="hero__subtitle">Optimización inteligente de deducciones IRPF. Combina deducción estatal del 50% con autonómicas hasta 50% adicional. 100% legal y transparente.</p>
+                        
+                        <!-- KPIs Realistas -->
+                        <div class="hero__kpis">
+                            <div class="stat">
+                                <div class="stat__number" aria-label="100 por ciento legal">100%</div>
+                                <div class="stat__label">Optimización Fiscal Legal</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat__number" aria-label="0 riesgo de solapamiento">0</div>
+                                <div class="stat__label">Riesgo de Incompatibilidad</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat__number" aria-label="Versión inicial">v1.0</div>
+                                <div class="stat__label">Simulador en Fase Beta</div>
+                            </div>
+                        </div>
+
+                        <!-- Mini Simulador -->
+                        <div class="mini-simulator card">
+                            <div class="card__body">
+                                <h3>Simulación Rápida</h3>
+                                <div class="mini-simulator__inputs">
+                                    <div class="form-group">
+                                        <label for="quickAmount" class="form-label">Inversión (€)</label>
+                                        <input type="number" id="quickAmount" class="form-control" placeholder="50000" min="1000" max="200000">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="quickCCAA" class="form-label">Comunidad Autónoma</label>
+                                        <select id="quickCCAA" class="form-control">
+                                            <option value="">Selecciona tu CCAA</option>
+                                        </select>
+                                    </div>
+                                    <button type="button" class="btn btn--primary" onclick="calculateQuick()">Calcular</button>
+                                </div>
+                                <div id="quickResult" class="mini-simulator__result hidden"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Simulador Fiscal Avanzado -->
+        <section class="simulator section" id="simulator">
+            <div class="container">
+                <h2 class="section__title">Simulador Fiscal Avanzado</h2>
+                <p class="section__subtitle">Motor de optimización secuencial según el Modelo INVERTAX</p>
+                
+                <div class="simulator__container">
+                    <div class="simulator__form card">
+                        <div class="card__body">
+                            <form id="simulatorForm">
+                                <div class="form-group">
+                                    <label for="investment" class="form-label">Capital a Invertir (€)</label>
+                                    <input type="number" id="investment" class="form-control" placeholder="100000" min="1000" max="500000" required>
+                                    <small class="form-text">Mínimo €1.000, máximo €500.000</small>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="ccaa" class="form-label">Comunidad Autónoma</label>
+                                    <select id="ccaa" class="form-control" required>
+                                        <option value="">Selecciona tu CCAA</option>
+                                    </select>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="stateQuota" class="form-label">Cuota Estatal Disponible (€)</label>
+                                    <input type="number" id="stateQuota" class="form-control" placeholder="15000" min="0" max="50000" required>
+                                    <small class="form-text">Tu cuota IRPF estatal disponible</small>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="regionalQuota" class="form-label">Cuota Autonómica Disponible (€)</label>
+                                    <input type="number" id="regionalQuota" class="form-control" placeholder="8000" min="0" max="20000" required>
+                                    <small class="form-text">Tu cuota IRPF autonómica disponible</small>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="projectProfile" class="form-label">Perfil del Proyecto B</label>
+                                    <select id="projectProfile" class="form-control">
+                                        <option value="">Selecciona perfil</option>
+                                        <option value="startup tecnológica">Startup Tecnológica</option>
+                                        <option value="innovadora">Empresa Innovadora</option>
+                                        <option value="startup local">Startup Local</option>
+                                        <option value="startup joven">Startup Joven</option>
+                                        <option value="empresa vasca">Empresa Vasca</option>
+                                    </select>
+                                </div>
+                                
+                                <button type="button" class="btn btn--primary btn--full-width" onclick="calculateAdvanced()">
+                                    🎯 Optimizar Inversión
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                    
+                    <div class="simulator__results" id="simulatorResults">
+                        <div class="card">
+                            <div class="card__body">
+                                <h3>💡 Cómo funciona INVERTAX</h3>
+                                <div class="optimization-steps">
+                                    <div class="step">
+                                        <h4>1. Deducción Estatal (Proyecto A)</h4>
+                                        <p>Aplicamos el 50% de deducción hasta agotar tu cuota o €100.000 de base máxima.</p>
+                                    </div>
+                                    <div class="step">
+                                        <h4>2. Deducción Autonómica (Proyecto B)</h4>
+                                        <p>El remanente se asigna a deducción autonómica solo si es compatible.</p>
+                                    </div>
+                                    <div class="step">
+                                        <h4>3. Rentabilidad Real</h4>
+                                        <p>Calculamos la rentabilidad fiscal efectiva sobre la inversión utilizada.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Análisis Monte Carlo -->
+        <section class="analytics section" id="analytics">
+            <div class="container">
+                <h2 class="section__title">Análisis de Rentabilidad</h2>
+                <p class="section__subtitle">Simulaciones Monte Carlo con 1000 iteraciones</p>
+                
+                <div class="analytics__container">
+                    <div class="analytics__controls card">
+                        <div class="card__body">
+                            <h3>Parámetros de Simulación</h3>
+                            <div class="form-group">
+                                <label for="monteCarloYears" class="form-label">Horizonte (años)</label>
+                                <select id="monteCarloYears" class="form-control">
+                                    <option value="3">3 años</option>
+                                    <option value="5">5 años</option>
+                                    <option value="7">7 años</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="expectedReturn" class="form-label">Rentabilidad Esperada (%)</label>
+                                <input type="number" id="expectedReturn" class="form-control" value="25" min="5" max="50">
+                            </div>
+                            <div class="form-group">
+                                <label for="volatility" class="form-label">Volatilidad (%)</label>
+                                <input type="number" id="volatility" class="form-control" value="35" min="10" max="80">
+                            </div>
+                            <button type="button" class="btn btn--primary btn--full-width" onclick="runMonteCarlo()">
+                                📊 Ejecutar Análisis
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="analytics__results" id="monteCarloResults">
+                        <div class="card">
+                            <div class="card__body">
+                                <h3>Distribución de Escenarios</h3>
+                                <div class="chart-container">
+                                    <canvas id="monteCarloChart" width="400" height="200"></canvas>
+                                </div>
+                                <div class="percentiles" id="percentiles"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Documentos y Exportación -->
+        <section class="documents section" id="documents">
+            <div class="container">
+                <h2 class="section__title">Centro de Documentos</h2>
+                <p class="section__subtitle">Exportación y trazabilidad de simulaciones</p>
+                
+                <div class="documents__actions">
+                    <button class="btn btn--primary" onclick="exportPDF()">📄 Exportar PDF</button>
+                    <button class="btn btn--secondary" onclick="exportJSON()">📋 Exportar JSON</button>
+                    <button class="btn btn--outline" onclick="generateHash()">🔗 Generar Hash</button>
+                </div>
+                
+                <div class="documents__table card">
+                    <div class="card__body">
+                        <h3>Documentos Generados</h3>
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Documento</th>
+                                        <th>Fecha</th>
+                                        <th>Hash SHA-256</th>
+                                        <th>Estado</th>
+                                        <th>Acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="documentsTableBody">
+                                    <!-- Documentos dinámicos -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Proyectos A y B -->
+        <section class="projects section" id="projects">
+            <div class="container">
+                <h2 class="section__title">Catálogo de Proyectos</h2>
+                <p class="section__subtitle">Proyecto A (Estatal) y Proyecto B (Autonómico)</p>
+                
+                <div class="projects__tabs">
+                    <button class="tab-btn active" onclick="showProjects('estatales')">Proyectos A (Estatales)</button>
+                    <button class="tab-btn" onclick="showProjects('autonomicos')">Proyectos B (Autonómicos)</button>
+                </div>
+                
+                <div class="projects__content">
+                    <div id="proyectosEstatales" class="projects__grid">
+                        <!-- Proyectos estatales dinámicos -->
+                    </div>
+                    <div id="proyectosAutonomicos" class="projects__grid hidden">
+                        <!-- Proyectos autonómicos dinámicos -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Marco Legal -->
+        <section class="legal section" id="legal">
+            <div class="container">
+                <h2 class="section__title">Marco Legal</h2>
+                <p class="section__subtitle">Artículo 68.1 LIRPF y compatibilidades autonómicas</p>
+                
+                <div class="legal__content">
+                    <div class="legal__article card">
+                        <div class="card__body">
+                            <h3>📋 Art. 68.1 Ley del IRPF</h3>
+                            <blockquote>
+                                "Los contribuyentes podrán deducirse de la cuota íntegra estatal el 50 por 100 de las cantidades satisfechas en el ejercicio por la suscripción de acciones o participaciones sociales en entidades de nueva o reciente creación..."
+                            </blockquote>
+                            <ul>
+                                <li>✅ Deducción máxima: 50% de la inversión</li>
+                                <li>✅ Base máxima deducible: €100.000 anuales</li>
+                                <li>✅ Permanencia mínima: 3 años</li>
+                                <li>✅ Aplicable a cuota estatal del IRPF</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="legal__ccaa card">
+                        <div class="card__body">
+                            <h3>🏛️ Compatibilidades por CCAA</h3>
+                            <div class="ccaa-grid" id="ccaaCompatibility">
+                                <!-- Grid de compatibilidades dinámico -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Precios -->
+        <section class="pricing section" id="pricing">
+            <div class="container">
+                <h2 class="section__title">Planes y Precios</h2>
+                <p class="section__subtitle">Desde simulación gratuita hasta exportación premium</p>
+                
+                <div class="pricing__grid">
+                    <div class="pricing__card card">
+                        <div class="card__body">
+                            <h3>Gratuito</h3>
+                            <div class="price">€0<span>/mes</span></div>
+                            <ul>
+                                <li>✅ Simulador básico</li>
+                                <li>✅ Hasta 5 simulaciones/mes</li>
+                                <li>✅ Soporte por email</li>
+                                <li>❌ Exportación PDF</li>
+                                <li>❌ Firma digital</li>
+                            </ul>
+                            <button class="btn btn--outline btn--full-width">Plan Actual</button>
+                        </div>
+                    </div>
+                    
+                    <div class="pricing__card card featured">
+                        <div class="card__body">
+                            <h3>Premium</h3>
+                            <div class="price">€29<span>/mes</span></div>
+                            <ul>
+                                <li>✅ Simulador avanzado</li>
+                                <li>✅ Simulaciones ilimitadas</li>
+                                <li>✅ Exportación PDF/JSON</li>
+                                <li>✅ Firma digital eIDAS</li>
+                                <li>✅ Soporte prioritario</li>
+                                <li>✅ Monte Carlo análisis</li>
+                            </ul>
+                            <button class="btn btn--primary btn--full-width">Actualizar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Garantías -->
+        <section class="guarantees section" id="guarantees">
+            <div class="container">
+                <h2 class="section__title">Garantías y Responsabilidades</h2>
+                
+                <div class="guarantees__grid">
+                    <div class="guarantee card">
+                        <div class="card__body">
+                            <h3>🛡️ Cobertura Legal</h3>
+                            <p>Nuestros cálculos están respaldados por la normativa vigente del IRPF. En caso de discrepancia con Hacienda, proporcionamos documentación legal completa.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="guarantee card">
+                        <div class="card__body">
+                            <h3>⚠️ Limitación de Riesgos</h3>
+                            <p>INVERTAX es una herramienta de simulación. No somos asesores fiscales. Recomendamos consultar siempre con un profesional cualificado antes de invertir.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="guarantee card">
+                        <div class="card__body">
+                            <h3>📊 Transparencia Total</h3>
+                            <p>Todos nuestros cálculos son auditables. Proporcionamos la fórmula exacta y los pasos de optimización en cada simulación.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seguridad -->
+        <section class="security section" id="security">
+            <div class="container">
+                <h2 class="section__title">Seguridad y Privacidad</h2>
+                
+                <div class="security__features">
+                    <div class="security__feature card">
+                        <div class="card__body">
+                            <h3>🔐 Protección de Datos</h3>
+                            <p>Cumplimiento total del RGPD. Tus datos financieros se procesan localmente y nunca se almacenan en nuestros servidores.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="security__feature card">
+                        <div class="card__body">
+                            <h3>🔗 Hash SHA-256</h3>
+                            <p>Cada simulación genera un hash único SHA-256 para garantizar la integridad y trazabilidad de los cálculos realizados.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="security__feature card">
+                        <div class="card__body">
+                            <h3>✍️ Firma Digital</h3>
+                            <p>Integración con servicios de firma electrónica cualificada (eIDAS QeS) para validación legal de documentos.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contacto -->
+        <section class="contact section" id="contact">
+            <div class="container">
+                <h2 class="section__title">Contacto</h2>
+                
+                <div class="contact__container">
+                    <div class="contact__form card">
+                        <div class="card__body">
+                            <form id="contactForm">
+                                <div class="form-group">
+                                    <label for="contactName" class="form-label">Nombre completo</label>
+                                    <input type="text" id="contactName" class="form-control" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="contactEmail" class="form-label">Email</label>
+                                    <input type="email" id="contactEmail" class="form-control" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="contactSubject" class="form-label">Asunto</label>
+                                    <select id="contactSubject" class="form-control" required>
+                                        <option value="">Selecciona un asunto</option>
+                                        <option value="soporte">Soporte técnico</option>
+                                        <option value="comercial">Consulta comercial</option>
+                                        <option value="legal">Consulta legal</option>
+                                        <option value="partnership">Partnership</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="contactMessage" class="form-label">Mensaje</label>
+                                    <textarea id="contactMessage" class="form-control" rows="5" required></textarea>
+                                </div>
+                                <button type="submit" class="btn btn--primary btn--full-width">Enviar Mensaje</button>
+                            </form>
+                        </div>
+                    </div>
+                    
+                    <div class="contact__info">
+                        <div class="contact__item">
+                            <h3>📧 Email</h3>
+                            <p>hola@invertax.ai</p>
+                        </div>
+                        <div class="contact__item">
+                            <h3>📞 Teléfono</h3>
+                            <p>+34 900 123 456</p>
+                        </div>
+                        <div class="contact__item">
+                            <h3>🏢 Oficina</h3>
+                            <p>Madrid, España</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Acerca de -->
+        <section class="about section" id="about">
+            <div class="container">
+                <h2 class="section__title">Acerca de INVERTAX</h2>
+                
+                <div class="about__content">
+                    <div class="about__mission card">
+                        <div class="card__body">
+                            <h3>🎯 Nuestra Misión</h3>
+                            <p><strong>INVERTAX nace para democratizar la optimización fiscal en inversiones de startups.</strong> Creemos que todo inversor debería poder maximizar legalmente su rentabilidad fiscal sin necesidad de costosos asesores.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="about__values">
+                        <div class="value card">
+                            <div class="card__body">
+                                <h3>🏛️ Transparencia</h3>
+                                <p>Código abierto, cálculos auditables y metodología completamente transparente.</p>
+                            </div>
+                        </div>
+                        <div class="value card">
+                            <div class="card__body">
+                                <h3>⚖️ Legalidad</h3>
+                                <p>Estricto cumplimiento de la normativa fiscal española y europea.</p>
+                            </div>
+                        </div>
+                        <div class="value card">
+                            <div class="card__body">
+                                <h3>🔬 Innovación</h3>
+                                <p>Tecnología avanzada al servicio de la optimización fiscal inteligente.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer__content">
+                <div class="footer__section">
+                    <h3 class="footer__title">INVERTAX</h3>
+                    <p class="footer__description">Optimización fiscal inteligente para inversiones en startups. Tecnología avanzada, 100% legal y transparente.</p>
+                </div>
+                
+                <div class="footer__section">
+                    <h4 class="footer__title">Productos</h4>
+                    <ul class="footer__links">
+                        <li><a href="#simulator">Simulador Fiscal</a></li>
+                        <li><a href="#analytics">Análisis Monte Carlo</a></li>
+                        <li><a href="#projects">Catálogo Proyectos</a></li>
+                        <li><a href="#documents">Documentos</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer__section">
+                    <h4 class="footer__title">Legal</h4>
+                    <ul class="footer__links">
+                        <li><a href="#legal">Marco Normativo</a></li>
+                        <li><a href="#guarantees">Garantías</a></li>
+                        <li><a href="#security">Privacidad</a></li>
+                        <li><a href="#">Términos de Uso</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer__section">
+                    <h4 class="footer__title">Contacto</h4>
+                    <ul class="footer__links">
+                        <li><a href="#contact">Formulario</a></li>
+                        <li><a href="mailto:hola@invertax.ai">hola@invertax.ai</a></li>
+                        <li><a href="tel:+34900123456">+34 900 123 456</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer__bottom">
+                <p>&copy; 2025 INVERTAX. Todos los derechos reservados.</p>
+                <p class="footer__disclaimer">INVERTAX no es asesor fiscal. Consulta siempre con un profesional cualificado antes de realizar inversiones.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- PWA Install Prompt -->
+    <div id="installPrompt" class="install-prompt hidden">
+        <div class="install-prompt__content">
+            <h3>📱 Instalar INVERTAX</h3>
+            <p>Instala la app para acceso offline y notificaciones</p>
+            <div class="install-prompt__actions">
+                <button class="btn btn--primary" onclick="installPWA()">Instalar</button>
+                <button class="btn btn--outline" onclick="dismissInstall()">Ahora no</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
