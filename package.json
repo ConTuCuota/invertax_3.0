@@ -4,7 +4,7 @@
   "description": "INVERTAX - Optimización Fiscal para Inversiones en Startups",
   "main": "index.html",
   "scripts": {
-    "start": "python3 -m http.server 8000",
+    "start": "npx http-server -p 8000 -c-1",
     "serve": "npx http-server -p 8000 -c-1",
     "deploy": "gh-pages -d .",
     "build": "echo 'No build step required for static site'",
@@ -34,4 +34,3 @@
     "node": ">=14.0.0"
   }
 }
-
