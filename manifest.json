@@ -1,7 +1,7 @@
 {
   "name": "INVERTAX - Optimización Fiscal Avanzada",
   "short_name": "INVERTAX",
-  "description": "Plataforma profesional de optimización fiscal para inversiones en empresas de nueva creación. Tecnología avanzada, análisis de riesgo y cumplimiento normativo garantizado.",
+  "description": "Plataforma profesional de optimización fiscal para inversiones en empresas de nueva creación. Motor avanzado de cálculo, análisis Monte Carlo, gestión de riesgo y herramientas de exportación completas.",
   "start_url": "./",
   "display": "standalone",
   "background_color": "#1e40af",
@@ -9,7 +9,7 @@
   "orientation": "portrait-primary",
   "scope": "./",
   "lang": "es",
-  "categories": ["finance", "business", "productivity", "utilities"],
+  "categories": ["finance", "business", "productivity", "utilities", "professional"],
   "icons": [
     {
       "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'><rect width='192' height='192' fill='%232563eb' rx='24'/><circle cx='96' cy='96' r='60' fill='white'/><text x='96' y='110' text-anchor='middle' font-size='48' font-weight='bold' fill='%232563eb'>₿</text></svg>",
@@ -28,7 +28,7 @@
     {
       "name": "Simulador Fiscal",
       "short_name": "Simular",
-      "description": "Acceso directo al simulador fiscal avanzado",
+      "description": "Acceso directo al simulador fiscal avanzado con motor de optimización",
       "url": "./#simulador",
       "icons": [
         {
@@ -38,13 +38,13 @@
       ]
     },
     {
-      "name": "Análisis de Riesgo",
-      "short_name": "Riesgo",
-      "description": "Análisis avanzado de riesgo Monte Carlo",
+      "name": "Análisis Monte Carlo",
+      "short_name": "Monte Carlo",
+      "description": "Simulaciones avanzadas de riesgo y rentabilidad",
       "url": "./#analytics",
       "icons": [
         {
-          "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 96 96'><text y='.9em' font-size='80'>📊</text></svg>",
+          "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 96 96'><text y='.9em' font-size='80'>🎲</text></svg>",
           "sizes": "96x96"
         }
       ]
@@ -52,7 +52,7 @@
     {
       "name": "Comparar CCAA",
       "short_name": "Comparar",
-      "description": "Comparación entre Comunidades Autónomas",
+      "description": "Comparación detallada entre Comunidades Autónomas",
       "url": "./#marco-legal",
       "icons": [
         {
@@ -62,9 +62,21 @@
       ]
     },
     {
+      "name": "Exportar Documentos",
+      "short_name": "Exportar",
+      "description": "Generar y descargar informes en PDF, JSON y Excel",
+      "url": "./#documentos",
+      "icons": [
+        {
+          "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 96 96'><text y='.9em' font-size='80'>📄</text></svg>",
+          "sizes": "96x96"
+        }
+      ]
+    },
+    {
       "name": "Contacto Experto",
       "short_name": "Contacto",
-      "description": "Consulta con nuestros expertos fiscales",
+      "description": "Consulta personalizada con expertos fiscales",
       "url": "./#contacto",
       "icons": [
         {
@@ -95,7 +107,9 @@
       "action": "./",
       "accept": {
         "application/json": [".json"],
-        "application/pdf": [".pdf"]
+        "application/pdf": [".pdf"],
+        "text/csv": [".csv"],
+        "application/vnd.ms-excel": [".xls", ".xlsx"]
       }
     }
   ],
@@ -107,5 +121,25 @@
       "text": "text",
       "url": "url"
     }
-  }
+  },
+  "screenshots": [
+    {
+      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1280 720'><rect width='1280' height='720' fill='%23f8fafc'/><rect x='40' y='40' width='1200' height='640' fill='white' rx='12' stroke='%23e2e8f0'/><text x='640' y='360' text-anchor='middle' font-size='48' fill='%232563eb'>INVERTAX Dashboard</text></svg>",
+      "sizes": "1280x720",
+      "type": "image/svg+xml",
+      "form_factor": "wide",
+      "label": "Vista principal del simulador fiscal"
+    },
+    {
+      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 750 1334'><rect width='750' height='1334' fill='%23f8fafc'/><rect x='20' y='20' width='710' height='1294' fill='white' rx='12' stroke='%23e2e8f0'/><text x='375' y='667' text-anchor='middle' font-size='32' fill='%232563eb'>INVERTAX Mobile</text></svg>",
+      "sizes": "750x1334",
+      "type": "image/svg+xml",
+      "form_factor": "narrow",
+      "label": "Vista móvil optimizada"
+    }
+  ],
+  "features": [
+    "cross-origin-isolated"
+  ],
+  "handle_links": "preferred"
 }
