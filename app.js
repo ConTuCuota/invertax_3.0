@@ -1365,12 +1365,15 @@ function trackEvent(eventName, parameters = {}) {
     console.log(`Analytics: ${eventName}`, parameters);
 }
 
-// Track calculator usage
+// Track calculator usage - FIXED: Check for onclick attribute properly
 document.addEventListener('click', function(e) {
-    if (e.target.matches('button[onclick*="calculate"]')) {
-        trackEvent('calculator_used', { 
-            type: e.target.onclick.includes('Quick') ? 'quick' : 'advanced' 
-        });
+    if (e.target.matches('button') && e.target.hasAttribute('onclick')) {
+        const onclickAttr = e.target.getAttribute('onclick');
+        if (onclickAttr && onclickAttr.includes('calculate')) {
+            trackEvent('calculator_used', { 
+                type: onclickAttr.includes('Quick') ? 'quick' : 'advanced' 
+            });
+        }
     }
 });
 
