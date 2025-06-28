@@ -1402,10 +1402,22 @@ function initializeOfflineCapabilities() {
     // Cargar datos del cache offline
     loadOfflineCache();
     
-    // Configurar sincronización automática
+    // Configurar sincronización automática con manejo de errores mejorado
     if ('serviceWorker' in navigator && 'sync' in window.ServiceWorkerRegistration.prototype) {
         navigator.serviceWorker.ready.then(registration => {
-            return registration.sync.register('sync-data');
+            // Usar un tag más corto y específico
+            const syncTag = 'data-sync';
+            
+            // Verificar que el tag no exceda el límite
+            if (syncTag.length <= 128) {
+                return registration.sync.register(syncTag);
+            } else {
+                console.warn('Sync tag too long, skipping background sync registration');
+                return Promise.resolve();
+            }
+        }).catch(error => {
+            console.warn('Background sync registration failed:', error);
+            // No mostrar error al usuario ya que es una funcionalidad opcional
         });
     }
 }
@@ -1913,7 +1925,11 @@ window.addEventListener('error', function(e) {
 
 window.addEventListener('unhandledrejection', function(e) {
     console.error('Promise rejection no manejada:', e.reason);
-    showNotification('Error de conexión. Verifica tu conexión a internet.', 'warning');
+    
+    // No mostrar notificación para errores de sync ya que son opcionales
+    if (!e.reason?.toString().includes('sync event')) {
+        showNotification('Error de conexión. Verifica tu conexión a internet.', 'warning');
+    }
     
     trackEvent('unhandled_promise_rejection', {
         reason: e.reason?.toString(),
