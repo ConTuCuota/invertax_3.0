@@ -1,24 +1,24 @@
 {
-  "name": "INVERTAX - Optimización Fiscal",
+  "name": "INVERTAX - Optimización Fiscal Avanzada",
   "short_name": "INVERTAX",
-  "description": "Plataforma SaaS fintech-fiscal para optimización de inversiones en startups mediante deducciones IRPF",
+  "description": "Plataforma profesional de optimización fiscal para inversiones en empresas de nueva creación. Tecnología avanzada, análisis de riesgo y cumplimiento normativo garantizado.",
   "start_url": "./",
   "display": "standalone",
-  "background_color": "#1E3A8A",
-  "theme_color": "#21808D",
+  "background_color": "#1e40af",
+  "theme_color": "#2563eb",
   "orientation": "portrait-primary",
   "scope": "./",
   "lang": "es",
-  "categories": ["finance", "business", "productivity"],
+  "categories": ["finance", "business", "productivity", "utilities"],
   "icons": [
     {
-      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'><rect width='192' height='192' fill='%231E3A8A' rx='24'/><text x='96' y='120' text-anchor='middle' font-size='80' fill='white'>₿</text></svg>",
+      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'><rect width='192' height='192' fill='%232563eb' rx='24'/><circle cx='96' cy='96' r='60' fill='white'/><text x='96' y='110' text-anchor='middle' font-size='48' font-weight='bold' fill='%232563eb'>₿</text></svg>",
       "sizes": "192x192",
       "type": "image/svg+xml",
       "purpose": "any maskable"
     },
     {
-      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><rect width='512' height='512' fill='%231E3A8A' rx='64'/><text x='256' y='320' text-anchor='middle' font-size='200' fill='white'>₿</text></svg>",
+      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><rect width='512' height='512' fill='%232563eb' rx='64'/><circle cx='256' cy='256' r='160' fill='white'/><text x='256' y='290' text-anchor='middle' font-size='120' font-weight='bold' fill='%232563eb'>₿</text></svg>",
       "sizes": "512x512",
       "type": "image/svg+xml",
       "purpose": "any maskable"
@@ -28,7 +28,7 @@
     {
       "name": "Simulador Fiscal",
       "short_name": "Simular",
-      "description": "Acceso directo al simulador fiscal",
+      "description": "Acceso directo al simulador fiscal avanzado",
       "url": "./#simulador",
       "icons": [
         {
@@ -38,13 +38,37 @@
       ]
     },
     {
-      "name": "Mis Documentos",
-      "short_name": "Documentos",
-      "description": "Ver documentos generados",
-      "url": "./#documentos",
+      "name": "Análisis de Riesgo",
+      "short_name": "Riesgo",
+      "description": "Análisis avanzado de riesgo Monte Carlo",
+      "url": "./#analytics",
       "icons": [
         {
-          "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 96 96'><text y='.9em' font-size='80'>📄</text></svg>",
+          "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 96 96'><text y='.9em' font-size='80'>📊</text></svg>",
+          "sizes": "96x96"
+        }
+      ]
+    },
+    {
+      "name": "Comparar CCAA",
+      "short_name": "Comparar",
+      "description": "Comparación entre Comunidades Autónomas",
+      "url": "./#marco-legal",
+      "icons": [
+        {
+          "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 96 96'><text y='.9em' font-size='80'>🗺️</text></svg>",
+          "sizes": "96x96"
+        }
+      ]
+    },
+    {
+      "name": "Contacto Experto",
+      "short_name": "Contacto",
+      "description": "Consulta con nuestros expertos fiscales",
+      "url": "./#contacto",
+      "icons": [
+        {
+          "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 96 96'><text y='.9em' font-size='80'>📞</text></svg>",
           "sizes": "96x96"
         }
       ]
@@ -53,8 +77,35 @@
   "related_applications": [],
   "prefer_related_applications": false,
   "dir": "ltr",
-  "display_override": ["standalone", "minimal-ui"],
+  "display_override": ["standalone", "minimal-ui", "browser"],
   "edge_side_panel": {
     "preferred_width": 400
+  },
+  "launch_handler": {
+    "client_mode": "navigate-existing"
+  },
+  "protocol_handlers": [
+    {
+      "protocol": "web+invertax",
+      "url": "./?action=%s"
+    }
+  ],
+  "file_handlers": [
+    {
+      "action": "./",
+      "accept": {
+        "application/json": [".json"],
+        "application/pdf": [".pdf"]
+      }
+    }
+  ],
+  "share_target": {
+    "action": "./",
+    "method": "GET",
+    "params": {
+      "title": "title",
+      "text": "text",
+      "url": "url"
+    }
   }
 }

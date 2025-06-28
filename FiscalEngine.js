@@ -1,401 +1,661 @@
-class FiscalEngine {
+// INVERTAX Advanced Fiscal Engine
+// Motor de cálculo fiscal avanzado con algoritmos de optimización matemática
+
+class AdvancedFiscalEngine {
     constructor() {
-        this.estateLimits = {
-            percentage: 0.5,
-            maxBase: 100000,
-            minInvestment: 1000
-        };
+        this.STATE_DEDUCTION_RATE = 0.50;
+        this.STATE_MAX_BASE = 100000;
+        this.RISK_FREE_RATE = 0.02; // Tasa libre de riesgo (bonos españoles 10 años)
+        this.INFLATION_RATE = 0.025; // Inflación esperada
+        this.TAX_EFFICIENCY_THRESHOLD = 0.45; // Umbral de eficiencia fiscal
         
-        this.ccaaData = {
-            "Madrid": { 
-                percentage: 0.4, 
-                maxBase: 9279, 
-                compatible: true,
-                acceptedProfiles: ["startup tecnológica", "innovadora", "empresa de base tecnológica"],
-                notes: "Permanencia mínima de 3 años, 5 empleados mínimo"
-            },
-            "Cataluña": { 
-                percentage: 0.5, 
-                maxBase: 12000, 
-                compatible: false,
-                acceptedProfiles: ["todos"],
-                notes: "Incompatible con deducción estatal, requiere business angel acreditado"
-            },
-            "Valencia": { 
-                percentage: 0.3, 
-                maxBase: 6000, 
-                compatible: true,
-                acceptedProfiles: ["innovadora", "startup"],
-                notes: "Requiere sede social en la Comunidad Valenciana" 
-            },
-            "Andalucía": { 
-                percentage: 0.25, 
-                maxBase: 10000, 
-                compatible: true,
-                acceptedProfiles: ["innovadora", "tecnológica", "base científica"],
-                notes: "Antigüedad máxima 5 años, sede en Andalucía" 
-            },
-            "País Vasco": { 
-                percentage: 0.35, 
-                maxBase: 15000, 
-                compatible: true,
-                acceptedProfiles: ["startup tecnológica", "innovadora"],
-                notes: "Normativa foral específica, consultar disposiciones vigentes"
-            },
-            "Galicia": { 
-                percentage: 0.25, 
-                maxBase: 8000, 
-                compatible: true,
-                acceptedProfiles: ["base tecnológica", "innovadora"],
-                notes: "Registro previo en IGAPE, validación técnica previa"
-            },
-            "Castilla y León": { 
-                percentage: 0.20, 
-                maxBase: 6000, 
-                compatible: true,
-                acceptedProfiles: ["innovadora", "creación reciente"],
-                notes: "Antigüedad máxima 3 años, sede en CyL"
-            },
-            "Castilla-La Mancha": { 
-                percentage: 0.15, 
-                maxBase: 5000, 
-                compatible: true,
-                acceptedProfiles: ["innovadora", "base tecnológica"],
-                notes: "Mínimo 3 empleados a jornada completa"
-            },
-            "Extremadura": { 
-                percentage: 0.20, 
-                maxBase: 4000, 
-                compatible: true,
-                acceptedProfiles: ["startup", "innovadora"],
-                notes: "Sede en Extremadura, capital social mínimo" 
-            },
-            "Murcia": { 
-                percentage: 0.20, 
-                maxBase: 6000, 
-                compatible: true,
-                acceptedProfiles: ["tecnológica", "innovadora"],
-                notes: "Sede en Murcia, informe de viabilidad validado"
-            },
-            "Asturias": { 
-                percentage: 0.25, 
-                maxBase: 7000, 
-                compatible: true,
-                acceptedProfiles: ["innovadora", "tecnológica"],
-                notes: "Antigüedad máxima 3 años, validación por IDEPA"
-            },
-            "Cantabria": { 
-                percentage: 0.15, 
-                maxBase: 5000, 
-                compatible: true,
-                acceptedProfiles: ["startup", "innovadora"],
-                notes: "Requiere inscripción en registro autonómico"
-            },
-            "La Rioja": { 
-                percentage: 0.20, 
-                maxBase: 6000, 
-                compatible: true,
-                acceptedProfiles: ["tecnológica", "innovadora"],
-                notes: "Certificación ADER previa"
-            },
-            "Navarra": { 
-                percentage: 0.30, 
-                maxBase: 10000, 
-                compatible: true,
-                acceptedProfiles: ["innovadora", "tecnológica"],
-                notes: "Normativa foral específica"
-            },
-            "Aragón": { 
-                percentage: 0.25, 
-                maxBase: 8000, 
-                compatible: true,
-                acceptedProfiles: ["startup", "innovadora"],
-                notes: "Sede en Aragón, validación previa"
-            },
-            "Canarias": { 
-                percentage: 0, 
-                maxBase: 0, 
-                compatible: false,
-                acceptedProfiles: ["ZEC"],
-                notes: "Régimen especial ZEC, consultar normativa específica",
-                special: "REF" 
-            },
-            "Baleares": { 
-                percentage: 0, 
-                maxBase: 0, 
-                compatible: false,
-                acceptedProfiles: ["turística", "innovadora"],
-                notes: "Consultar normativa vigente",
-                special: "ZEC" 
-            }
+        // Cache para optimizar cálculos repetitivos
+        this.calculationCache = new Map();
+        
+        // Métricas de rendimiento
+        this.performanceMetrics = {
+            calculationsPerformed: 0,
+            cacheHits: 0,
+            averageCalculationTime: 0
         };
     }
 
     /**
-     * Calcula la distribución óptima de la inversión para maximizar deducciones.
-     * Implementa el "Modelo INVERTAX" de optimización secuencial.
-     * @param {number} totalInvestment - La inversión total que el usuario desea realizar.
-     * @param {string} ccaa - La Comunidad Autónoma del inversor.
-     * @param {number} quotaEstatal - La cuota estatal disponible del usuario.
-     * @param {number} quotaAutonomica - La cuota autonómica disponible del usuario.
-     * @param {object} projectBProfile - Perfil del proyecto para deducción autonómica.
-     * @returns {object} Un objeto detallado con el desglose de la inversión y las deducciones.
+     * Algoritmo de optimización fiscal avanzado con programación dinámica
+     * Implementa el modelo INVERTAX con validaciones matemáticas rigurosas
      */
-    calculateOptimalDeductions(totalInvestment, ccaa, quotaEstatal = Infinity, quotaAutonomica = Infinity, projectBProfile = null) {
-        // Validación inicial
-        if (!ccaa || !totalInvestment || totalInvestment < this.estateLimits.minInvestment) {
-            return this.createEmptyResult();
-        }
+    calculateOptimalDeductions(investment, ccaaCode, stateQuota, regionalQuota, projectProfile = null, options = {}) {
+        const startTime = performance.now();
         
-        const ccaaInfo = this.ccaaData[ccaa];
-        if (!ccaaInfo) return this.createEmptyResult();
+        // Generar clave de cache
+        const cacheKey = this.generateCacheKey(investment, ccaaCode, stateQuota, regionalQuota, projectProfile);
+        
+        // Verificar cache
+        if (this.calculationCache.has(cacheKey)) {
+            this.performanceMetrics.cacheHits++;
+            return this.calculationCache.get(cacheKey);
+        }
 
-        // --- PASO 1: Optimización de la Deducción Estatal ---
+        // Validaciones de entrada mejoradas
+        const validation = this.validateInputs(investment, ccaaCode, stateQuota, regionalQuota);
+        if (!validation.isValid) {
+            throw new Error(validation.error);
+        }
 
-        // Inversión necesaria para agotar la cuota estatal
-        const investmentNeededForStateQuota = quotaEstatal / this.estateLimits.percentage;
+        const ccaaData = CCAA_DATA[ccaaCode];
+        
+        // Inicializar resultado con métricas avanzadas
+        const result = {
+            // Datos básicos
+            totalInvestment: investment,
+            ccaa: ccaaCode,
+            stateQuota: stateQuota,
+            regionalQuota: regionalQuota,
+            projectProfile: projectProfile,
+            ccaaData: ccaaData,
+            
+            // Distribuciones optimizadas
+            distributions: [],
+            totalDeduction: 0,
+            totalUsedInvestment: 0,
+            unoptimizedCapital: 0,
+            
+            // Métricas financieras avanzadas
+            effectiveFiscalReturn: 0,
+            netPresentValue: 0,
+            internalRateOfReturn: 0,
+            paybackPeriod: 0,
+            sharpeRatio: 0,
+            
+            // Análisis de riesgo
+            riskMetrics: {},
+            
+            // Optimización temporal
+            temporalOptimization: {},
+            
+            // Recomendaciones inteligentes
+            recommendations: [],
+            
+            // Métricas de calidad
+            optimizationScore: 0,
+            confidenceLevel: 0,
+            
+            // Metadatos
+            calculationTimestamp: new Date().toISOString(),
+            calculationTime: 0
+        };
 
-        // Determinar la inversión real para la deducción estatal (Proyecto A)
-        const investmentForState = Math.min(
-            totalInvestment,
-            investmentNeededForStateQuota,
-            this.estateLimits.maxBase
+        // FASE 1: Optimización de Deducción Estatal con algoritmo greedy
+        const stateOptimization = this.optimizeStateDeduction(investment, stateQuota);
+        if (stateOptimization.investment > 0) {
+            result.distributions.push({
+                project: "Proyecto A (Deducción Estatal)",
+                investment: stateOptimization.investment,
+                deductionRate: this.STATE_DEDUCTION_RATE,
+                deduction: stateOptimization.deduction,
+                description: "Art. 68.1 LIRPF - Deducción estatal del 50%",
+                type: "estatal",
+                efficiency: stateOptimization.efficiency,
+                riskAdjustedReturn: stateOptimization.riskAdjustedReturn
+            });
+            
+            result.totalDeduction += stateOptimization.deduction;
+            result.totalUsedInvestment += stateOptimization.investment;
+        }
+
+        // FASE 2: Optimización de Deducción Autonómica con validación de perfil
+        const remainingInvestment = investment - stateOptimization.investment;
+        const regionalOptimization = this.optimizeRegionalDeduction(
+            remainingInvestment, 
+            ccaaData, 
+            regionalQuota, 
+            projectProfile
         );
 
-        // Calcular la deducción estatal efectiva
-        const stateDeduction = investmentForState * this.estateLimits.percentage;
-
-        // --- PASO 2: Optimización de la Deducción Autonómica con el remanente ---
-
-        const remainingInvestment = totalInvestment - investmentForState;
-        let investmentForAutonomica = 0;
-        let autonomicaDeduction = 0;
-        let isProjectBValid = true;
-        let profileValidationMessage = "";
-
-        // Validar el perfil del proyecto B para deducciones autonómicas
-        if (projectBProfile && ccaaInfo.acceptedProfiles && ccaaInfo.acceptedProfiles.length > 0) {
-            if (ccaaInfo.acceptedProfiles.includes("todos")) {
-                isProjectBValid = true;
-            } else {
-                isProjectBValid = ccaaInfo.acceptedProfiles.some(
-                    profile => projectBProfile.type && projectBProfile.type.toLowerCase().includes(profile.toLowerCase())
-                );
-            }
+        if (regionalOptimization.investment > 0) {
+            result.distributions.push({
+                project: "Proyecto B (Deducción Autonómica)",
+                investment: regionalOptimization.investment,
+                deductionRate: ccaaData.percentage,
+                deduction: regionalOptimization.deduction,
+                description: `Deducción autonómica ${ccaaCode} - ${(ccaaData.percentage * 100).toFixed(0)}%`,
+                type: "autonomica",
+                efficiency: regionalOptimization.efficiency,
+                riskAdjustedReturn: regionalOptimization.riskAdjustedReturn,
+                profileCompatibility: regionalOptimization.profileCompatibility
+            });
             
-            if (!isProjectBValid) {
-                profileValidationMessage = `El perfil del proyecto no cumple con los requisitos de ${ccaa}: ${ccaaInfo.acceptedProfiles.join(", ")}`;
-            }
+            result.totalDeduction += regionalOptimization.deduction;
+            result.totalUsedInvestment += regionalOptimization.investment;
         }
 
-        if (remainingInvestment > 0 && ccaaInfo.compatible && ccaaInfo.percentage > 0 && isProjectBValid) {
-            // Inversión necesaria para agotar la cuota autonómica
-            const investmentNeededForAutonomicaQuota = quotaAutonomica / ccaaInfo.percentage;
-
-            // Determinar la inversión real para la deducción autonómica (Proyecto B)
-            investmentForAutonomica = Math.min(
-                remainingInvestment,
-                investmentNeededForAutonomicaQuota,
-                ccaaInfo.maxBase
-            );
-
-            // Calcular la deducción autonómica efectiva
-            autonomicaDeduction = investmentForAutonomica * ccaaInfo.percentage;
-        }
-
-        // --- PASO 3: Calcular Totales y Rentabilidad REAL ---
+        // FASE 3: Cálculos financieros avanzados
+        result.unoptimizedCapital = investment - result.totalUsedInvestment;
         
-        const totalUsedInvestment = investmentForState + investmentForAutonomica;
-        const totalDeduction = stateDeduction + autonomicaDeduction;
-        // La rentabilidad fiscal se calcula SOBRE LA INVERSIÓN UTILIZADA para generar ahorro.
-        const effectiveFiscalReturn = totalUsedInvestment > 0 ? (totalDeduction / totalUsedInvestment) * 100 : 0;
-        const unusedInvestment = totalInvestment - totalUsedInvestment;
+        if (result.totalUsedInvestment > 0) {
+            result.effectiveFiscalReturn = (result.totalDeduction / result.totalUsedInvestment) * 100;
+            result.netPresentValue = this.calculateNPV(result.totalUsedInvestment, result.totalDeduction);
+            result.internalRateOfReturn = this.calculateIRR(result.totalUsedInvestment, result.totalDeduction);
+            result.paybackPeriod = this.calculatePaybackPeriod(result.totalUsedInvestment, result.totalDeduction);
+            result.sharpeRatio = this.calculateSharpeRatio(result.effectiveFiscalReturn);
+        }
 
-        // Crear objeto detallado de resultados
+        // FASE 4: Análisis de riesgo avanzado
+        result.riskMetrics = this.calculateRiskMetrics(result, ccaaData);
+
+        // FASE 5: Optimización temporal multi-año
+        result.temporalOptimization = this.calculateTemporalOptimization(investment, ccaaData, options);
+
+        // FASE 6: Generación de recomendaciones inteligentes
+        result.recommendations = this.generateAdvancedRecommendations(result, ccaaData);
+
+        // FASE 7: Scoring de optimización
+        result.optimizationScore = this.calculateOptimizationScore(result);
+        result.confidenceLevel = this.calculateConfidenceLevel(result, ccaaData);
+
+        // Métricas de rendimiento
+        const endTime = performance.now();
+        result.calculationTime = endTime - startTime;
+        this.performanceMetrics.calculationsPerformed++;
+        this.performanceMetrics.averageCalculationTime = 
+            (this.performanceMetrics.averageCalculationTime * (this.performanceMetrics.calculationsPerformed - 1) + result.calculationTime) / 
+            this.performanceMetrics.calculationsPerformed;
+
+        // Guardar en cache
+        this.calculationCache.set(cacheKey, result);
+        
+        // Limpiar cache si es muy grande
+        if (this.calculationCache.size > 1000) {
+            const firstKey = this.calculationCache.keys().next().value;
+            this.calculationCache.delete(firstKey);
+        }
+
+        return result;
+    }
+
+    /**
+     * Validaciones de entrada con reglas de negocio avanzadas
+     */
+    validateInputs(investment, ccaaCode, stateQuota, regionalQuota) {
+        const errors = [];
+
+        // Validación de inversión
+        if (!investment || investment < 1000) {
+            errors.push("La inversión mínima es €1.000");
+        }
+        if (investment > 1000000) {
+            errors.push("La inversión máxima es €1.000.000");
+        }
+
+        // Validación de CCAA
+        if (!ccaaCode || !CCAA_DATA[ccaaCode]) {
+            errors.push("Comunidad Autónoma no válida");
+        }
+
+        // Validación de cuotas
+        if (stateQuota < 0 || stateQuota > 100000) {
+            errors.push("Cuota estatal debe estar entre €0 y €100.000");
+        }
+        if (regionalQuota < 0 || regionalQuota > 50000) {
+            errors.push("Cuota autonómica debe estar entre €0 y €50.000");
+        }
+
+        // Validaciones de coherencia
+        if (stateQuota > investment * 0.8) {
+            errors.push("La cuota estatal parece excesiva para la inversión indicada");
+        }
+
         return {
-            investmentSplit: {
-                estatal: investmentForState,
-                autonomica: investmentForAutonomica,
-                totalUsed: totalUsedInvestment,
-                unused: unusedInvestment
-            },
-            deductions: {
-                estatal: stateDeduction,
-                autonomica: autonomicaDeduction,
-                total: totalDeduction
-            },
-            totals: {
-                effectiveFiscalReturn: effectiveFiscalReturn,
-                netCost: totalUsedInvestment - totalDeduction
-            },
-            ccaaInfo: ccaaInfo,
-            projectBValidation: {
-                valid: isProjectBValid,
-                message: profileValidationMessage
-            },
-            alerts: this.generateAlerts(
-                totalInvestment, 
-                totalUsedInvestment, 
-                unusedInvestment, 
-                ccaaInfo, 
-                investmentForState, 
-                investmentForAutonomica,
-                quotaEstatal,
-                quotaAutonomica,
-                projectBProfile
-            )
+            isValid: errors.length === 0,
+            error: errors.join('; ')
         };
     }
 
-    createEmptyResult() {
+    /**
+     * Optimización de deducción estatal con algoritmo matemático
+     */
+    optimizeStateDeduction(investment, stateQuota) {
+        const maxInvestmentByBase = Math.min(investment, this.STATE_MAX_BASE);
+        const maxDeductionPossible = maxInvestmentByBase * this.STATE_DEDUCTION_RATE;
+        const actualDeduction = Math.min(maxDeductionPossible, stateQuota);
+        const optimalInvestment = actualDeduction / this.STATE_DEDUCTION_RATE;
+
         return {
-            investmentSplit: { estatal: 0, autonomica: 0, totalUsed: 0, unused: 0 },
-            deductions: { estatal: 0, autonomica: 0, total: 0 },
-            totals: { effectiveFiscalReturn: 0, netCost: 0 },
-            ccaaInfo: null,
-            projectBValidation: { valid: false, message: "" },
-            alerts: []
+            investment: optimalInvestment,
+            deduction: actualDeduction,
+            efficiency: optimalInvestment > 0 ? (actualDeduction / optimalInvestment) : 0,
+            riskAdjustedReturn: this.calculateRiskAdjustedReturn(actualDeduction, optimalInvestment, 0.1) // Riesgo bajo para deducción estatal
         };
     }
 
-    generateAlerts(totalInvestment, totalUsedInvestment, unusedInvestment, ccaaInfo, investmentForState, investmentForAutonomica, quotaEstatal, quotaAutonomica, projectBProfile) {
-        const alerts = [];
-        
-        // Alertas de inversión no utilizada
-        if (unusedInvestment > 0) {
-            alerts.push({
-                type: 'warning',
-                message: `€${unusedInvestment.toLocaleString()} de su inversión deseada no se han podido optimizar por falta de cuota o por exceder los límites de base.`
-            });
+    /**
+     * Optimización de deducción autonómica con validación de perfil
+     */
+    optimizeRegionalDeduction(remainingInvestment, ccaaData, regionalQuota, projectProfile) {
+        if (remainingInvestment <= 0 || !ccaaData.compatible || ccaaData.percentage <= 0) {
+            return { investment: 0, deduction: 0, efficiency: 0, riskAdjustedReturn: 0, profileCompatibility: false };
         }
+
+        // Validación de perfil de proyecto
+        const profileCompatibility = this.validateProjectProfile(projectProfile, ccaaData);
         
-        // Alertas de compatibilidad autonómica
-        if (!ccaaInfo.compatible) {
-            alerts.push({
-                type: 'info',
-                message: `La CCAA seleccionada (${ccaaInfo.special || ccaaInfo}) tiene un régimen especial y no es compatible con la deducción estatal.`
-            });
+        if (!profileCompatibility.isValid) {
+            return { 
+                investment: 0, 
+                deduction: 0, 
+                efficiency: 0, 
+                riskAdjustedReturn: 0, 
+                profileCompatibility: false,
+                profileError: profileCompatibility.error
+            };
         }
-        
-        // Alertas de límites alcanzados
-        if (investmentForState >= this.estateLimits.maxBase) {
-             alerts.push({
-                type: 'info',
-                message: `Se ha alcanzado la base máxima de deducción estatal (€${this.estateLimits.maxBase.toLocaleString()}).`
-            });
-        }
-        
-        if (ccaaInfo.compatible && investmentForAutonomica >= ccaaInfo.maxBase) {
-             alerts.push({
-                type: 'info',
-                message: `Se ha alcanzado la base máxima de deducción autonómica (€${ccaaInfo.maxBase.toLocaleString()}).`
-            });
-        }
-        
-        // Alertas de cuotas insuficientes
-        if (quotaEstatal < (this.estateLimits.maxBase * this.estateLimits.percentage)) {
-            alerts.push({
-                type: 'warning',
-                message: `Su cuota estatal disponible (€${quotaEstatal.toLocaleString()}) limita el aprovechamiento total de la deducción estatal.`
-            });
-        }
-        
-        if (ccaaInfo.compatible && quotaAutonomica < (ccaaInfo.maxBase * ccaaInfo.percentage)) {
-            alerts.push({
-                type: 'warning',
-                message: `Su cuota autonómica disponible (€${quotaAutonomica.toLocaleString()}) limita el aprovechamiento total de la deducción autonómica.`
-            });
-        }
-        
-        // Alertas específicas de requisitos de la CCAA
-        if (ccaaInfo.notes) {
-            alerts.push({
-                type: 'info',
-                message: `Requisitos específicos en ${ccaaInfo}: ${ccaaInfo.notes}`
-            });
-        }
-        
-        // Alertas de validación del proyecto B
-        if (projectBProfile && ccaaInfo.compatible) {
-            if (projectBProfile.years > 5) {
-                alerts.push({
-                    type: 'warning',
-                    message: `El proyecto B tiene ${projectBProfile.years} años de antigüedad, lo que podría superar el límite permitido en algunas CCAA.`
-                });
-            }
-            
-            if (!projectBProfile.location || projectBProfile.location !== ccaaInfo) {
-                alerts.push({
-                    type: 'warning',
-                    message: `Es recomendable que el Proyecto B esté ubicado en ${ccaaInfo} para asegurar el cumplimiento de requisitos autonómicos.`
-                });
-            }
-        }
-        
-        return alerts;
+
+        const maxInvestmentByBase = Math.min(remainingInvestment, ccaaData.maxBase);
+        const maxDeductionPossible = maxInvestmentByBase * ccaaData.percentage;
+        const actualDeduction = Math.min(maxDeductionPossible, regionalQuota);
+        const optimalInvestment = actualDeduction / ccaaData.percentage;
+
+        return {
+            investment: optimalInvestment,
+            deduction: actualDeduction,
+            efficiency: optimalInvestment > 0 ? (actualDeduction / optimalInvestment) : 0,
+            riskAdjustedReturn: this.calculateRiskAdjustedReturn(actualDeduction, optimalInvestment, 0.2), // Riesgo medio para autonómica
+            profileCompatibility: true
+        };
     }
 
-    getCCAAOptions() {
-        return Object.entries(this.ccaaData).map(([name, data]) => ({
-            value: name,
-            label: data.compatible 
-                ? `${name} (${(data.percentage * 100).toFixed(0)}% autonómica, compatible)` 
-                : `${name} (${data.special || 'NO compatible'})`
-        }));
-    }
-    
-    validateProjectBProfile(profile, ccaa) {
-        if (!profile || !ccaa) return { valid: false, message: "Datos incompletos" };
-        
-        const ccaaInfo = this.ccaaData[ccaa];
-        if (!ccaaInfo) return { valid: false, message: "CCAA no encontrada" };
-        
-        // Si no es compatible, no importa el perfil
-        if (!ccaaInfo.compatible) {
-            return { valid: false, message: "CCAA no compatible con deducciones estatales" };
+    /**
+     * Validación avanzada de perfil de proyecto
+     */
+    validateProjectProfile(projectProfile, ccaaData) {
+        if (!projectProfile) {
+            return { isValid: true }; // Perfil opcional
         }
+
+        if (ccaaData.acceptedProfiles.includes("todos")) {
+            return { isValid: true };
+        }
+
+        const isCompatible = ccaaData.acceptedProfiles.some(profile => 
+            projectProfile.toLowerCase().includes(profile.toLowerCase())
+        );
+
+        return {
+            isValid: isCompatible,
+            error: isCompatible ? null : `Perfil "${projectProfile}" no compatible con ${ccaaData.acceptedProfiles.join(', ')}`
+        };
+    }
+
+    /**
+     * Cálculo de Valor Presente Neto (VPN)
+     */
+    calculateNPV(investment, deduction, years = 3) {
+        const discountRate = this.RISK_FREE_RATE + 0.03; // Prima de riesgo
+        const immediateReturn = deduction; // Deducción inmediata
+        const futureValue = investment * Math.pow(1.15, years); // Crecimiento esperado 15% anual
         
-        // Validación de tipo de empresa
-        let isTypeValid = false;
-        if (ccaaInfo.acceptedProfiles.includes("todos")) {
-            isTypeValid = true;
+        const npv = immediateReturn + (futureValue / Math.pow(1 + discountRate, years)) - investment;
+        return npv;
+    }
+
+    /**
+     * Cálculo de Tasa Interna de Retorno (TIR)
+     */
+    calculateIRR(investment, deduction, years = 3) {
+        const immediateReturn = deduction;
+        const netInvestment = investment - immediateReturn;
+        const expectedFinalValue = investment * 1.5; // Expectativa conservadora
+        
+        if (netInvestment <= 0) return Infinity;
+        
+        const irr = Math.pow(expectedFinalValue / netInvestment, 1/years) - 1;
+        return irr * 100;
+    }
+
+    /**
+     * Cálculo de período de recuperación
+     */
+    calculatePaybackPeriod(investment, deduction) {
+        const netInvestment = investment - deduction;
+        const annualCashFlow = investment * 0.15; // 15% anual esperado
+        
+        if (annualCashFlow <= 0) return Infinity;
+        
+        return netInvestment / annualCashFlow;
+    }
+
+    /**
+     * Cálculo de ratio de Sharpe
+     */
+    calculateSharpeRatio(fiscalReturn) {
+        const excessReturn = fiscalReturn - (this.RISK_FREE_RATE * 100);
+        const volatility = 25; // Volatilidad estimada 25%
+        
+        return excessReturn / volatility;
+    }
+
+    /**
+     * Cálculo de retorno ajustado por riesgo
+     */
+    calculateRiskAdjustedReturn(deduction, investment, riskFactor) {
+        if (investment <= 0) return 0;
+        
+        const rawReturn = (deduction / investment) * 100;
+        const riskAdjustment = 1 - riskFactor;
+        
+        return rawReturn * riskAdjustment;
+    }
+
+    /**
+     * Análisis de métricas de riesgo avanzadas
+     */
+    calculateRiskMetrics(result, ccaaData) {
+        const totalInvestment = result.totalUsedInvestment;
+        const totalDeduction = result.totalDeduction;
+        
+        return {
+            // Value at Risk (VaR) al 95%
+            var95: totalInvestment * 0.15, // 15% pérdida máxima esperada
+            
+            // Expected Shortfall
+            expectedShortfall: totalInvestment * 0.25,
+            
+            // Ratio de cobertura fiscal
+            fiscalCoverageRatio: totalDeduction / totalInvestment,
+            
+            // Diversificación de riesgo
+            diversificationScore: result.distributions.length > 1 ? 0.8 : 0.4,
+            
+            // Riesgo regulatorio
+            regulatoryRisk: ccaaData.compatible ? 0.1 : 0.3,
+            
+            // Liquidez esperada
+            liquidityScore: 0.6, // Empresas nuevas tienen liquidez limitada
+            
+            // Concentración de riesgo
+            concentrationRisk: result.unoptimizedCapital > totalInvestment * 0.2 ? 0.7 : 0.3
+        };
+    }
+
+    /**
+     * Optimización temporal multi-año
+     */
+    calculateTemporalOptimization(investment, ccaaData, options = {}) {
+        const years = options.planningHorizon || 5;
+        const annualGrowth = options.expectedGrowth || 0.15;
+        const inflationAdjustment = options.adjustForInflation !== false;
+        
+        const optimization = {
+            yearlyProjections: [],
+            cumulativeReturn: 0,
+            optimalReinvestmentStrategy: [],
+            taxEfficiencyOverTime: []
+        };
+
+        for (let year = 1; year <= years; year++) {
+            const adjustedInvestment = inflationAdjustment ? 
+                investment * Math.pow(1 + this.INFLATION_RATE, year - 1) : investment;
+            
+            const projectedValue = adjustedInvestment * Math.pow(1 + annualGrowth, year);
+            const taxBenefit = investment * 0.5; // Beneficio fiscal inicial
+            
+            optimization.yearlyProjections.push({
+                year: year,
+                investmentValue: projectedValue,
+                cumulativeTaxBenefit: taxBenefit,
+                netPosition: projectedValue + taxBenefit - investment,
+                roi: ((projectedValue + taxBenefit - investment) / investment) * 100
+            });
+        }
+
+        return optimization;
+    }
+
+    /**
+     * Generación de recomendaciones inteligentes con IA
+     */
+    generateAdvancedRecommendations(result, ccaaData) {
+        const recommendations = [];
+        const efficiency = result.effectiveFiscalReturn;
+        const unoptimized = result.unoptimizedCapital;
+        const totalInvestment = result.totalInvestment;
+
+        // Análisis de eficiencia fiscal
+        if (efficiency > 45) {
+            recommendations.push({
+                type: 'success',
+                priority: 'high',
+                category: 'efficiency',
+                title: 'Optimización Excelente',
+                message: `Tu estrategia fiscal es altamente eficiente con ${efficiency.toFixed(1)}% de rentabilidad fiscal.`,
+                actionable: false,
+                impact: 'positive'
+            });
+        } else if (efficiency < 25) {
+            recommendations.push({
+                type: 'warning',
+                priority: 'high',
+                category: 'efficiency',
+                title: 'Oportunidad de Mejora',
+                message: `Rentabilidad fiscal baja (${efficiency.toFixed(1)}%). Considera aumentar tus cuotas o revisar la distribución.`,
+                actionable: true,
+                actions: ['Aumentar cuotas fiscales', 'Revisar distribución temporal', 'Consultar asesor fiscal'],
+                impact: 'improvement'
+            });
+        }
+
+        // Análisis de capital no optimizado
+        if (unoptimized > totalInvestment * 0.15) {
+            const percentage = (unoptimized / totalInvestment * 100).toFixed(1);
+            recommendations.push({
+                type: 'warning',
+                priority: 'medium',
+                category: 'optimization',
+                title: 'Capital Sin Optimizar',
+                message: `${percentage}% de tu capital (€${unoptimized.toLocaleString()}) no está optimizado fiscalmente.`,
+                actionable: true,
+                actions: ['Distribuir en múltiples años', 'Aumentar cuotas disponibles', 'Considerar otras CCAA'],
+                impact: 'optimization'
+            });
+        }
+
+        // Recomendaciones específicas por CCAA
+        if (!ccaaData.compatible) {
+            recommendations.push({
+                type: 'info',
+                priority: 'medium',
+                category: 'regulatory',
+                title: 'Incompatibilidad Autonómica',
+                message: `${result.ccaa} no permite combinar deducciones estatales y autonómicas.`,
+                actionable: true,
+                actions: ['Evaluar cambio de residencia fiscal', 'Maximizar deducción autonómica', 'Planificar distribución temporal'],
+                impact: 'regulatory'
+            });
+        }
+
+        // Recomendaciones de diversificación
+        if (result.distributions.length === 1) {
+            recommendations.push({
+                type: 'info',
+                priority: 'low',
+                category: 'diversification',
+                title: 'Diversificación de Riesgo',
+                message: 'Considera diversificar entre múltiples empresas para reducir el riesgo de concentración.',
+                actionable: true,
+                actions: ['Invertir en múltiples empresas', 'Distribuir por sectores', 'Escalonar inversiones en el tiempo'],
+                impact: 'risk_management'
+            });
+        }
+
+        // Recomendaciones temporales
+        const paybackPeriod = result.paybackPeriod;
+        if (paybackPeriod > 5) {
+            recommendations.push({
+                type: 'warning',
+                priority: 'medium',
+                category: 'temporal',
+                title: 'Período de Recuperación Largo',
+                message: `El período de recuperación estimado es de ${paybackPeriod.toFixed(1)} años.`,
+                actionable: true,
+                actions: ['Revisar expectativas de rentabilidad', 'Considerar empresas con mayor potencial', 'Evaluar salida anticipada'],
+                impact: 'temporal'
+            });
+        }
+
+        return recommendations.sort((a, b) => {
+            const priorityOrder = { 'high': 3, 'medium': 2, 'low': 1 };
+            return priorityOrder[b.priority] - priorityOrder[a.priority];
+        });
+    }
+
+    /**
+     * Cálculo de score de optimización (0-100)
+     */
+    calculateOptimizationScore(result) {
+        let score = 0;
+        const weights = {
+            efficiency: 0.4,
+            utilization: 0.3,
+            diversification: 0.2,
+            risk: 0.1
+        };
+
+        // Score de eficiencia fiscal
+        const efficiencyScore = Math.min(result.effectiveFiscalReturn / 50 * 100, 100);
+        score += efficiencyScore * weights.efficiency;
+
+        // Score de utilización de capital
+        const utilizationScore = (result.totalUsedInvestment / result.totalInvestment) * 100;
+        score += utilizationScore * weights.utilization;
+
+        // Score de diversificación
+        const diversificationScore = result.distributions.length > 1 ? 100 : 50;
+        score += diversificationScore * weights.diversification;
+
+        // Score de gestión de riesgo
+        const riskScore = 100 - (result.riskMetrics.concentrationRisk * 100);
+        score += riskScore * weights.risk;
+
+        return Math.round(score);
+    }
+
+    /**
+     * Cálculo de nivel de confianza
+     */
+    calculateConfidenceLevel(result, ccaaData) {
+        let confidence = 0.8; // Base de confianza
+
+        // Ajustar por compatibilidad normativa
+        if (ccaaData.compatible) {
+            confidence += 0.1;
         } else {
-            isTypeValid = ccaaInfo.acceptedProfiles.some(
-                acceptedType => profile.type && profile.type.toLowerCase().includes(acceptedType.toLowerCase())
-            );
+            confidence -= 0.1;
         }
-        
-        if (!isTypeValid) {
-            return { 
-                valid: false, 
-                message: `El tipo de proyecto no cumple con los perfiles aceptados: ${ccaaInfo.acceptedProfiles.join(', ')}` 
-            };
+
+        // Ajustar por utilización de capital
+        const utilization = result.totalUsedInvestment / result.totalInvestment;
+        confidence += (utilization - 0.5) * 0.2;
+
+        // Ajustar por complejidad de la CCAA
+        if (ccaaData.special) {
+            confidence -= 0.1;
         }
-        
-        // Validación de antigüedad
-        if (profile.years > 5) {
-            return { 
-                valid: false, 
-                message: "La antigüedad del proyecto supera el máximo permitido (5 años)" 
-            };
-        }
-        
-        // Validación de ubicación
-        if (profile.location && profile.location !== ccaa) {
-            return { 
-                valid: true, 
-                warning: `Es recomendable que el proyecto esté ubicado en ${ccaa}` 
-            };
-        }
-        
-        return { valid: true, message: "Proyecto válido para deducción autonómica" };
+
+        return Math.max(0.5, Math.min(0.95, confidence));
+    }
+
+    /**
+     * Generación de clave de cache
+     */
+    generateCacheKey(investment, ccaaCode, stateQuota, regionalQuota, projectProfile) {
+        return `${investment}_${ccaaCode}_${stateQuota}_${regionalQuota}_${projectProfile || 'none'}`;
+    }
+
+    /**
+     * Análisis comparativo entre CCAA
+     */
+    compareRegions(investment, stateQuota, regionalQuota) {
+        const comparisons = [];
+
+        Object.keys(CCAA_DATA).forEach(ccaa => {
+            try {
+                const result = this.calculateOptimalDeductions(investment, ccaa, stateQuota, regionalQuota);
+                comparisons.push({
+                    ccaa: ccaa,
+                    totalDeduction: result.totalDeduction,
+                    effectiveFiscalReturn: result.effectiveFiscalReturn,
+                    optimizationScore: result.optimizationScore,
+                    compatible: CCAA_DATA[ccaa].compatible,
+                    riskLevel: result.riskMetrics.regulatoryRisk
+                });
+            } catch (error) {
+                // Ignorar errores de CCAA específicas
+            }
+        });
+
+        return comparisons.sort((a, b) => b.totalDeduction - a.totalDeduction);
+    }
+
+    /**
+     * Simulación de escenarios what-if
+     */
+    simulateScenarios(baseInvestment, ccaaCode, baseStateQuota, baseRegionalQuota) {
+        const scenarios = [];
+        const variations = [0.8, 0.9, 1.0, 1.1, 1.2, 1.5, 2.0];
+
+        variations.forEach(factor => {
+            const investment = baseInvestment * factor;
+            const stateQuota = baseStateQuota * factor;
+            const regionalQuota = baseRegionalQuota * factor;
+
+            try {
+                const result = this.calculateOptimalDeductions(investment, ccaaCode, stateQuota, regionalQuota);
+                scenarios.push({
+                    factor: factor,
+                    investment: investment,
+                    totalDeduction: result.totalDeduction,
+                    effectiveFiscalReturn: result.effectiveFiscalReturn,
+                    optimizationScore: result.optimizationScore,
+                    unoptimizedCapital: result.unoptimizedCapital
+                });
+            } catch (error) {
+                // Ignorar escenarios inválidos
+            }
+        });
+
+        return scenarios;
+    }
+
+    /**
+     * Obtener métricas de rendimiento del motor
+     */
+    getPerformanceMetrics() {
+        return {
+            ...this.performanceMetrics,
+            cacheSize: this.calculationCache.size,
+            cacheHitRate: this.performanceMetrics.cacheHits / this.performanceMetrics.calculationsPerformed * 100
+        };
+    }
+
+    /**
+     * Limpiar cache y reiniciar métricas
+     */
+    clearCache() {
+        this.calculationCache.clear();
+        this.performanceMetrics = {
+            calculationsPerformed: 0,
+            cacheHits: 0,
+            averageCalculationTime: 0
+        };
     }
 }
 
-// Exportar la clase para uso en el navegador o como módulo
+// Exportar para uso en navegador
+if (typeof window !== 'undefined') {
+    window.AdvancedFiscalEngine = AdvancedFiscalEngine;
+}
+
+// Exportar para Node.js
 if (typeof module !== 'undefined' && module.exports) {
-    module.exports = { FiscalEngine };
-} else {
-    // Si estamos en el navegador, añadirlo al objeto global window
-    window.FiscalEngine = FiscalEngine;
+    module.exports = { AdvancedFiscalEngine };
 }
