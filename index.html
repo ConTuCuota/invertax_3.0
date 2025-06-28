@@ -3,19 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>INVERTAX - Ahorra hasta €50.000 en impuestos invirtiendo en startups</title>
-    <meta name="description" content="Reduce tu IRPF hasta un 90% de forma 100% legal. Más de 2.500 inversores ya han ahorrado +€15M en impuestos. Simulación gratuita en 2 minutos.">
+    <title>INVERTAX - Aprende a optimizar tu IRPF invirtiendo en startups</title>
+    <meta name="description" content="Descubre cómo reducir legalmente tu IRPF hasta un 90% invirtiendo en startups. Guía completa del Art. 68.1 LIRPF y deducciones autonómicas.">
     <meta name="theme-color" content="#21808D">
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E💰%3C/text%3E%3C/svg%3E">
     <link rel="manifest" href="manifest.json">
     <link rel="stylesheet" href="style.css">
     
     <!-- OpenGraph -->
-    <meta property="og:title" content="INVERTAX - Ahorra hasta €50.000 en impuestos">
-    <meta property="og:description" content="Reduce tu IRPF hasta un 90% invirtiendo en startups. 100% legal y garantizado.">
+    <meta property="og:title" content="INVERTAX - Optimización fiscal para inversiones en startups">
+    <meta property="og:description" content="Aprende a reducir tu IRPF de forma legal invirtiendo en startups. Guía completa y simulador gratuito.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://invertax.ai">
-    <meta property="og:image" content="https://invertax.ai/og-image.jpg">
     
     <!-- Schema.org -->
     <script type="application/ld+json">
@@ -23,55 +22,27 @@
       "@context": "https://schema.org",
       "@type": "FinancialService",
       "name": "INVERTAX",
-      "description": "Plataforma líder en optimización fiscal para inversiones en startups",
+      "description": "Plataforma educativa sobre optimización fiscal para inversiones en startups",
       "url": "https://invertax.ai",
-      "serviceType": "Tax Optimization",
-      "areaServed": "ES",
-      "hasOfferCatalog": {
-        "@type": "OfferCatalog",
-        "name": "Servicios de optimización fiscal",
-        "itemListElement": [
-          {
-            "@type": "Offer",
-            "itemOffered": {
-              "@type": "Service",
-              "name": "Simulación fiscal gratuita"
-            }
-          }
-        ]
-      }
+      "serviceType": "Tax Education"
     }
     </script>
 </head>
 <body>
-    <!-- Barra de urgencia superior -->
-    <div class="urgency-bar">
-        <div class="container">
-            <div class="urgency-content">
-                <span class="urgency-icon">⚡</span>
-                <span class="urgency-text">
-                    <strong>ÚLTIMOS DÍAS:</strong> Aprovecha las deducciones 2024 antes del 31 de diciembre
-                </span>
-                <span class="urgency-countdown" id="countdown">
-                    <span id="days">00</span>d <span id="hours">00</span>h <span id="minutes">00</span>m
-                </span>
-            </div>
-        </div>
-    </div>
-
     <!-- Header Navigation -->
     <header class="header" role="banner">
         <nav class="nav container" aria-label="Navegación principal">
             <div class="nav__brand">
                 <h1 class="nav__logo">INVERTAX</h1>
-                <span class="nav__tagline">+€15M ahorrados</span>
+                <span class="nav__tagline">Educación Fiscal</span>
             </div>
             <ul class="nav__menu" role="menubar">
                 <li role="none"><a href="#hero" class="nav__link" role="menuitem">Inicio</a></li>
+                <li role="none"><a href="#que-es" class="nav__link" role="menuitem">Qué es</a></li>
                 <li role="none"><a href="#como-funciona" class="nav__link" role="menuitem">Cómo funciona</a></li>
-                <li role="none"><a href="#casos-exito" class="nav__link" role="menuitem">Casos de éxito</a></li>
-                <li role="none"><a href="#pricing" class="nav__link" role="menuitem">Precios</a></li>
-                <li role="none"><a href="#simulator" class="nav__link btn btn--primary" role="menuitem">Simular GRATIS</a></li>
+                <li role="none"><a href="#simulator" class="nav__link" role="menuitem">Simulador</a></li>
+                <li role="none"><a href="#legal" class="nav__link" role="menuitem">Marco legal</a></li>
+                <li role="none"><a href="#contact" class="nav__link btn btn--primary" role="menuitem">Contacto</a></li>
             </ul>
             <button class="nav__toggle" aria-label="Menú de navegación" aria-expanded="false">
                 <span></span>
@@ -82,99 +53,91 @@
     </header>
 
     <main>
-        <!-- Hero Section Comercial -->
+        <!-- Hero Section Educativo -->
         <section class="hero" id="hero">
             <div class="container">
                 <div class="hero__content">
                     <div class="hero__text">
                         <div class="hero__badge">
-                            <span class="badge badge--success">✅ Avalado por +2.500 inversores</span>
+                            <span class="badge badge--info">📚 Plataforma educativa</span>
                         </div>
                         
                         <h1 class="hero__title">
-                            Ahorra hasta <span class="highlight">€50.000</span> en impuestos 
+                            Aprende a <span class="highlight">optimizar tu IRPF</span> 
                             <br>invirtiendo en startups
                         </h1>
                         
                         <p class="hero__subtitle">
-                            Reduce tu IRPF hasta un <strong>90% de forma 100% legal</strong>. 
-                            Nuestros clientes han ahorrado más de €15M en impuestos en 2024.
+                            Descubre cómo el <strong>Artículo 68.1 del IRPF</strong> te permite reducir 
+                            legalmente tus impuestos hasta un 90% combinando deducciones estatales y autonómicas.
                         </p>
                         
-                        <!-- Prueba social inmediata -->
-                        <div class="social-proof">
-                            <div class="social-proof__avatars">
-                                <img src="https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=50&h=50&fit=crop&crop=face" alt="Cliente" class="avatar">
-                                <img src="https://images.pexels.com/photos/1222271/pexels-photo-1222271.jpeg?auto=compress&cs=tinysrgb&w=50&h=50&fit=crop&crop=face" alt="Cliente" class="avatar">
-                                <img src="https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=50&h=50&fit=crop&crop=face" alt="Cliente" class="avatar">
-                                <img src="https://images.pexels.com/photos/1681010/pexels-photo-1681010.jpeg?auto=compress&cs=tinysrgb&w=50&h=50&fit=crop&crop=face" alt="Cliente" class="avatar">
-                                <span class="avatar-count">+2.5K</span>
-                            </div>
-                            <div class="social-proof__text">
-                                <div class="rating">
-                                    <span class="stars">★★★★★</span>
-                                    <span class="rating-text">4.9/5 • 847 reseñas</span>
+                        <!-- Información educativa -->
+                        <div class="educational-info">
+                            <div class="info-item">
+                                <div class="info-icon">📖</div>
+                                <div class="info-content">
+                                    <h3>Aprende la normativa</h3>
+                                    <p>Entiende el marco legal completo</p>
                                 </div>
-                                <p class="testimonial-preview">"Ahorré €32.000 en mi primera inversión" - Carlos M.</p>
+                            </div>
+                            <div class="info-item">
+                                <div class="info-icon">🧮</div>
+                                <div class="info-content">
+                                    <h3>Simula tu caso</h3>
+                                    <p>Calcula tu potencial de ahorro</p>
+                                </div>
+                            </div>
+                            <div class="info-item">
+                                <div class="info-icon">⚖️</div>
+                                <div class="info-content">
+                                    <h3>100% legal</h3>
+                                    <p>Respaldado por la ley vigente</p>
+                                </div>
                             </div>
                         </div>
 
-                        <!-- CTA Principal -->
+                        <!-- CTA Educativo -->
                         <div class="hero__cta">
-                            <button class="btn btn--primary btn--xl" onclick="scrollToSimulator()">
-                                <span class="btn-icon">🚀</span>
-                                Calcular mi ahorro GRATIS
-                                <span class="btn-subtitle">Resultado en 2 minutos</span>
+                            <button class="btn btn--primary btn--lg" onclick="scrollToSection('que-es')">
+                                📚 Empezar a aprender
                             </button>
-                            <p class="cta-disclaimer">
-                                ✅ Sin registro • ✅ 100% gratuito • ✅ Resultado inmediato
-                            </p>
+                            <button class="btn btn--outline btn--lg" onclick="scrollToSection('simulator')">
+                                🧮 Ir al simulador
+                            </button>
                         </div>
 
-                        <!-- Métricas de impacto -->
-                        <div class="impact-metrics">
-                            <div class="metric">
-                                <div class="metric__number">€15.2M</div>
-                                <div class="metric__label">Ahorrados en 2024</div>
-                            </div>
-                            <div class="metric">
-                                <div class="metric__number">2.547</div>
-                                <div class="metric__label">Inversores activos</div>
-                            </div>
-                            <div class="metric">
-                                <div class="metric__number">€18.3K</div>
-                                <div class="metric__label">Ahorro promedio</div>
-                            </div>
-                        </div>
+                        <p class="hero__disclaimer">
+                            ℹ️ INVERTAX es una plataforma educativa. Siempre consulta con un asesor fiscal profesional.
+                        </p>
                     </div>
                     
-                    <!-- Video/Demo visual -->
+                    <!-- Visual educativo -->
                     <div class="hero__visual">
-                        <div class="demo-container">
-                            <div class="demo-screen">
-                                <div class="demo-header">
-                                    <div class="demo-dots">
-                                        <span></span><span></span><span></span>
+                        <div class="educational-visual">
+                            <div class="visual-card">
+                                <h4>Ejemplo práctico</h4>
+                                <div class="example-calculation">
+                                    <div class="calc-step">
+                                        <span class="calc-label">Inversión:</span>
+                                        <span class="calc-value">€100.000</span>
                                     </div>
-                                    <span class="demo-title">Simulador INVERTAX</span>
+                                    <div class="calc-step">
+                                        <span class="calc-label">Deducción estatal (50%):</span>
+                                        <span class="calc-value">€50.000</span>
+                                    </div>
+                                    <div class="calc-step">
+                                        <span class="calc-label">Deducción autonómica (ej. Madrid 40%):</span>
+                                        <span class="calc-value">€40.000</span>
+                                    </div>
+                                    <div class="calc-total">
+                                        <span class="calc-label">Ahorro fiscal total:</span>
+                                        <span class="calc-value highlight">€90.000</span>
+                                    </div>
                                 </div>
-                                <div class="demo-content">
-                                    <div class="demo-input">
-                                        <label>Inversión: €100.000</label>
-                                        <div class="demo-slider"></div>
-                                    </div>
-                                    <div class="demo-result">
-                                        <div class="demo-savings">
-                                            <span class="demo-amount">€45.000</span>
-                                            <span class="demo-label">Ahorro fiscal</span>
-                                        </div>
-                                        <div class="demo-roi">45% ROI fiscal</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="demo-badge">
-                                <span class="pulse-dot"></span>
-                                En vivo: 23 personas calculando
+                                <p class="example-note">
+                                    * Ejemplo teórico. El ahorro real depende de tu cuota fiscal disponible.
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -182,196 +145,201 @@
             </div>
         </section>
 
-        <!-- Sección de beneficios clave -->
-        <section class="benefits section">
-            <div class="container">
-                <div class="benefits__grid">
-                    <div class="benefit">
-                        <div class="benefit__icon">⚡</div>
-                        <h3>Resultado en 2 minutos</h3>
-                        <p>Simulación instantánea sin registro ni datos personales</p>
-                    </div>
-                    <div class="benefit">
-                        <div class="benefit__icon">🛡️</div>
-                        <h3>100% legal y seguro</h3>
-                        <p>Respaldado por Art. 68.1 LIRPF y normativa vigente</p>
-                    </div>
-                    <div class="benefit">
-                        <div class="benefit__icon">💰</div>
-                        <h3>Hasta 90% de ahorro</h3>
-                        <p>Combina deducciones estatales y autonómicas</p>
-                    </div>
-                    <div class="benefit">
-                        <div class="benefit__icon">📈</div>
-                        <h3>Doble rentabilidad</h3>
-                        <p>Ahorro fiscal + crecimiento de la startup</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Casos de éxito con testimonios -->
-        <section class="success-cases section" id="casos-exito">
+        <!-- Qué es INVERTAX -->
+        <section class="what-is section" id="que-es">
             <div class="container">
                 <div class="section-header">
-                    <h2 class="section__title">Casos de éxito reales</h2>
-                    <p class="section__subtitle">Más de 2.500 inversores ya han optimizado sus impuestos</p>
+                    <h2 class="section__title">¿Qué es la optimización fiscal en startups?</h2>
+                    <p class="section__subtitle">
+                        Una guía completa sobre las deducciones fiscales por inversión en empresas de nueva creación
+                    </p>
                 </div>
                 
-                <div class="testimonials-grid">
-                    <div class="testimonial-card featured">
-                        <div class="testimonial__header">
-                            <img src="https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=80&h=80&fit=crop&crop=face" alt="Carlos Martínez" class="testimonial__avatar">
-                            <div class="testimonial__info">
-                                <h4>Carlos Martínez</h4>
-                                <p>CEO Tech Company • Madrid</p>
-                                <div class="testimonial__rating">★★★★★</div>
-                            </div>
-                        </div>
-                        <blockquote class="testimonial__quote">
-                            "Invertí €80.000 y ahorré €32.000 en impuestos. La startup en la que invertí ya ha crecido un 40%. Es la mejor decisión financiera que he tomado."
-                        </blockquote>
-                        <div class="testimonial__metrics">
-                            <div class="metric-item">
-                                <span class="metric-value">€32.000</span>
-                                <span class="metric-label">Ahorrado</span>
-                            </div>
-                            <div class="metric-item">
-                                <span class="metric-value">40%</span>
-                                <span class="metric-label">ROI fiscal</span>
-                            </div>
-                        </div>
+                <div class="explanation-grid">
+                    <div class="explanation-card">
+                        <div class="card-icon">📋</div>
+                        <h3>Marco legal</h3>
+                        <p>
+                            El <strong>Artículo 68.1 de la Ley del IRPF</strong> permite deducir el 50% 
+                            de las inversiones en startups de la cuota íntegra estatal, con un límite 
+                            de €100.000 anuales.
+                        </p>
+                        <ul class="feature-list">
+                            <li>✅ Deducción del 50% a nivel estatal</li>
+                            <li>✅ Límite máximo: €100.000/año</li>
+                            <li>✅ Permanencia mínima: 3 años</li>
+                        </ul>
                     </div>
 
-                    <div class="testimonial-card">
-                        <div class="testimonial__header">
-                            <img src="https://images.pexels.com/photos/1222271/pexels-photo-1222271.jpeg?auto=compress&cs=tinysrgb&w=80&h=80&fit=crop&crop=face" alt="Ana López" class="testimonial__avatar">
-                            <div class="testimonial__info">
-                                <h4>Ana López</h4>
-                                <p>Consultora • Barcelona</p>
-                                <div class="testimonial__rating">★★★★★</div>
-                            </div>
-                        </div>
-                        <blockquote class="testimonial__quote">
-                            "El simulador me mostró exactamente cuánto podía ahorrar. En 15 minutos tenía todo claro. Ahorré €18.500 en mi declaración."
-                        </blockquote>
-                        <div class="testimonial__metrics">
-                            <div class="metric-item">
-                                <span class="metric-value">€18.500</span>
-                                <span class="metric-label">Ahorrado</span>
-                            </div>
-                        </div>
+                    <div class="explanation-card">
+                        <div class="card-icon">🏛️</div>
+                        <h3>Deducciones autonómicas</h3>
+                        <p>
+                            Muchas Comunidades Autónomas ofrecen deducciones adicionales que se pueden 
+                            <strong>combinar con la estatal</strong>, llegando hasta un 90% de ahorro total.
+                        </p>
+                        <ul class="feature-list">
+                            <li>📍 Madrid: hasta 40% adicional</li>
+                            <li>📍 Cataluña: hasta 50% (no compatible)</li>
+                            <li>📍 Valencia: hasta 30% adicional</li>
+                            <li>📍 País Vasco: hasta 35% adicional</li>
+                        </ul>
                     </div>
 
-                    <div class="testimonial-card">
-                        <div class="testimonial__header">
-                            <img src="https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=80&h=80&fit=crop&crop=face" alt="Miguel Ruiz" class="testimonial__avatar">
-                            <div class="testimonial__info">
-                                <h4>Miguel Ruiz</h4>
-                                <p>Arquitecto • Valencia</p>
-                                <div class="testimonial__rating">★★★★★</div>
-                            </div>
-                        </div>
-                        <blockquote class="testimonial__quote">
-                            "Llevaba años pagando de más en impuestos. INVERTAX me ayudó a optimizar €25.000. Proceso súper sencillo y transparente."
-                        </blockquote>
-                        <div class="testimonial__metrics">
-                            <div class="metric-item">
-                                <span class="metric-value">€25.000</span>
-                                <span class="metric-label">Ahorrado</span>
-                            </div>
-                        </div>
+                    <div class="explanation-card">
+                        <div class="card-icon">🎯</div>
+                        <h3>Requisitos de las startups</h3>
+                        <p>
+                            No todas las empresas califican. Deben cumplir requisitos específicos 
+                            de <strong>antigüedad, tamaño y actividad</strong> para ser elegibles.
+                        </p>
+                        <ul class="feature-list">
+                            <li>🕐 Máximo 3 años de antigüedad</li>
+                            <li>👥 Menos de 250 empleados</li>
+                            <li>💰 Facturación < €50M anuales</li>
+                            <li>🚀 Actividad económica real</li>
+                        </ul>
                     </div>
-                </div>
 
-                <!-- Estadísticas de impacto -->
-                <div class="impact-stats">
-                    <div class="stat-item">
-                        <div class="stat-number">€15.2M</div>
-                        <div class="stat-label">Total ahorrado por nuestros clientes</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-number">2.547</div>
-                        <div class="stat-label">Inversores que confían en nosotros</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-number">4.9/5</div>
-                        <div class="stat-label">Valoración media (847 reseñas)</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-number">€18.3K</div>
-                        <div class="stat-label">Ahorro promedio por cliente</div>
+                    <div class="explanation-card">
+                        <div class="card-icon">⚠️</div>
+                        <h3>Limitaciones importantes</h3>
+                        <p>
+                            El ahorro fiscal está <strong>limitado por tu cuota fiscal</strong>. 
+                            No puedes deducir más de lo que pagas en impuestos.
+                        </p>
+                        <ul class="feature-list">
+                            <li>📊 Depende de tus ingresos</li>
+                            <li>🧮 Limitado por cuota disponible</li>
+                            <li>📅 Aplicable solo al año de inversión</li>
+                            <li>🔄 No transferible entre años</li>
+                        </ul>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Cómo funciona (proceso simplificado) -->
+        <!-- Cómo funciona paso a paso -->
         <section class="how-it-works section" id="como-funciona">
             <div class="container">
                 <div class="section-header">
-                    <h2 class="section__title">Cómo funciona en 3 pasos</h2>
-                    <p class="section__subtitle">De la simulación al ahorro real en menos de 24 horas</p>
+                    <h2 class="section__title">Cómo funciona paso a paso</h2>
+                    <p class="section__subtitle">
+                        Proceso completo desde la planificación hasta la aplicación en tu declaración
+                    </p>
                 </div>
                 
-                <div class="process-steps">
-                    <div class="step-card">
+                <div class="process-timeline">
+                    <div class="timeline-step">
                         <div class="step-number">1</div>
                         <div class="step-content">
-                            <h3>Simula tu ahorro</h3>
-                            <p>Introduce tu inversión deseada y obtén tu ahorro fiscal personalizado en 2 minutos. Sin registro.</p>
-                            <div class="step-time">⏱️ 2 minutos</div>
-                        </div>
-                        <div class="step-visual">
-                            <div class="calculator-icon">🧮</div>
+                            <h3>Análisis de tu situación fiscal</h3>
+                            <p>
+                                Primero debes conocer tu <strong>cuota fiscal disponible</strong>. 
+                                Esto determina cuánto puedes ahorrar realmente.
+                            </p>
+                            <div class="step-details">
+                                <h4>¿Cómo calcular tu cuota?</h4>
+                                <ul>
+                                    <li>Revisa tu última declaración de IRPF</li>
+                                    <li>Identifica la "cuota íntegra estatal"</li>
+                                    <li>Identifica la "cuota íntegra autonómica"</li>
+                                    <li>Estas son tus límites máximos de deducción</li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
 
-                    <div class="step-arrow">→</div>
-
-                    <div class="step-card">
+                    <div class="timeline-step">
                         <div class="step-number">2</div>
                         <div class="step-content">
-                            <h3>Elige tu startup</h3>
-                            <p>Selecciona entre +50 startups verificadas que cumplen todos los requisitos legales para maximizar tu deducción.</p>
-                            <div class="step-time">⏱️ 15 minutos</div>
-                        </div>
-                        <div class="step-visual">
-                            <div class="startup-icon">🚀</div>
+                            <h3>Planificación de la inversión</h3>
+                            <p>
+                                Determina cuánto invertir para <strong>maximizar tu ahorro fiscal</strong> 
+                                sin exceder tus límites.
+                            </p>
+                            <div class="step-details">
+                                <h4>Estrategia de optimización:</h4>
+                                <ul>
+                                    <li>Calcula el máximo deducible estatal</li>
+                                    <li>Evalúa la deducción autonómica disponible</li>
+                                    <li>Considera la compatibilidad entre ambas</li>
+                                    <li>Planifica la distribución óptima</li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
 
-                    <div class="step-arrow">→</div>
-
-                    <div class="step-card">
+                    <div class="timeline-step">
                         <div class="step-number">3</div>
                         <div class="step-content">
-                            <h3>Ahorra en tu declaración</h3>
-                            <p>Recibe toda la documentación legal para aplicar las deducciones en tu IRPF. Soporte incluido.</p>
-                            <div class="step-time">⏱️ Inmediato</div>
-                        </div>
-                        <div class="step-visual">
-                            <div class="savings-icon">💰</div>
+                            <h3>Selección de startups elegibles</h3>
+                            <p>
+                                Identifica empresas que cumplan todos los <strong>requisitos legales</strong> 
+                                para las deducciones.
+                            </p>
+                            <div class="step-details">
+                                <h4>Criterios de elegibilidad:</h4>
+                                <ul>
+                                    <li>Certificado de empresa de nueva creación</li>
+                                    <li>Actividad económica real y continuada</li>
+                                    <li>Cumplimiento de límites de tamaño</li>
+                                    <li>Documentación fiscal completa</li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <div class="process-cta">
-                    <button class="btn btn--primary btn--lg" onclick="scrollToSimulator()">
-                        Empezar mi simulación gratuita
-                    </button>
-                    <p class="process-guarantee">✅ Garantía de ahorro o te devolvemos el dinero</p>
+                    <div class="timeline-step">
+                        <div class="step-number">4</div>
+                        <div class="step-content">
+                            <h3>Ejecución de la inversión</h3>
+                            <p>
+                                Realiza la inversión y <strong>conserva toda la documentación</strong> 
+                                necesaria para justificar las deducciones.
+                            </p>
+                            <div class="step-details">
+                                <h4>Documentación requerida:</h4>
+                                <ul>
+                                    <li>Contrato de inversión firmado</li>
+                                    <li>Justificante de pago</li>
+                                    <li>Certificados de la empresa</li>
+                                    <li>Registro mercantil actualizado</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="timeline-step">
+                        <div class="step-number">5</div>
+                        <div class="step-content">
+                            <h3>Aplicación en la declaración</h3>
+                            <p>
+                                Incluye las deducciones en tu declaración de IRPF del año siguiente 
+                                con toda la <strong>documentación justificativa</strong>.
+                            </p>
+                            <div class="step-details">
+                                <h4>En la declaración:</h4>
+                                <ul>
+                                    <li>Casilla específica para deducciones por inversión</li>
+                                    <li>Adjuntar documentación completa</li>
+                                    <li>Conservar originales por si hay requerimientos</li>
+                                    <li>Mantener la inversión mínimo 3 años</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <!-- Simulador Fiscal (versión comercial) -->
+        <!-- Simulador Educativo -->
         <section class="simulator section" id="simulator">
             <div class="container">
                 <div class="section-header">
-                    <h2 class="section__title">Calcula tu ahorro fiscal en 2 minutos</h2>
+                    <h2 class="section__title">Simulador educativo</h2>
                     <p class="section__subtitle">
-                        <span class="highlight-text">Más de 1.200 simulaciones realizadas esta semana</span>
+                        Calcula tu potencial de ahorro fiscal según tu situación personal
                     </p>
                 </div>
                 
@@ -379,119 +347,119 @@
                     <div class="simulator__form card">
                         <div class="card__body">
                             <div class="form-header">
-                                <h3>Simulador gratuito</h3>
-                                <div class="form-badges">
-                                    <span class="badge badge--success">✅ Sin registro</span>
-                                    <span class="badge badge--info">⚡ Resultado inmediato</span>
-                                </div>
+                                <h3>Datos para la simulación</h3>
+                                <p class="form-description">
+                                    Introduce tus datos para obtener una estimación educativa. 
+                                    Los resultados son orientativos.
+                                </p>
                             </div>
 
                             <form id="simulatorForm">
                                 <div class="form-group">
                                     <label for="investment" class="form-label">
-                                        ¿Cuánto quieres invertir? 
-                                        <span class="tooltip" title="Cantidad que planeas invertir en startups este año">ℹ️</span>
+                                        Inversión que planeas realizar (€)
                                     </label>
-                                    <div class="input-wrapper">
-                                        <input type="number" id="investment" class="form-control form-control--large" 
-                                               placeholder="100000" min="1000" max="500000" required>
-                                        <span class="input-suffix">€</span>
-                                    </div>
-                                    <div class="input-suggestions">
-                                        <button type="button" class="suggestion-btn" onclick="setInvestment(50000)">€50K</button>
-                                        <button type="button" class="suggestion-btn" onclick="setInvestment(100000)">€100K</button>
-                                        <button type="button" class="suggestion-btn" onclick="setInvestment(200000)">€200K</button>
-                                    </div>
+                                    <input type="number" id="investment" class="form-control" 
+                                           placeholder="50000" min="1000" max="500000" required>
+                                    <small class="form-help">
+                                        Cantidad que estarías dispuesto a invertir en startups
+                                    </small>
                                 </div>
                                 
                                 <div class="form-group">
                                     <label for="ccaa" class="form-label">Tu Comunidad Autónoma</label>
                                     <select id="ccaa" class="form-control" required>
                                         <option value="">Selecciona tu CCAA</option>
-                                        <option value="Madrid">Madrid (40% adicional)</option>
-                                        <option value="Cataluña">Cataluña (50% adicional)</option>
-                                        <option value="Valencia">Valencia (30% adicional)</option>
-                                        <option value="Andalucía">Andalucía (25% adicional)</option>
-                                        <option value="País Vasco">País Vasco (35% adicional)</option>
+                                        <option value="Madrid">Madrid</option>
+                                        <option value="Cataluña">Cataluña</option>
+                                        <option value="Valencia">Valencia</option>
+                                        <option value="Andalucía">Andalucía</option>
+                                        <option value="País Vasco">País Vasco</option>
+                                        <option value="Galicia">Galicia</option>
+                                        <option value="Castilla y León">Castilla y León</option>
+                                        <option value="Aragón">Aragón</option>
+                                        <option value="Asturias">Asturias</option>
+                                        <option value="Murcia">Murcia</option>
+                                        <option value="Extremadura">Extremadura</option>
+                                        <option value="Cantabria">Cantabria</option>
+                                        <option value="La Rioja">La Rioja</option>
+                                        <option value="Navarra">Navarra</option>
+                                        <option value="Canarias">Canarias</option>
+                                        <option value="Baleares">Baleares</option>
                                     </select>
                                 </div>
                                 
                                 <div class="form-group">
-                                    <label for="income" class="form-label">
-                                        Ingresos anuales aproximados
-                                        <span class="tooltip" title="Para calcular tu cuota fiscal disponible">ℹ️</span>
+                                    <label for="stateQuota" class="form-label">
+                                        Cuota íntegra estatal (€)
+                                        <span class="help-icon" title="Consulta tu última declaración de IRPF">ℹ️</span>
                                     </label>
-                                    <select id="income" class="form-control" required>
-                                        <option value="">Selecciona tu rango</option>
-                                        <option value="50000">€30K - €50K</option>
-                                        <option value="80000">€50K - €80K</option>
-                                        <option value="120000">€80K - €120K</option>
-                                        <option value="200000">€120K - €200K</option>
-                                        <option value="300000">Más de €200K</option>
-                                    </select>
+                                    <input type="number" id="stateQuota" class="form-control" 
+                                           placeholder="15000" min="0" max="100000" required>
+                                    <small class="form-help">
+                                        Aparece en tu declaración de IRPF del año anterior
+                                    </small>
                                 </div>
                                 
-                                <button type="button" class="btn btn--primary btn--full-width btn--xl" onclick="calculateCommercial()">
-                                    <span class="btn-icon">🚀</span>
-                                    Calcular mi ahorro GRATIS
-                                    <span class="btn-loading hidden">
-                                        <span class="spinner"></span>
-                                        Calculando...
-                                    </span>
+                                <div class="form-group">
+                                    <label for="regionalQuota" class="form-label">
+                                        Cuota íntegra autonómica (€)
+                                    </label>
+                                    <input type="number" id="regionalQuota" class="form-control" 
+                                           placeholder="8000" min="0" max="50000" required>
+                                    <small class="form-help">
+                                        También aparece en tu declaración de IRPF
+                                    </small>
+                                </div>
+                                
+                                <button type="button" class="btn btn--primary btn--full-width" onclick="calculateEducational()">
+                                    🧮 Calcular potencial de ahorro
                                 </button>
                                 
-                                <div class="form-footer">
-                                    <p class="form-disclaimer">
-                                        ✅ Cálculo 100% gratuito • ✅ Sin spam • ✅ Datos seguros
+                                <div class="form-disclaimer">
+                                    <p>
+                                        ⚠️ <strong>Importante:</strong> Esta es una simulación educativa. 
+                                        Los resultados son orientativos y no constituyen asesoramiento fiscal.
                                     </p>
                                 </div>
                             </form>
                         </div>
                     </div>
                     
-                    <div class="simulator__preview">
-                        <div class="preview-card">
-                            <h4>Vista previa del resultado</h4>
-                            <div class="preview-content">
-                                <div class="preview-metric">
-                                    <span class="preview-label">Tu ahorro fiscal estimado:</span>
-                                    <span class="preview-value" id="previewSavings">€45.000</span>
-                                </div>
-                                <div class="preview-metric">
-                                    <span class="preview-label">ROI fiscal:</span>
-                                    <span class="preview-value" id="previewROI">45%</span>
-                                </div>
-                                <div class="preview-breakdown">
-                                    <div class="breakdown-item">
-                                        <span>Deducción estatal (50%)</span>
-                                        <span>€25.000</span>
-                                    </div>
-                                    <div class="breakdown-item">
-                                        <span>Deducción autonómica</span>
-                                        <span>€20.000</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="preview-cta">
-                                <p>👆 Completa el formulario para obtener tu cálculo personalizado</p>
+                    <div class="simulator__info">
+                        <div class="info-card">
+                            <h4>💡 ¿Cómo interpretar los resultados?</h4>
+                            <ul class="info-list">
+                                <li>
+                                    <strong>Ahorro teórico máximo:</strong> Lo que podrías ahorrar 
+                                    si tuvieras cuota fiscal suficiente
+                                </li>
+                                <li>
+                                    <strong>Ahorro real estimado:</strong> Lo que podrías ahorrar 
+                                    con tu cuota fiscal actual
+                                </li>
+                                <li>
+                                    <strong>Inversión óptima:</strong> La cantidad que maximiza 
+                                    tu ahorro sin desperdiciar cuota
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="info-card">
+                            <h4>📋 Datos por CCAA</h4>
+                            <div class="ccaa-info" id="ccaaInfo">
+                                <p>Selecciona tu CCAA para ver información específica</p>
                             </div>
                         </div>
 
-                        <!-- Testimonios en tiempo real -->
-                        <div class="live-testimonials">
-                            <h5>Últimas simulaciones:</h5>
-                            <div class="live-item">
-                                <span class="live-dot"></span>
-                                <span>Carlos de Madrid ahorró €32.000 hace 5 min</span>
-                            </div>
-                            <div class="live-item">
-                                <span class="live-dot"></span>
-                                <span>Ana de Barcelona ahorró €18.500 hace 12 min</span>
-                            </div>
-                            <div class="live-item">
-                                <span class="live-dot"></span>
-                                <span>Miguel de Valencia ahorró €25.000 hace 18 min</span>
-                            </div>
+                        <div class="info-card">
+                            <h4>⚖️ Aspectos legales importantes</h4>
+                            <ul class="legal-points">
+                                <li>Las deducciones se aplican en el año de la inversión</li>
+                                <li>Debes mantener la inversión mínimo 3 años</li>
+                                <li>La startup debe cumplir requisitos específicos</li>
+                                <li>Conserva toda la documentación justificativa</li>
+                            </ul>
                         </div>
                     </div>
                 </div>
@@ -503,217 +471,256 @@
             </div>
         </section>
 
-        <!-- Precios con urgencia -->
-        <section class="pricing section" id="pricing">
+        <!-- Marco Legal Detallado -->
+        <section class="legal section" id="legal">
             <div class="container">
                 <div class="section-header">
-                    <h2 class="section__title">Elige tu plan</h2>
-                    <p class="section__subtitle">Más de 2.500 inversores ya están ahorrando con INVERTAX</p>
+                    <h2 class="section__title">Marco legal completo</h2>
+                    <p class="section__subtitle">
+                        Toda la normativa que respalda las deducciones fiscales por inversión en startups
+                    </p>
                 </div>
                 
-                <div class="pricing__grid">
-                    <div class="pricing__card card">
+                <div class="legal-content">
+                    <div class="legal-article card">
                         <div class="card__body">
-                            <div class="plan-header">
-                                <h3>Simulación</h3>
-                                <div class="plan-badge">Gratis</div>
-                            </div>
-                            <div class="price">€0<span>/siempre</span></div>
-                            <ul class="plan-features">
-                                <li>✅ Simulador fiscal completo</li>
-                                <li>✅ Cálculo personalizado por CCAA</li>
-                                <li>✅ Reporte PDF descargable</li>
-                                <li>✅ Soporte por email</li>
-                                <li>❌ Acceso a startups verificadas</li>
-                                <li>❌ Documentación legal</li>
-                                <li>❌ Asesoría personalizada</li>
+                            <h3>📋 Artículo 68.1 de la Ley del IRPF</h3>
+                            <blockquote class="legal-quote">
+                                "Los contribuyentes podrán deducirse de la cuota íntegra estatal el 50 por 100 
+                                de las cantidades satisfechas en el ejercicio por la suscripción de acciones o 
+                                participaciones sociales en entidades de nueva o reciente creación..."
+                            </blockquote>
+                            
+                            <h4>Requisitos principales:</h4>
+                            <ul class="legal-requirements">
+                                <li>✅ <strong>Deducción:</strong> 50% de la inversión</li>
+                                <li>✅ <strong>Límite anual:</strong> €100.000 de base máxima</li>
+                                <li>✅ <strong>Permanencia:</strong> Mínimo 3 años</li>
+                                <li>✅ <strong>Aplicación:</strong> Cuota íntegra estatal del IRPF</li>
                             </ul>
-                            <button class="btn btn--outline btn--full-width" onclick="scrollToSimulator()">
-                                Simular gratis
-                            </button>
+
+                            <h4>Requisitos de la empresa:</h4>
+                            <ul class="legal-requirements">
+                                <li>🏢 Sociedad anónima, limitada o laboral</li>
+                                <li>📅 Constituida hace menos de 3 años</li>
+                                <li>👥 Menos de 250 trabajadores</li>
+                                <li>💰 Volumen de negocio anual inferior a 50 millones €</li>
+                                <li>🚀 Actividad económica real</li>
+                            </ul>
                         </div>
                     </div>
                     
-                    <div class="pricing__card card featured">
-                        <div class="card__body">
-                            <div class="plan-header">
-                                <h3>Inversión Completa</h3>
-                                <div class="plan-badge plan-badge--popular">Más popular</div>
-                            </div>
-                            <div class="price">
-                                <span class="price-original">€299</span>
-                                €199<span>/inversión</span>
-                            </div>
-                            <div class="price-note">💰 Te ahorras €100 hasta fin de año</div>
-                            <ul class="plan-features">
-                                <li>✅ Todo lo del plan gratuito</li>
-                                <li>✅ Acceso a +50 startups verificadas</li>
-                                <li>✅ Documentación legal completa</li>
-                                <li>✅ Asesoría fiscal personalizada</li>
-                                <li>✅ Soporte prioritario 24/7</li>
-                                <li>✅ Garantía de ahorro o devolución</li>
-                                <li>✅ Seguimiento post-inversión</li>
-                            </ul>
-                            <button class="btn btn--primary btn--full-width">
-                                Empezar ahora
-                            </button>
-                            <div class="plan-guarantee">
-                                🛡️ Garantía de 30 días o te devolvemos el dinero
-                            </div>
+                    <div class="ccaa-regulations">
+                        <h3>🏛️ Normativa autonómica</h3>
+                        <div class="ccaa-grid" id="ccaaCompatibility">
+                            <!-- Se llenará dinámicamente -->
                         </div>
                     </div>
 
-                    <div class="pricing__card card">
+                    <div class="legal-warnings card">
                         <div class="card__body">
-                            <div class="plan-header">
-                                <h3>Asesoría Premium</h3>
-                                <div class="plan-badge">VIP</div>
+                            <h3>⚠️ Advertencias importantes</h3>
+                            <div class="warning-grid">
+                                <div class="warning-item">
+                                    <div class="warning-icon">🚫</div>
+                                    <div class="warning-content">
+                                        <h4>Pérdida de deducciones</h4>
+                                        <p>Si vendes las participaciones antes de 3 años, debes devolver las deducciones aplicadas más intereses.</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="warning-item">
+                                    <div class="warning-icon">📊</div>
+                                    <div class="warning-content">
+                                        <h4>Limitación por cuota</h4>
+                                        <p>No puedes deducir más de lo que pagas en impuestos. El exceso no se puede trasladar a otros años.</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="warning-item">
+                                    <div class="warning-icon">🔍</div>
+                                    <div class="warning-content">
+                                        <h4>Inspección fiscal</h4>
+                                        <p>Hacienda puede revisar que la empresa cumple todos los requisitos. Conserva toda la documentación.</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="warning-item">
+                                    <div class="warning-icon">⚖️</div>
+                                    <div class="warning-content">
+                                        <h4>Asesoramiento profesional</h4>
+                                        <p>Siempre consulta con un asesor fiscal antes de realizar inversiones significativas.</p>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="price">€499<span>/año</span></div>
-                            <ul class="plan-features">
-                                <li>✅ Todo lo del plan completo</li>
-                                <li>✅ Inversiones ilimitadas</li>
-                                <li>✅ Asesor fiscal dedicado</li>
-                                <li>✅ Acceso prioritario a deals</li>
-                                <li>✅ Análisis de cartera</li>
-                                <li>✅ Webinars exclusivos</li>
-                                <li>✅ Red de inversores VIP</li>
-                            </ul>
-                            <button class="btn btn--secondary btn--full-width">
-                                Contactar
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Urgencia en precios -->
-                <div class="pricing-urgency">
-                    <div class="urgency-card">
-                        <h4>🔥 Oferta especial hasta fin de año</h4>
-                        <p>Ahórrate €100 en el plan completo. Solo quedan <strong id="spotsLeft">47 plazas</strong> disponibles.</p>
-                        <div class="urgency-timer">
-                            <span>Oferta termina en: </span>
-                            <span class="timer" id="offerTimer">23:45:12</span>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- FAQ Comercial -->
+        <!-- FAQ Educativo -->
         <section class="faq section">
             <div class="container">
                 <div class="section-header">
                     <h2 class="section__title">Preguntas frecuentes</h2>
-                    <p class="section__subtitle">Todo lo que necesitas saber sobre INVERTAX</p>
+                    <p class="section__subtitle">
+                        Resolvemos las dudas más comunes sobre optimización fiscal en startups
+                    </p>
                 </div>
                 
                 <div class="faq-grid">
                     <div class="faq-item">
-                        <h4 class="faq-question">¿Es realmente legal ahorrar hasta un 90% en impuestos?</h4>
+                        <h4 class="faq-question">¿Es legal reducir impuestos invirtiendo en startups?</h4>
                         <div class="faq-answer">
-                            <p>Sí, es 100% legal. Está respaldado por el Artículo 68.1 de la Ley del IRPF. Puedes deducir hasta el 50% a nivel estatal y hasta un 50% adicional a nivel autonómico, dependiendo de tu CCAA.</p>
+                            <p>
+                                Sí, es completamente legal. Está regulado por el Artículo 68.1 de la Ley del IRPF 
+                                y tiene como objetivo fomentar la inversión en empresas de nueva creación. 
+                                Es una medida de política fiscal para impulsar el emprendimiento.
+                            </p>
                         </div>
                     </div>
 
                     <div class="faq-item">
-                        <h4 class="faq-question">¿Cuánto tiempo tarda en procesarse mi inversión?</h4>
+                        <h4 class="faq-question">¿Puedo realmente ahorrar hasta un 90%?</h4>
                         <div class="faq-answer">
-                            <p>Una vez completada la simulación y elegida la startup, el proceso de inversión se completa en 24-48 horas. Recibes toda la documentación legal inmediatamente.</p>
+                            <p>
+                                Teóricamente sí, combinando la deducción estatal (50%) con algunas autonómicas 
+                                (hasta 50% adicional). Sin embargo, esto está limitado por tu cuota fiscal. 
+                                Si pagas €10.000 en impuestos, no puedes ahorrar más de €10.000.
+                            </p>
                         </div>
                     </div>
 
                     <div class="faq-item">
-                        <h4 class="faq-question">¿Qué pasa si no ahorro lo que me prometen?</h4>
+                        <h4 class="faq-question">¿Qué pasa si la startup fracasa?</h4>
                         <div class="faq-answer">
-                            <p>Ofrecemos garantía de ahorro. Si no consigues el ahorro fiscal calculado por causas atribuibles a nosotros, te devolvemos el 100% de lo pagado.</p>
+                            <p>
+                                El beneficio fiscal es independiente del éxito de la startup. Si mantienes 
+                                las participaciones 3 años (aunque la empresa no tenga éxito), conservas 
+                                las deducciones. El riesgo empresarial es separado del beneficio fiscal.
+                            </p>
                         </div>
                     </div>
 
                     <div class="faq-item">
-                        <h4 class="faq-question">¿Las startups son seguras?</h4>
+                        <h4 class="faq-question">¿Cómo sé si una empresa es elegible?</h4>
                         <div class="faq-answer">
-                            <p>Todas nuestras startups pasan un proceso de due diligence riguroso. Además, el beneficio fiscal es independiente del rendimiento de la startup.</p>
+                            <p>
+                                Debe cumplir requisitos específicos: menos de 3 años, menos de 250 empleados, 
+                                facturación inferior a €50M, actividad económica real, y estar constituida 
+                                como SA, SL o laboral. La empresa debe proporcionar certificación de cumplimiento.
+                            </p>
                         </div>
                     </div>
 
                     <div class="faq-item">
-                        <h4 class="faq-question">¿Puedo usar INVERTAX si vivo fuera de España?</h4>
+                        <h4 class="faq-question">¿Puedo invertir en cualquier startup?</h4>
                         <div class="faq-answer">
-                            <p>INVERTAX está diseñado para residentes fiscales en España que tributan IRPF. Si vives en el extranjero, consulta con nuestro equipo tu caso específico.</p>
+                            <p>
+                                No. La startup debe cumplir requisitos legales específicos y no puede estar 
+                                participada por ti o familiares directos en más del 40%. Además, debe tener 
+                                actividad económica real, no ser una sociedad patrimonial o de inversión.
+                            </p>
                         </div>
                     </div>
 
                     <div class="faq-item">
-                        <h4 class="faq-question">¿Hay límites en la cantidad que puedo invertir?</h4>
+                        <h4 class="faq-question">¿Qué documentación necesito conservar?</h4>
                         <div class="faq-answer">
-                            <p>El límite estatal es €100.000 anuales. Los límites autonómicos varían por CCAA. Nuestro simulador te mostrará los límites específicos para tu caso.</p>
+                            <p>
+                                Contrato de inversión, justificante de pago, certificado de la empresa sobre 
+                                cumplimiento de requisitos, escrituras de constitución, cuentas anuales, 
+                                y cualquier documentación que acredite el cumplimiento de los requisitos legales.
+                            </p>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- CTA Final -->
-        <section class="final-cta section">
+        <!-- Contacto -->
+        <section class="contact section" id="contact">
             <div class="container">
-                <div class="cta-content">
-                    <h2>¿Listo para ahorrar miles de euros en impuestos?</h2>
-                    <p class="cta-subtitle">
-                        Únete a los más de 2.500 inversores que ya han ahorrado €15.2M con INVERTAX
+                <div class="section-header">
+                    <h2 class="section__title">¿Tienes dudas?</h2>
+                    <p class="section__subtitle">
+                        Contacta con nosotros para resolver cualquier consulta sobre optimización fiscal
                     </p>
+                </div>
+                
+                <div class="contact__container">
+                    <div class="contact__form card">
+                        <div class="card__body">
+                            <h3>Envíanos tu consulta</h3>
+                            <form id="contactForm">
+                                <div class="form-group">
+                                    <label for="contactName" class="form-label">Nombre completo</label>
+                                    <input type="text" id="contactName" class="form-control" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="contactEmail" class="form-label">Email</label>
+                                    <input type="email" id="contactEmail" class="form-control" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="contactSubject" class="form-label">Tipo de consulta</label>
+                                    <select id="contactSubject" class="form-control" required>
+                                        <option value="">Selecciona un tema</option>
+                                        <option value="normativa">Consulta sobre normativa</option>
+                                        <option value="simulacion">Ayuda con simulación</option>
+                                        <option value="ccaa">Información sobre mi CCAA</option>
+                                        <option value="documentacion">Documentación requerida</option>
+                                        <option value="general">Consulta general</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="contactMessage" class="form-label">Mensaje</label>
+                                    <textarea id="contactMessage" class="form-control" rows="5" required></textarea>
+                                </div>
+                                <button type="submit" class="btn btn--primary btn--full-width">
+                                    📧 Enviar consulta
+                                </button>
+                            </form>
+                        </div>
+                    </div>
                     
-                    <div class="cta-stats">
-                        <div class="cta-stat">
-                            <span class="cta-stat-number">2 min</span>
-                            <span class="cta-stat-label">Simulación gratuita</span>
+                    <div class="contact__info">
+                        <div class="info-card">
+                            <h4>📚 Recursos educativos</h4>
+                            <ul class="resource-list">
+                                <li><a href="#legal">Marco legal completo</a></li>
+                                <li><a href="#simulator">Simulador gratuito</a></li>
+                                <li><a href="#como-funciona">Guía paso a paso</a></li>
+                                <li><a href="#faq">Preguntas frecuentes</a></li>
+                            </ul>
                         </div>
-                        <div class="cta-stat">
-                            <span class="cta-stat-number">€18.3K</span>
-                            <span class="cta-stat-label">Ahorro promedio</span>
-                        </div>
-                        <div class="cta-stat">
-                            <span class="cta-stat-number">4.9/5</span>
-                            <span class="cta-stat-label">Valoración clientes</span>
-                        </div>
-                    </div>
 
-                    <div class="cta-buttons">
-                        <button class="btn btn--primary btn--xl" onclick="scrollToSimulator()">
-                            <span class="btn-icon">🚀</span>
-                            Calcular mi ahorro GRATIS
-                        </button>
-                        <button class="btn btn--outline btn--lg" onclick="openCalendly()">
-                            📞 Hablar con un experto
-                        </button>
-                    </div>
+                        <div class="info-card">
+                            <h4>⚠️ Importante</h4>
+                            <p>
+                                INVERTAX es una plataforma educativa. La información proporcionada 
+                                tiene carácter orientativo y no constituye asesoramiento fiscal profesional.
+                            </p>
+                            <p>
+                                <strong>Siempre consulta con un asesor fiscal cualificado</strong> 
+                                antes de tomar decisiones de inversión.
+                            </p>
+                        </div>
 
-                    <div class="cta-guarantees">
-                        <div class="guarantee-item">
-                            <span class="guarantee-icon">✅</span>
-                            <span>Sin registro ni spam</span>
+                        <div class="info-card">
+                            <h4>📞 ¿Necesitas asesoramiento profesional?</h4>
+                            <p>
+                                Te recomendamos consultar con asesores fiscales especializados 
+                                en inversiones en startups para tu caso específico.
+                            </p>
                         </div>
-                        <div class="guarantee-item">
-                            <span class="guarantee-icon">✅</span>
-                            <span>Resultado en 2 minutos</span>
-                        </div>
-                        <div class="guarantee-item">
-                            <span class="guarantee-icon">✅</span>
-                            <span>100% gratuito</span>
-                        </div>
-                    </div>
-
-                    <!-- Urgencia final -->
-                    <div class="final-urgency">
-                        <p>⚡ <strong>Últimos días para aprovechar las deducciones 2024</strong></p>
-                        <p>No pierdas la oportunidad de ahorrar miles de euros este año</p>
                     </div>
                 </div>
             </div>
         </section>
     </main>
 
-    <!-- Footer simplificado -->
+    <!-- Footer -->
     <footer class="footer">
         <div class="container">
             <div class="footer__content">
@@ -721,34 +728,29 @@
                     <div class="footer__brand">
                         <h3 class="footer__title">INVERTAX</h3>
                         <p class="footer__description">
-                            La plataforma líder en optimización fiscal para inversiones en startups. 
-                            Más de €15M ahorrados por nuestros clientes.
+                            Plataforma educativa sobre optimización fiscal para inversiones en startups. 
+                            Aprende a aplicar el Artículo 68.1 del IRPF de forma legal y segura.
                         </p>
-                        <div class="footer__social">
-                            <a href="#" class="social-link">LinkedIn</a>
-                            <a href="#" class="social-link">Twitter</a>
-                            <a href="#" class="social-link">YouTube</a>
-                        </div>
                     </div>
                     
                     <div class="footer__links">
                         <div class="footer__column">
-                            <h4>Producto</h4>
+                            <h4>Aprende</h4>
                             <ul>
-                                <li><a href="#simulator">Simulador gratuito</a></li>
-                                <li><a href="#casos-exito">Casos de éxito</a></li>
-                                <li><a href="#pricing">Precios</a></li>
-                                <li><a href="#">Startups disponibles</a></li>
+                                <li><a href="#que-es">Qué es</a></li>
+                                <li><a href="#como-funciona">Cómo funciona</a></li>
+                                <li><a href="#legal">Marco legal</a></li>
+                                <li><a href="#faq">FAQ</a></li>
                             </ul>
                         </div>
                         
                         <div class="footer__column">
-                            <h4>Soporte</h4>
+                            <h4>Herramientas</h4>
                             <ul>
-                                <li><a href="#">Centro de ayuda</a></li>
-                                <li><a href="#">Contacto</a></li>
-                                <li><a href="#">Agendar llamada</a></li>
-                                <li><a href="#">Estado del servicio</a></li>
+                                <li><a href="#simulator">Simulador</a></li>
+                                <li><a href="#">Calculadora CCAA</a></li>
+                                <li><a href="#">Guías descargables</a></li>
+                                <li><a href="#">Checklist legal</a></li>
                             </ul>
                         </div>
                         
@@ -757,7 +759,7 @@
                             <ul>
                                 <li><a href="#">Términos de uso</a></li>
                                 <li><a href="#">Política de privacidad</a></li>
-                                <li><a href="#">Marco legal</a></li>
+                                <li><a href="#">Aviso legal</a></li>
                                 <li><a href="#">Cookies</a></li>
                             </ul>
                         </div>
@@ -765,26 +767,13 @@
                 </div>
                 
                 <div class="footer__bottom">
-                    <div class="footer__trust">
-                        <div class="trust-item">
-                            <span class="trust-icon">🛡️</span>
-                            <span>100% Legal</span>
-                        </div>
-                        <div class="trust-item">
-                            <span class="trust-icon">🔒</span>
-                            <span>Datos seguros</span>
-                        </div>
-                        <div class="trust-item">
-                            <span class="trust-icon">⚡</span>
-                            <span>Soporte 24/7</span>
-                        </div>
-                    </div>
-                    
                     <p class="footer__copyright">
-                        © 2024 INVERTAX. Todos los derechos reservados. 
-                        <span class="footer__disclaimer">
-                            INVERTAX no es asesor fiscal. Consulta siempre con un profesional cualificado.
-                        </span>
+                        © 2024 INVERTAX. Todos los derechos reservados.
+                    </p>
+                    <p class="footer__disclaimer">
+                        <strong>Aviso importante:</strong> INVERTAX es una plataforma educativa. 
+                        La información tiene carácter orientativo y no constituye asesoramiento fiscal. 
+                        Consulta siempre con un profesional cualificado antes de tomar decisiones de inversión.
                     </p>
                 </div>
             </div>
@@ -794,115 +783,106 @@
     <!-- Scripts -->
     <script src="app.js"></script>
     <script>
-        // Funciones comerciales específicas
-        function scrollToSimulator() {
-            document.getElementById('simulator').scrollIntoView({ 
+        // Funciones específicas para la versión educativa
+        function scrollToSection(sectionId) {
+            document.getElementById(sectionId).scrollIntoView({ 
                 behavior: 'smooth',
                 block: 'start'
             });
         }
 
-        function setInvestment(amount) {
-            document.getElementById('investment').value = amount;
-            updatePreview();
-        }
-
-        function updatePreview() {
-            const investment = document.getElementById('investment').value || 100000;
-            const savings = Math.min(investment * 0.45, 45000);
-            const roi = (savings / investment * 100).toFixed(0);
-            
-            document.getElementById('previewSavings').textContent = `€${savings.toLocaleString()}`;
-            document.getElementById('previewROI').textContent = `${roi}%`;
-        }
-
-        function calculateCommercial() {
-            const btn = event.target;
-            const btnText = btn.innerHTML;
-            const loading = btn.querySelector('.btn-loading');
-            
-            // Mostrar loading
-            btn.disabled = true;
-            loading.classList.remove('hidden');
-            
-            // Simular cálculo
-            setTimeout(() => {
-                // Aquí iría la lógica real del cálculo
-                showCommercialResults();
-                
-                // Restaurar botón
-                btn.disabled = false;
-                loading.classList.add('hidden');
-            }, 2000);
-        }
-
-        function showCommercialResults() {
-            const investment = document.getElementById('investment').value;
+        function calculateEducational() {
+            const investment = parseFloat(document.getElementById('investment').value);
             const ccaa = document.getElementById('ccaa').value;
-            const income = document.getElementById('income').value;
+            const stateQuota = parseFloat(document.getElementById('stateQuota').value);
+            const regionalQuota = parseFloat(document.getElementById('regionalQuota').value);
             
+            if (!investment || !ccaa || !stateQuota || !regionalQuota) {
+                alert('Por favor, completa todos los campos');
+                return;
+            }
+
+            // Usar el motor fiscal existente
+            try {
+                const result = fiscalEngine.calculateOptimalDeductions(investment, ccaa, stateQuota, regionalQuota);
+                displayEducationalResults(result);
+            } catch (error) {
+                alert('Error en el cálculo: ' + error.message);
+            }
+        }
+
+        function displayEducationalResults(result) {
             const resultsContainer = document.getElementById('simulatorResults');
-            
-            // Cálculo simplificado para demo
-            const estateSavings = Math.min(investment * 0.5, 50000);
-            const regionalSavings = Math.min(investment * 0.3, 15000);
-            const totalSavings = estateSavings + regionalSavings;
-            const roi = (totalSavings / investment * 100).toFixed(1);
             
             resultsContainer.innerHTML = `
                 <div class="results-card card">
                     <div class="card__body">
                         <div class="results-header">
-                            <h3>🎉 ¡Tu ahorro fiscal calculado!</h3>
+                            <h3>📊 Resultados de tu simulación</h3>
                             <div class="results-badge">
-                                <span class="badge badge--success">Resultado personalizado</span>
+                                <span class="badge badge--info">Simulación educativa</span>
                             </div>
                         </div>
                         
                         <div class="results-summary">
                             <div class="result-main">
-                                <div class="result-amount">€${totalSavings.toLocaleString()}</div>
-                                <div class="result-label">Ahorro fiscal total</div>
-                                <div class="result-roi">${roi}% ROI fiscal</div>
+                                <div class="result-amount">€${result.deductions.total.toLocaleString()}</div>
+                                <div class="result-label">Ahorro fiscal estimado</div>
+                                <div class="result-roi">${result.totals.effectiveFiscalReturn.toFixed(1)}% sobre inversión utilizada</div>
                             </div>
                             
                             <div class="result-breakdown">
+                                <h4>Desglose detallado:</h4>
                                 <div class="breakdown-item">
-                                    <span class="breakdown-label">Deducción estatal (50%)</span>
-                                    <span class="breakdown-value">€${estateSavings.toLocaleString()}</span>
+                                    <span class="breakdown-label">Inversión total planificada:</span>
+                                    <span class="breakdown-value">€${result.investmentSplit.totalUsed.toLocaleString()}</span>
                                 </div>
                                 <div class="breakdown-item">
-                                    <span class="breakdown-label">Deducción ${ccaa}</span>
-                                    <span class="breakdown-value">€${regionalSavings.toLocaleString()}</span>
+                                    <span class="breakdown-label">Deducción estatal (50%):</span>
+                                    <span class="breakdown-value">€${result.deductions.estatal.toLocaleString()}</span>
                                 </div>
+                                <div class="breakdown-item">
+                                    <span class="breakdown-label">Deducción autonómica:</span>
+                                    <span class="breakdown-value">€${result.deductions.autonomica.toLocaleString()}</span>
+                                </div>
+                                ${result.investmentSplit.unused > 0 ? `
+                                <div class="breakdown-item warning">
+                                    <span class="breakdown-label">Capital no optimizado:</span>
+                                    <span class="breakdown-value">€${result.investmentSplit.unused.toLocaleString()}</span>
+                                </div>
+                                ` : ''}
                             </div>
                         </div>
                         
-                        <div class="results-cta">
-                            <h4>¿Quieres hacer realidad este ahorro?</h4>
-                            <p>Accede a nuestro catálogo de startups verificadas y empieza a ahorrar hoy mismo.</p>
-                            
-                            <div class="cta-buttons">
-                                <button class="btn btn--primary btn--lg">
-                                    Ver startups disponibles
-                                </button>
-                                <button class="btn btn--outline btn--lg" onclick="downloadReport()">
-                                    📄 Descargar reporte PDF
-                                </button>
+                        ${result.alerts.length > 0 ? `
+                            <div class="results-alerts">
+                                <h4>⚠️ Consideraciones importantes:</h4>
+                                ${result.alerts.map(alert => `
+                                    <div class="alert alert--${alert.type}">
+                                        ${alert.message}
+                                    </div>
+                                `).join('')}
                             </div>
-                            
-                            <div class="results-guarantee">
-                                <p>🛡️ <strong>Garantía de ahorro:</strong> Si no consigues el ahorro calculado, te devolvemos el dinero.</p>
-                            </div>
+                        ` : ''}
+                        
+                        <div class="results-disclaimer">
+                            <h4>📋 Importante sobre estos resultados:</h4>
+                            <ul class="disclaimer-list">
+                                <li>Esta es una <strong>simulación educativa</strong> con fines informativos</li>
+                                <li>Los resultados son <strong>orientativos</strong> y pueden variar según tu situación específica</li>
+                                <li>El ahorro real depende de que encuentres startups elegibles</li>
+                                <li>Debes mantener la inversión <strong>mínimo 3 años</strong></li>
+                                <li><strong>Consulta siempre con un asesor fiscal</strong> antes de invertir</li>
+                            </ul>
                         </div>
                         
-                        <div class="results-urgency">
-                            <div class="urgency-banner">
-                                <span class="urgency-icon">⚡</span>
-                                <span class="urgency-text">
-                                    <strong>Últimos días para 2024:</strong> Completa tu inversión antes del 31 de diciembre
-                                </span>
-                            </div>
+                        <div class="results-actions">
+                            <button class="btn btn--outline" onclick="downloadEducationalReport()">
+                                📄 Descargar informe educativo
+                            </button>
+                            <button class="btn btn--secondary" onclick="scrollToSection('legal')">
+                                📚 Revisar marco legal
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -911,52 +891,73 @@
             resultsContainer.scrollIntoView({ behavior: 'smooth' });
         }
 
-        function downloadReport() {
-            // Simular descarga
-            alert('Descargando reporte PDF...');
+        function downloadEducationalReport() {
+            alert('Funcionalidad de descarga en desarrollo. Por ahora puedes imprimir esta página.');
         }
 
-        function openCalendly() {
-            // Aquí se abriría Calendly o similar
-            alert('Abriendo calendario para agendar llamada...');
-        }
-
-        // Countdown timer
-        function updateCountdown() {
-            const endOfYear = new Date('2024-12-31T23:59:59');
-            const now = new Date();
-            const diff = endOfYear - now;
+        // Actualizar información de CCAA cuando se selecciona
+        document.getElementById('ccaa')?.addEventListener('change', function() {
+            const ccaa = this.value;
+            const infoContainer = document.getElementById('ccaaInfo');
             
-            if (diff > 0) {
-                const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-                const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            if (ccaa && CCAA_DATA[ccaa]) {
+                const data = CCAA_DATA[ccaa];
+                infoContainer.innerHTML = `
+                    <h5>${ccaa}</h5>
+                    <ul class="ccaa-details">
+                        <li><strong>Deducción autonómica:</strong> ${(data.percentage * 100).toFixed(0)}%</li>
+                        <li><strong>Base máxima:</strong> €${data.maxBase.toLocaleString()}</li>
+                        <li><strong>Compatible con estatal:</strong> ${data.compatible ? 'Sí' : 'No'}</li>
+                        <li><strong>Requisitos:</strong> ${data.notes}</li>
+                    </ul>
+                `;
+            } else {
+                infoContainer.innerHTML = '<p>Selecciona tu CCAA para ver información específica</p>';
+            }
+        });
+
+        // Cargar información de CCAA en la sección legal
+        function loadCCAACompatibility() {
+            const container = document.getElementById('ccaaCompatibility');
+            if (!container) return;
+
+            container.innerHTML = '';
+            
+            Object.entries(CCAA_DATA).forEach(([ccaa, data]) => {
+                const item = document.createElement('div');
+                item.className = `ccaa-legal-item ${data.compatible ? 'compatible' : 'incompatible'}`;
                 
-                document.getElementById('days').textContent = days.toString().padStart(2, '0');
-                document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
-                document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
-            }
+                const compatibilityIcon = data.compatible ? '✅' : '❌';
+                const percentageText = data.percentage > 0 ? `${(data.percentage * 100).toFixed(0)}%` : 'N/A';
+                
+                item.innerHTML = `
+                    <div class="ccaa-legal-header">
+                        <h4>${compatibilityIcon} ${ccaa}</h4>
+                        <span class="ccaa-percentage">${percentageText}</span>
+                    </div>
+                    <div class="ccaa-legal-details">
+                        <p><strong>Base máxima:</strong> €${data.maxBase.toLocaleString()}</p>
+                        <p><strong>Compatible con estatal:</strong> ${data.compatible ? 'Sí' : 'No'}</p>
+                        <p><strong>Requisitos:</strong> ${data.notes}</p>
+                        ${data.special ? `<p><strong>Régimen especial:</strong> ${data.special}</p>` : ''}
+                    </div>
+                `;
+                
+                container.appendChild(item);
+            });
         }
 
-        // Actualizar preview cuando cambie la inversión
-        document.getElementById('investment')?.addEventListener('input', updatePreview);
+        // Inicializar cuando se carga la página
+        document.addEventListener('DOMContentLoaded', function() {
+            loadCCAACompatibility();
+        });
 
-        // Inicializar countdown
-        updateCountdown();
-        setInterval(updateCountdown, 60000);
-
-        // Simular actividad en vivo
-        function updateLiveActivity() {
-            const spots = document.getElementById('spotsLeft');
-            if (spots) {
-                const current = parseInt(spots.textContent);
-                if (current > 20) {
-                    spots.textContent = current - 1;
-                }
-            }
-        }
-
-        setInterval(updateLiveActivity, 30000);
+        // Manejar envío del formulario de contacto
+        document.getElementById('contactForm')?.addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Gracias por tu consulta. Te responderemos pronto.');
+            this.reset();
+        });
     </script>
 </body>
 </html>
