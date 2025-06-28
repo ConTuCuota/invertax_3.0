@@ -1,209 +1,139 @@
 // INVERTAX Application JavaScript
-// Complete fiscal optimization platform for startup investments
+// Plataforma profesional de optimización fiscal para inversiones en empresas de nueva creación
 
-// CCAA Data with comprehensive fiscal information
+// CCAA Data con información fiscal completa y actualizada
 const CCAA_DATA = {
     "Madrid": {
         percentage: 0.4,
         maxBase: 9279,
         compatible: true,
-        acceptedProfiles: ["startup tecnológica", "innovadora"],
-        notes: "Permanencia mínima de 3 años, 5 empleados mínimo"
+        acceptedProfiles: ["empresa tecnológica", "empresa innovadora", "empresa de base tecnológica"],
+        notes: "Permanencia mínima de 3 años, 5 empleados mínimo en plantilla"
     },
     "Cataluña": {
         percentage: 0.5,
         maxBase: 12000,
         compatible: false,
-        acceptedProfiles: ["business angel acreditado"],
-        notes: "No compatible con deducción estatal"
+        acceptedProfiles: ["todos"],
+        notes: "Incompatible con deducción estatal, requiere business angel acreditado"
     },
     "Valencia": {
         percentage: 0.3,
         maxBase: 6000,
         compatible: true,
-        acceptedProfiles: ["startup local"],
-        notes: "Sede en la Comunidad Valenciana"
+        acceptedProfiles: ["empresa innovadora", "empresa local"],
+        notes: "Requiere sede social en la Comunidad Valenciana"
     },
     "Andalucía": {
         percentage: 0.25,
         maxBase: 10000,
         compatible: true,
-        acceptedProfiles: ["startup joven"],
-        notes: "Antigüedad máxima 5 años"
+        acceptedProfiles: ["empresa innovadora", "empresa tecnológica", "empresa de base científica"],
+        notes: "Antigüedad máxima 5 años, sede fiscal en Andalucía"
     },
     "País Vasco": {
         percentage: 0.35,
         maxBase: 15000,
         compatible: true,
-        acceptedProfiles: ["empresa vasca"],
-        notes: "Normativa foral específica"
+        acceptedProfiles: ["empresa tecnológica", "empresa innovadora"],
+        notes: "Normativa foral específica, consultar disposiciones vigentes"
     },
     "Galicia": {
         percentage: 0.25,
         maxBase: 8000,
         compatible: true,
-        acceptedProfiles: ["startup gallega"],
-        notes: "Sede en Galicia"
+        acceptedProfiles: ["empresa de base tecnológica", "empresa innovadora"],
+        notes: "Registro previo en IGAPE, validación técnica previa"
     },
     "Castilla y León": {
         percentage: 0.20,
         maxBase: 6000,
         compatible: true,
-        acceptedProfiles: ["empresa regional"],
-        notes: "Actividad en la comunidad"
+        acceptedProfiles: ["empresa innovadora", "empresa de creación reciente"],
+        notes: "Antigüedad máxima 3 años, actividad en la comunidad"
     },
     "Castilla-La Mancha": {
         percentage: 0.15,
         maxBase: 5000,
         compatible: true,
-        acceptedProfiles: ["startup local"],
-        notes: "Domicilio fiscal en la región"
+        acceptedProfiles: ["empresa innovadora", "empresa de base tecnológica"],
+        notes: "Mínimo 3 empleados a jornada completa"
     },
     "Extremadura": {
         percentage: 0.20,
         maxBase: 4000,
         compatible: true,
-        acceptedProfiles: ["empresa extremeña"],
-        notes: "Inversión mínima €3.000"
+        acceptedProfiles: ["empresa local", "empresa innovadora"],
+        notes: "Inversión mínima €3.000, sede en Extremadura"
     },
     "Murcia": {
         percentage: 0.20,
         maxBase: 6000,
         compatible: true,
-        acceptedProfiles: ["startup murciana"],
-        notes: "Permanencia 4 años"
+        acceptedProfiles: ["empresa tecnológica", "empresa innovadora"],
+        notes: "Permanencia 4 años, sede en Murcia"
     },
     "Asturias": {
         percentage: 0.25,
         maxBase: 7000,
         compatible: true,
-        acceptedProfiles: ["empresa asturiana"],
-        notes: "Actividad económica en Asturias"
+        acceptedProfiles: ["empresa innovadora", "empresa tecnológica"],
+        notes: "Actividad económica en Asturias, validación por IDEPA"
     },
     "Cantabria": {
         percentage: 0.15,
         maxBase: 5000,
         compatible: true,
-        acceptedProfiles: ["startup cántabra"],
-        notes: "Domicilio en Cantabria"
+        acceptedProfiles: ["empresa local", "empresa innovadora"],
+        notes: "Requiere inscripción en registro autonómico"
     },
     "La Rioja": {
         percentage: 0.20,
         maxBase: 6000,
         compatible: true,
-        acceptedProfiles: ["empresa riojana"],
-        notes: "Sede social en La Rioja"
+        acceptedProfiles: ["empresa tecnológica", "empresa innovadora"],
+        notes: "Certificación ADER previa, sede social en La Rioja"
     },
     "Navarra": {
         percentage: 0.30,
         maxBase: 10000,
         compatible: true,
-        acceptedProfiles: ["empresa navarra"],
-        notes: "Régimen foral navarro"
+        acceptedProfiles: ["empresa innovadora", "empresa tecnológica"],
+        notes: "Normativa foral específica de Navarra"
     },
     "Aragón": {
         percentage: 0.25,
         maxBase: 8000,
         compatible: true,
-        acceptedProfiles: ["startup aragonesa"],
-        notes: "Actividad en Aragón"
+        acceptedProfiles: ["empresa local", "empresa innovadora"],
+        notes: "Actividad en Aragón, validación previa"
     },
     "Canarias": {
         percentage: 0,
         maxBase: 0,
         compatible: false,
-        special: "REF",
-        notes: "Régimen Económico y Fiscal especial"
+        special: "ZEC",
+        acceptedProfiles: ["ZEC"],
+        notes: "Zona Especial Canaria, consultar normativa específica REF"
     },
     "Baleares": {
         percentage: 0,
         maxBase: 0,
         compatible: false,
-        special: "ZEC",
-        notes: "Zona Especial Canaria aplicable"
+        special: "Régimen especial",
+        acceptedProfiles: ["empresa turística", "empresa innovadora"],
+        notes: "Consultar normativa vigente específica"
     }
 };
 
-// Projects data
-const PROJECTS_DATA = {
-    estatales: [
-        {
-            nombre: "TechStartup Madrid",
-            sector: "Tecnología",
-            tir: "25%",
-            ubicacion: "Madrid",
-            empleados: 8,
-            descripcion: "Startup de inteligencia artificial aplicada a fintech"
-        },
-        {
-            nombre: "BioInnovation",
-            sector: "Biotecnología",
-            tir: "30%",
-            ubicacion: "Barcelona",
-            empleados: 12,
-            descripcion: "Desarrollo de terapias personalizadas"
-        },
-        {
-            nombre: "CleanEnergy Solutions",
-            sector: "Energías Renovables",
-            tir: "22%",
-            ubicacion: "Valencia",
-            empleados: 15,
-            descripcion: "Soluciones energéticas sostenibles"
-        },
-        {
-            nombre: "AI Healthcare",
-            sector: "Salud Digital",
-            tir: "28%",
-            ubicacion: "Sevilla",
-            empleados: 10,
-            descripcion: "Diagnósticos médicos con inteligencia artificial"
-        }
-    ],
-    autonomicos: [
-        {
-            nombre: "CleanTech Valencia",
-            sector: "Energías Renovables",
-            tir: "22%",
-            ubicacion: "Valencia",
-            empleados: 6,
-            descripcion: "Soluciones de energía solar para empresas"
-        },
-        {
-            nombre: "AgriTech Andalucía",
-            sector: "AgTech",
-            tir: "28%",
-            ubicacion: "Sevilla",
-            empleados: 10,
-            descripcion: "Agricultura de precisión con IoT"
-        },
-        {
-            nombre: "FinTech Madrid",
-            sector: "Tecnología Financiera",
-            tir: "32%",
-            ubicacion: "Madrid",
-            empleados: 8,
-            descripcion: "Pagos digitales para PYMES"
-        },
-        {
-            nombre: "EduTech Euskadi",
-            sector: "Educación",
-            tir: "24%",
-            ubicacion: "Bilbao",
-            empleados: 12,
-            descripcion: "Plataforma educativa con IA"
-        }
-    ]
-};
-
-// State limits
+// Límites estatales según Art. 68.1 LIRPF
 const STATE_LIMITS = {
     percentage: 0.5,
     maxBase: 100000,
     minInvestment: 1000
 };
 
-// FiscalEngine Class - Implementation of INVERTAX Model
+// Motor Fiscal INVERTAX - Implementación del algoritmo de optimización secuencial
 class FiscalEngine {
     constructor() {
         this.STATE_DEDUCTION_RATE = 0.50;
@@ -211,15 +141,15 @@ class FiscalEngine {
     }
 
     /**
-     * Calculate optimal deductions using sequential optimization
-     * Step 1: State deduction (50% up to €100,000)
-     * Step 2: Regional deduction on remainder if compatible
-     * Step 3: Calculate real fiscal profitability
+     * Calcula la distribución óptima de inversión usando el Modelo INVERTAX
+     * Paso 1: Maximiza deducción estatal (50% hasta €100,000)
+     * Paso 2: Asigna remanente a deducción autonómica si es compatible
+     * Paso 3: Calcula rentabilidad fiscal real sobre capital utilizado
      */
     calculateOptimalDeductions(investment, ccaaCode, stateQuota, regionalQuota, projectProfile = null) {
         const ccaaData = CCAA_DATA[ccaaCode];
         if (!ccaaData) {
-            throw new Error(`CCAA ${ccaaCode} no encontrada`);
+            throw new Error(`CCAA ${ccaaCode} no encontrada en base de datos`);
         }
 
         const result = {
@@ -233,10 +163,11 @@ class FiscalEngine {
             effectiveFiscalReturn: 0,
             unoptimizedCapital: 0,
             recommendations: [],
-            projectProfile: projectProfile
+            projectProfile: projectProfile,
+            ccaaData: ccaaData
         };
 
-        // Step 1: State Deduction (Proyecto A)
+        // PASO 1: Optimización de Deducción Estatal (Proyecto A)
         const maxStateInvestment = Math.min(investment, this.STATE_MAX_BASE);
         const maxStateDeduction = maxStateInvestment * this.STATE_DEDUCTION_RATE;
         const stateDeduction = Math.min(maxStateDeduction, stateQuota);
@@ -244,25 +175,28 @@ class FiscalEngine {
 
         if (stateInvestment > 0) {
             result.distributions.push({
-                project: "Proyecto A (Estatal)",
+                project: "Proyecto A (Deducción Estatal)",
                 investment: stateInvestment,
                 deductionRate: this.STATE_DEDUCTION_RATE,
                 deduction: stateDeduction,
-                description: "Deducción estatal Art. 68.1 LIRPF"
+                description: "Art. 68.1 LIRPF - Deducción estatal del 50%",
+                type: "estatal"
             });
 
             result.totalDeduction += stateDeduction;
             result.totalUsedInvestment += stateInvestment;
         }
 
-        // Step 2: Regional Deduction (Proyecto B)
+        // PASO 2: Optimización de Deducción Autonómica (Proyecto B)
         const remainingInvestment = investment - stateInvestment;
         
         if (remainingInvestment > 0 && ccaaData.compatible && ccaaData.percentage > 0) {
-            // Validate project profile
+            // Validar perfil del proyecto si se especifica
             const profileValid = !projectProfile || 
-                                ccaaData.acceptedProfiles.includes(projectProfile) ||
-                                ccaaData.acceptedProfiles.includes("startup local");
+                                ccaaData.acceptedProfiles.includes("todos") ||
+                                ccaaData.acceptedProfiles.some(profile => 
+                                    projectProfile.toLowerCase().includes(profile.toLowerCase())
+                                );
 
             if (profileValid) {
                 const maxRegionalInvestment = Math.min(remainingInvestment, ccaaData.maxBase);
@@ -272,11 +206,12 @@ class FiscalEngine {
 
                 if (regionalInvestment > 0) {
                     result.distributions.push({
-                        project: "Proyecto B (Autonómico)",
+                        project: "Proyecto B (Deducción Autonómica)",
                         investment: regionalInvestment,
                         deductionRate: ccaaData.percentage,
                         deduction: regionalDeduction,
-                        description: `Deducción autonómica ${ccaaCode}`
+                        description: `Deducción autonómica ${ccaaCode} - ${(ccaaData.percentage * 100).toFixed(0)}%`,
+                        type: "autonomica"
                     });
 
                     result.totalDeduction += regionalDeduction;
@@ -285,56 +220,64 @@ class FiscalEngine {
             } else {
                 result.recommendations.push({
                     type: 'warning',
-                    message: `El perfil "${projectProfile}" no es compatible con ${ccaaCode}. Perfiles aceptados: ${ccaaData.acceptedProfiles.join(', ')}`
+                    message: `El perfil "${projectProfile}" no es compatible con los requisitos de ${ccaaCode}. Perfiles aceptados: ${ccaaData.acceptedProfiles.join(', ')}`
                 });
             }
         }
 
-        // Calculate unoptimized capital
+        // PASO 3: Cálculos finales y métricas
         result.unoptimizedCapital = investment - result.totalUsedInvestment;
 
-        // Calculate effective fiscal return
+        // Rentabilidad fiscal REAL = deducción total / inversión utilizada
         if (result.totalUsedInvestment > 0) {
             result.effectiveFiscalReturn = (result.totalDeduction / result.totalUsedInvestment) * 100;
         }
 
-        // Generate recommendations
+        // Generar recomendaciones personalizadas
         this.generateRecommendations(result, ccaaData);
 
         return result;
     }
 
     generateRecommendations(result, ccaaData) {
-        // Alert for unoptimized capital
+        // Alerta por capital no optimizado
         if (result.unoptimizedCapital > 1000) {
             result.recommendations.push({
                 type: 'warning',
-                message: `Capital no optimizado: €${result.unoptimizedCapital.toLocaleString()}. Considera aumentar tus cuotas o diversificar en múltiples proyectos.`
+                message: `€${result.unoptimizedCapital.toLocaleString()} de tu inversión no se han podido optimizar. Considera aumentar tus cuotas fiscales o diversificar en múltiples ejercicios.`
             });
         }
 
-        // Compatibility recommendations
+        // Información sobre compatibilidad
         if (!ccaaData.compatible) {
             result.recommendations.push({
                 type: 'info',
-                message: `${result.ccaa} no es compatible con deducciones estatales. Solo se aplica deducción autonómica.`
+                message: `${result.ccaa} tiene deducciones incompatibles con la estatal. Solo se aplica deducción autonómica del ${(ccaaData.percentage * 100).toFixed(0)}%.`
             });
         }
 
-        // Efficiency recommendations
-        if (result.effectiveFiscalReturn > 40) {
+        // Evaluación de eficiencia fiscal
+        if (result.effectiveFiscalReturn > 45) {
             result.recommendations.push({
                 type: 'success',
-                message: `Excelente optimización fiscal: ${result.effectiveFiscalReturn.toFixed(1)}% de rentabilidad fiscal efectiva.`
+                message: `Excelente optimización fiscal: ${result.effectiveFiscalReturn.toFixed(1)}% de rentabilidad fiscal efectiva. Tu estrategia está muy bien optimizada.`
             });
-        } else if (result.effectiveFiscalReturn < 20) {
+        } else if (result.effectiveFiscalReturn < 25) {
             result.recommendations.push({
                 type: 'warning',
-                message: `Rentabilidad fiscal baja (${result.effectiveFiscalReturn.toFixed(1)}%). Considera aumentar tus cuotas disponibles.`
+                message: `Rentabilidad fiscal baja (${result.effectiveFiscalReturn.toFixed(1)}%). Considera aumentar tus cuotas disponibles o revisar tu estrategia de inversión.`
             });
         }
 
-        // Special cases
+        // Alertas sobre límites alcanzados
+        if (result.totalUsedInvestment >= this.STATE_MAX_BASE) {
+            result.recommendations.push({
+                type: 'info',
+                message: `Has alcanzado la base máxima de deducción estatal (€${this.STATE_MAX_BASE.toLocaleString()}). Para optimizar más capital, considera deducciones autonómicas.`
+            });
+        }
+
+        // Información específica de CCAA
         if (ccaaData.special) {
             result.recommendations.push({
                 type: 'info',
@@ -342,39 +285,50 @@ class FiscalEngine {
             });
         }
 
-        // Quota utilization warnings
-        const stateQuotaUsed = result.distributions.find(d => d.project.includes('Estatal'))?.deduction || 0;
-        const regionalQuotaUsed = result.distributions.find(d => d.project.includes('Autonómico'))?.deduction || 0;
+        // Alertas sobre utilización de cuotas
+        const stateQuotaUsed = result.distributions.find(d => d.type === 'estatal')?.deduction || 0;
+        const regionalQuotaUsed = result.distributions.find(d => d.type === 'autonomica')?.deduction || 0;
 
-        if (stateQuotaUsed < result.stateQuota * 0.8) {
+        if (stateQuotaUsed < result.stateQuota * 0.9) {
+            const unusedQuota = result.stateQuota - stateQuotaUsed;
             result.recommendations.push({
                 type: 'info',
-                message: `Tienes €${(result.stateQuota - stateQuotaUsed).toLocaleString()} de cuota estatal sin utilizar. Considera aumentar la inversión.`
+                message: `Tienes €${unusedQuota.toLocaleString()} de cuota estatal sin utilizar. Podrías aumentar tu inversión para aprovecharla completamente.`
             });
         }
 
-        if (ccaaData.compatible && regionalQuotaUsed < result.regionalQuota * 0.8) {
+        if (ccaaData.compatible && regionalQuotaUsed < result.regionalQuota * 0.9) {
+            const unusedQuota = result.regionalQuota - regionalQuotaUsed;
             result.recommendations.push({
                 type: 'info',
-                message: `Tienes €${(result.regionalQuota - regionalQuotaUsed).toLocaleString()} de cuota autonómica sin utilizar.`
+                message: `Tienes €${unusedQuota.toLocaleString()} de cuota autonómica sin utilizar en ${result.ccaa}.`
+            });
+        }
+
+        // Recomendaciones sobre requisitos específicos
+        if (ccaaData.notes) {
+            result.recommendations.push({
+                type: 'info',
+                message: `Requisitos específicos en ${result.ccaa}: ${ccaaData.notes}`
             });
         }
     }
 
-    // Quick calculation for mini-simulator
+    // Cálculo rápido para simulaciones básicas
     calculateQuick(investment, ccaaCode) {
         try {
-            // Assume average quotas
-            const stateQuota = Math.min(investment * 0.5, 15000);
-            const regionalQuota = Math.min(investment * 0.3, 8000);
+            // Estimación de cuotas promedio
+            const estimatedStateQuota = Math.min(investment * 0.4, 20000);
+            const estimatedRegionalQuota = Math.min(investment * 0.25, 10000);
             
-            const result = this.calculateOptimalDeductions(investment, ccaaCode, stateQuota, regionalQuota);
+            const result = this.calculateOptimalDeductions(investment, ccaaCode, estimatedStateQuota, estimatedRegionalQuota);
             return {
                 success: true,
                 totalSaving: result.totalDeduction,
                 effectiveReturn: result.effectiveFiscalReturn,
-                message: `Ahorro fiscal: €${result.totalDeduction.toLocaleString()}`,
-                usedInvestment: result.totalUsedInvestment
+                message: `Ahorro fiscal estimado: €${result.totalDeduction.toLocaleString()}`,
+                usedInvestment: result.totalUsedInvestment,
+                details: result
             };
         } catch (error) {
             return {
@@ -385,7 +339,7 @@ class FiscalEngine {
     }
 }
 
-// Monte Carlo Simulation Engine
+// Motor de Simulaciones Monte Carlo para análisis de riesgo
 class MonteCarloEngine {
     constructor() {
         this.iterations = 1000;
@@ -393,7 +347,7 @@ class MonteCarloEngine {
 
     simulate(investment, expectedReturn, volatility, years) {
         const results = [];
-        const dt = 1; // Annual steps
+        const dt = 1; // Pasos anuales
         
         for (let i = 0; i < this.iterations; i++) {
             let value = investment;
@@ -408,7 +362,7 @@ class MonteCarloEngine {
             results.push(value);
         }
         
-        // Sort results for percentile calculation
+        // Ordenar para cálculo de percentiles
         results.sort((a, b) => a - b);
         
         return {
@@ -426,7 +380,7 @@ class MonteCarloEngine {
     }
 
     randomNormal() {
-        // Box-Muller transformation for normal distribution
+        // Transformación Box-Muller para distribución normal
         let u = 0, v = 0;
         while(u === 0) u = Math.random();
         while(v === 0) v = Math.random();
@@ -442,23 +396,23 @@ class MonteCarloEngine {
             conservative: {
                 value: p5,
                 return: ((p5 - investment) / investment * 100).toFixed(1),
-                probability: "5% peor caso"
+                probability: "5% escenario pesimista"
             },
             expected: {
                 value: p50,
                 return: ((p50 - investment) / investment * 100).toFixed(1),
-                probability: "50% mediana"
+                probability: "50% escenario esperado"
             },
             optimistic: {
                 value: p95,
                 return: ((p95 - investment) / investment * 100).toFixed(1),
-                probability: "95% mejor caso"
+                probability: "95% escenario optimista"
             }
         };
     }
 }
 
-// Document Manager with SHA-256 hashing
+// Gestor de Documentos con trazabilidad SHA-256
 class DocumentManager {
     constructor() {
         this.documents = [];
@@ -470,24 +424,24 @@ class DocumentManager {
             {
                 id: 1,
                 name: "Simulación Fiscal - Madrid",
-                date: new Date('2025-06-15'),
+                date: new Date('2025-01-15'),
                 status: "Generado",
-                hash: this.generateSHA256("simulation_madrid_20250615"),
+                hash: this.generateSHA256("simulation_madrid_20250115"),
                 type: "simulation"
             },
             {
                 id: 2,
                 name: "Análisis Monte Carlo - Valencia",
-                date: new Date('2025-06-10'),
+                date: new Date('2025-01-10'),
                 status: "Firmado",
-                hash: this.generateSHA256("montecarlo_valencia_20250610"),
+                hash: this.generateSHA256("montecarlo_valencia_20250110"),
                 type: "analysis"
             }
         ];
     }
 
     generateSHA256(input) {
-        // Simplified SHA-256 simulation for demo
+        // Simulación de hash SHA-256 para demo
         const timestamp = Date.now().toString();
         const combined = input + timestamp;
         let hash = 0;
@@ -498,7 +452,7 @@ class DocumentManager {
             hash = hash & hash;
         }
         
-        // Generate a realistic-looking hash
+        // Generar hash realista
         const hashStr = Math.abs(hash).toString(16).padStart(8, '0');
         const randomStr = Math.random().toString(16).substring(2, 10);
         return `${hashStr}${randomStr}${'a'.repeat(48 - hashStr.length - randomStr.length)}`;
@@ -519,7 +473,7 @@ class DocumentManager {
     }
 
     getDocuments() {
-        return [...this.documents].reverse(); // Most recent first
+        return [...this.documents].reverse(); // Más recientes primero
     }
 
     updateDocumentStatus(id, status) {
@@ -532,52 +486,46 @@ class DocumentManager {
     }
 }
 
-// Initialize engines and managers
+// Inicialización de motores
 const fiscalEngine = new FiscalEngine();
 const monteCarloEngine = new MonteCarloEngine();
 const documentManager = new DocumentManager();
 
-// Global variables
+// Variables globales
 let currentSimulation = null;
 let deferredPrompt = null;
 
-// Application initialization
+// Inicialización de la aplicación
 document.addEventListener('DOMContentLoaded', function() {
     initializeApp();
 });
 
 function initializeApp() {
-    // Initialize navigation
+    // Inicializar navegación
     initializeNavigation();
     
-    // Populate selectors
+    // Poblar selectores de CCAA
     populateCCAASelectors();
     
-    // Load projects
-    loadProjects();
-    
-    // Load documents table
-    loadDocumentsTable();
-    
-    // Load CCAA compatibility grid
+    // Cargar grid de compatibilidades CCAA
     loadCCAACompatibility();
     
-    // Initialize PWA
+    // Inicializar PWA
     initializePWA();
     
-    // Initialize contact form
+    // Inicializar formulario de contacto
     initializeContactForm();
     
-    console.log('INVERTAX App initialized successfully');
+    console.log('INVERTAX App inicializada correctamente');
 }
 
 function populateCCAASelectors() {
-    const selectors = ['ccaa', 'quickCCAA'];
+    const selectors = ['ccaa'];
     
     selectors.forEach(selectorId => {
         const selector = document.getElementById(selectorId);
         if (selector) {
-            // Clear existing options except first
+            // Mantener primera opción
             const firstOption = selector.children[0];
             selector.innerHTML = '';
             selector.appendChild(firstOption);
@@ -592,82 +540,6 @@ function populateCCAASelectors() {
     });
 }
 
-function loadProjects() {
-    loadProjectsType('estatales');
-    loadProjectsType('autonomicos');
-}
-
-function loadProjectsType(type) {
-    const container = document.getElementById(`proyectos${type.charAt(0).toUpperCase() + type.slice(1)}`);
-    if (!container) return;
-
-    container.innerHTML = '';
-    
-    PROJECTS_DATA[type].forEach(project => {
-        const card = createProjectCard(project, type);
-        container.appendChild(card);
-    });
-}
-
-function createProjectCard(project, type) {
-    const card = document.createElement('div');
-    card.className = 'project-card card';
-    
-    card.innerHTML = `
-        <div class="card__body">
-            <div class="project-card__header">
-                <div>
-                    <h3 class="project-card__name">${project.nombre}</h3>
-                    <p class="project-card__sector">${project.sector}</p>
-                </div>
-                <span class="project-card__tir">${project.tir} TIR</span>
-            </div>
-            <p class="project-card__description">${project.descripcion}</p>
-            <div class="project-card__footer">
-                <span class="project-card__location">📍 ${project.ubicacion}</span>
-                <button class="btn btn--outline btn--sm" onclick="selectProject('${project.nombre}', '${type}')">
-                    Seleccionar
-                </button>
-            </div>
-        </div>
-    `;
-    
-    return card;
-}
-
-function loadDocumentsTable() {
-    const tbody = document.getElementById('documentsTableBody');
-    if (!tbody) return;
-
-    tbody.innerHTML = '';
-    
-    const documents = documentManager.getDocuments();
-    documents.forEach(doc => {
-        const row = createDocumentRow(doc);
-        tbody.appendChild(row);
-    });
-}
-
-function createDocumentRow(doc) {
-    const row = document.createElement('tr');
-    
-    const statusClass = doc.status === 'Firmado' ? 'status--success' : 
-                       doc.status === 'Pendiente' ? 'status--warning' : 'status--info';
-    
-    row.innerHTML = `
-        <td>${doc.name}</td>
-        <td>${doc.date.toLocaleDateString()}</td>
-        <td><code class="hash-display">${doc.hash.substring(0, 16)}...</code></td>
-        <td><span class="status ${statusClass}">${doc.status}</span></td>
-        <td class="table-actions">
-            <button class="btn btn--sm btn--outline" onclick="downloadDocument(${doc.id})">⬇️</button>
-            <button class="btn btn--sm btn--secondary" onclick="viewHash('${doc.hash}')">🔗</button>
-        </td>
-    `;
-    
-    return row;
-}
-
 function loadCCAACompatibility() {
     const container = document.getElementById('ccaaCompatibility');
     if (!container) return;
@@ -676,18 +548,21 @@ function loadCCAACompatibility() {
     
     Object.entries(CCAA_DATA).forEach(([ccaa, data]) => {
         const item = document.createElement('div');
-        item.className = `ccaa-item ${data.compatible ? 'compatible' : 'incompatible'}`;
+        item.className = `ccaa-legal-item ${data.compatible ? 'compatible' : 'incompatible'}`;
         
         const compatibilityIcon = data.compatible ? '✅' : '❌';
         const percentageText = data.percentage > 0 ? `${(data.percentage * 100).toFixed(0)}%` : 'N/A';
         
         item.innerHTML = `
-            <div class="ccaa-item__name">${compatibilityIcon} ${ccaa}</div>
-            <div class="ccaa-item__details">
-                <div>Deducción: ${percentageText}</div>
-                <div>Base máxima: €${data.maxBase.toLocaleString()}</div>
-                <div>Compatible: ${data.compatible ? 'Sí' : 'No'}</div>
-                ${data.special ? `<div>Especial: ${data.special}</div>` : ''}
+            <div class="ccaa-legal-header">
+                <h4>${compatibilityIcon} ${ccaa}</h4>
+                <span class="ccaa-percentage">${percentageText}</span>
+            </div>
+            <div class="ccaa-legal-details">
+                <p><strong>Base máxima:</strong> €${data.maxBase.toLocaleString()}</p>
+                <p><strong>Compatible con estatal:</strong> ${data.compatible ? 'Sí' : 'No'}</p>
+                ${data.special ? `<p><strong>Régimen especial:</strong> ${data.special}</p>` : ''}
+                <p><strong>Requisitos:</strong> ${data.notes}</p>
             </div>
         `;
         
@@ -695,43 +570,7 @@ function loadCCAACompatibility() {
     });
 }
 
-// Calculator Functions
-function calculateQuick() {
-    const amount = document.getElementById('quickAmount').value;
-    const ccaa = document.getElementById('quickCCAA').value;
-    const resultDiv = document.getElementById('quickResult');
-    
-    if (!amount || !ccaa) {
-        showMessage(resultDiv, 'Por favor, completa todos los campos', 'error');
-        return;
-    }
-    
-    const investment = parseFloat(amount);
-    if (investment < 1000 || investment > 200000) {
-        showMessage(resultDiv, 'Inversión debe estar entre €1.000 y €200.000', 'error');
-        return;
-    }
-    
-    const result = fiscalEngine.calculateQuick(investment, ccaa);
-    
-    if (result.success) {
-        resultDiv.innerHTML = `
-            <div class="mini-simulator__success">
-                <h4>💰 ${result.message}</h4>
-                <p>Rentabilidad fiscal: <strong>${result.effectiveReturn.toFixed(1)}%</strong></p>
-                <p>Inversión optimizada: <strong>€${result.usedInvestment.toLocaleString()}</strong></p>
-                <button class="btn btn--outline btn--sm" onclick="document.getElementById('simulator').scrollIntoView()">
-                    Ver simulación avanzada
-                </button>
-            </div>
-        `;
-        resultDiv.classList.remove('hidden');
-        resultDiv.classList.add('fade-in');
-    } else {
-        showMessage(resultDiv, result.message, 'error');
-    }
-}
-
+// Funciones del Simulador
 function calculateAdvanced() {
     const investment = parseFloat(document.getElementById('investment').value);
     const ccaa = document.getElementById('ccaa').value;
@@ -740,13 +579,14 @@ function calculateAdvanced() {
     const projectProfile = document.getElementById('projectProfile').value;
     const resultsDiv = document.getElementById('simulatorResults');
     
-    if (!investment || !ccaa || stateQuota === undefined || regionalQuota === undefined) {
+    // Validaciones
+    if (!investment || !ccaa || isNaN(stateQuota) || isNaN(regionalQuota)) {
         showMessage(resultsDiv, 'Por favor, completa todos los campos obligatorios', 'error');
         return;
     }
     
     if (investment < 1000 || investment > 500000) {
-        showMessage(resultsDiv, 'Inversión debe estar entre €1.000 y €500.000', 'error');
+        showMessage(resultsDiv, 'La inversión debe estar entre €1.000 y €500.000', 'error');
         return;
     }
     
@@ -755,9 +595,8 @@ function calculateAdvanced() {
         currentSimulation = result;
         displayAdvancedResults(result, resultsDiv);
         
-        // Generate document
+        // Generar documento
         const doc = documentManager.addDocument(`Simulación ${ccaa} - ${new Date().toLocaleDateString()}`, 'simulation', result);
-        loadDocumentsTable();
         
         showNotification('Simulación completada correctamente', 'success');
     } catch (error) {
@@ -766,188 +605,164 @@ function calculateAdvanced() {
 }
 
 function displayAdvancedResults(result, container) {
-    const ccaaData = CCAA_DATA[result.ccaa];
+    const ccaaData = result.ccaaData;
     
     container.innerHTML = `
-        <div class="card simulator__results-card">
-            <div class="card__body">
-                <h3>🎯 Optimización Fiscal INVERTAX</h3>
+        <div class="form-card">
+            <div class="results-header">
+                <h3>🎯 Resultados de Optimización INVERTAX</h3>
+                <span class="badge badge--success">Optimización Completada</span>
+            </div>
+            
+            <div class="results-summary">
+                <div class="result-main">
+                    <div class="result-amount">€${result.totalDeduction.toLocaleString()}</div>
+                    <div class="result-label">Ahorro Fiscal Total</div>
+                    <div class="result-roi">${result.effectiveFiscalReturn.toFixed(1)}% ROI Fiscal</div>
+                </div>
                 
-                <div class="results-summary">
-                    <div class="result-kpi">
-                        <span class="result-kpi__value">€${result.totalDeduction.toLocaleString()}</span>
-                        <span class="result-kpi__label">Ahorro Fiscal Total</span>
-                    </div>
-                    <div class="result-kpi">
-                        <span class="result-kpi__value">${result.effectiveFiscalReturn.toFixed(1)}%</span>
-                        <span class="result-kpi__label">Rentabilidad Fiscal Real</span>
-                    </div>
-                    <div class="result-kpi">
-                        <span class="result-kpi__value">€${result.totalUsedInvestment.toLocaleString()}</span>
-                        <span class="result-kpi__label">Capital Optimizado</span>
-                    </div>
+                <div class="result-breakdown">
+                    <h4>📊 Desglose de Optimización</h4>
+                    ${result.distributions.map(dist => `
+                        <div class="breakdown-item">
+                            <div class="breakdown-label">${dist.project}:</div>
+                            <div class="breakdown-value">€${dist.investment.toLocaleString()}</div>
+                        </div>
+                        <div class="breakdown-item">
+                            <div class="breakdown-label">Deducción (${(dist.deductionRate * 100).toFixed(0)}%):</div>
+                            <div class="breakdown-value">€${dist.deduction.toLocaleString()}</div>
+                        </div>
+                    `).join('')}
+                    
                     ${result.unoptimizedCapital > 0 ? `
-                    <div class="result-kpi">
-                        <span class="result-kpi__value">€${result.unoptimizedCapital.toLocaleString()}</span>
-                        <span class="result-kpi__label">Capital No Optimizado</span>
-                    </div>
+                        <div class="breakdown-item warning">
+                            <div class="breakdown-label">Capital no optimizado:</div>
+                            <div class="breakdown-value">€${result.unoptimizedCapital.toLocaleString()}</div>
+                        </div>
                     ` : ''}
                 </div>
+            </div>
 
-                <div class="distributions-section">
-                    <h4>📊 Distribución Óptima (Modelo INVERTAX)</h4>
-                    ${result.distributions.map(dist => `
-                        <div class="distribution-item">
-                            <div class="distribution-header">
-                                <strong>${dist.project}</strong>
-                                <span class="distribution-amount">€${dist.investment.toLocaleString()}</span>
-                            </div>
-                            <div class="distribution-details">
-                                <span>Tasa deducción: ${(dist.deductionRate * 100).toFixed(0)}%</span>
-                                <span>Deducción: €${dist.deduction.toLocaleString()}</span>
-                            </div>
-                            <p class="distribution-description">${dist.description}</p>
+            ${result.recommendations.length > 0 ? `
+                <div class="results-alerts">
+                    <h4>💡 Recomendaciones Personalizadas</h4>
+                    ${result.recommendations.map(rec => `
+                        <div class="alert alert--${rec.type}">
+                            ${rec.type === 'success' ? '✅' : rec.type === 'warning' ? '⚠️' : 'ℹ️'} ${rec.message}
                         </div>
                     `).join('')}
                 </div>
+            ` : ''}
 
-                ${result.recommendations.length > 0 ? `
-                    <div class="recommendations-section">
-                        <h4>💡 Recomendaciones INVERTAX</h4>
-                        ${result.recommendations.map(rec => `
-                            <div class="recommendation ${rec.type}">
-                                <span class="recommendation-icon">
-                                    ${rec.type === 'success' ? '✅' : rec.type === 'warning' ? '⚠️' : 'ℹ️'}
-                                </span>
-                                <span>${rec.message}</span>
-                            </div>
-                        `).join('')}
-                    </div>
-                ` : ''}
+            <div class="results-disclaimer">
+                <h4>⚖️ Información Legal</h4>
+                <ul class="disclaimer-list">
+                    <li>Cálculos basados en normativa fiscal vigente (Art. 68.1 LIRPF)</li>
+                    <li>Resultados orientativos sujetos a validación con asesor fiscal</li>
+                    <li>Permanencia mínima de inversión: 3 años</li>
+                    <li>Riesgo de pérdida del capital invertido</li>
+                    <li>Las deducciones están sujetas a cuotas fiscales disponibles</li>
+                </ul>
+            </div>
 
-                <div class="ccaa-info">
-                    <h4>📋 Información Fiscal ${result.ccaa}</h4>
-                    <div class="ccaa-details">
-                        <p><strong>Deducción autonómica:</strong> ${(ccaaData.percentage * 100).toFixed(0)}% hasta €${ccaaData.maxBase.toLocaleString()}</p>
-                        <p><strong>Compatibilidad:</strong> ${ccaaData.compatible ? '✅ Compatible con deducción estatal' : '❌ No compatible con deducción estatal'}</p>
-                        ${ccaaData.special ? `<p><strong>Régimen especial:</strong> ${ccaaData.special}</p>` : ''}
-                        <p><strong>Condiciones:</strong> ${ccaaData.notes}</p>
-                        ${result.projectProfile ? `<p><strong>Perfil proyecto:</strong> ${result.projectProfile}</p>` : ''}
-                    </div>
-                </div>
-
-                <div class="results-actions">
-                    <button class="btn btn--primary" onclick="exportPDF()">
-                        📄 Exportar PDF
-                    </button>
-                    <button class="btn btn--secondary" onclick="exportJSON()">
-                        📋 Exportar JSON
-                    </button>
-                    <button class="btn btn--outline" onclick="runMonteCarlo()">
-                        📊 Análisis Monte Carlo
-                    </button>
-                </div>
+            <div class="results-actions">
+                <button class="btn btn--primary" onclick="exportPDF()">
+                    📄 Exportar Informe PDF
+                </button>
+                <button class="btn btn--secondary" onclick="exportJSON()">
+                    📋 Exportar Datos JSON
+                </button>
+                <button class="btn btn--outline" onclick="runMonteCarlo()">
+                    📊 Análisis de Riesgo
+                </button>
             </div>
         </div>
     `;
     
     container.classList.add('fade-in');
+    container.scrollIntoView({ behavior: 'smooth' });
 }
 
-// Monte Carlo Analysis
+// Análisis Monte Carlo
 function runMonteCarlo() {
     if (!currentSimulation) {
         showNotification('Realiza primero una simulación fiscal', 'warning');
         return;
     }
 
-    const years = parseInt(document.getElementById('monteCarloYears')?.value || 3);
-    const expectedReturn = parseFloat(document.getElementById('expectedReturn')?.value || 25);
-    const volatility = parseFloat(document.getElementById('volatility')?.value || 35);
+    const years = 3; // Período mínimo de permanencia
+    const expectedReturn = 25; // Rentabilidad esperada conservadora
+    const volatility = 35; // Volatilidad típica de empresas nuevas
     const investment = currentSimulation.totalUsedInvestment;
 
-    showNotification('Ejecutando simulación Monte Carlo...', 'info');
+    showNotification('Ejecutando análisis Monte Carlo...', 'info');
 
-    // Simulate processing time
+    // Simular tiempo de procesamiento
     setTimeout(() => {
         const results = monteCarloEngine.simulate(investment, expectedReturn, volatility, years);
         displayMonteCarloResults(results);
         
-        // Generate document
+        // Generar documento
         const doc = documentManager.addDocument(`Análisis Monte Carlo - ${new Date().toLocaleDateString()}`, 'montecarlo', results);
-        loadDocumentsTable();
         
-        showNotification('Análisis Monte Carlo completado', 'success');
+        showNotification('Análisis de riesgo completado', 'success');
     }, 1500);
 }
 
 function displayMonteCarloResults(results) {
-    const container = document.getElementById('monteCarloResults');
+    const container = document.getElementById('simulatorResults');
     if (!container) return;
 
-    container.innerHTML = `
-        <div class="card">
-            <div class="card__body">
-                <h3>📊 Resultados Monte Carlo (${monteCarloEngine.iterations} iteraciones)</h3>
-                
-                <div class="scenarios-grid">
-                    <div class="scenario conservative">
-                        <h4>🔴 Conservador (P5)</h4>
-                        <div class="scenario-value">€${results.scenarios.conservative.value.toLocaleString()}</div>
-                        <div class="scenario-return">${results.scenarios.conservative.return}%</div>
-                    </div>
-                    <div class="scenario expected">
-                        <h4>🟡 Esperado (P50)</h4>
-                        <div class="scenario-value">€${results.scenarios.expected.value.toLocaleString()}</div>
-                        <div class="scenario-return">${results.scenarios.expected.return}%</div>
-                    </div>
-                    <div class="scenario optimistic">
-                        <h4>🟢 Optimista (P95)</h4>
-                        <div class="scenario-value">€${results.scenarios.optimistic.value.toLocaleString()}</div>
-                        <div class="scenario-return">${results.scenarios.optimistic.return}%</div>
-                    </div>
+    const existingContent = container.innerHTML;
+    
+    container.innerHTML = existingContent + `
+        <div class="form-card" style="margin-top: var(--space-8);">
+            <h3>📊 Análisis de Riesgo Monte Carlo</h3>
+            <p class="form-description">Simulación con ${monteCarloEngine.iterations} iteraciones para evaluar escenarios de rentabilidad</p>
+            
+            <div class="scenarios-grid" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-4); margin: var(--space-5) 0;">
+                <div class="scenario conservative" style="text-align: center; padding: var(--space-4); background: rgba(220, 38, 38, 0.1); border-radius: var(--radius-lg); border: 1px solid rgba(220, 38, 38, 0.2);">
+                    <h4 style="color: var(--color-error); margin-bottom: var(--space-2);">🔴 Conservador</h4>
+                    <div class="scenario-value" style="font-size: var(--font-size-xl); font-weight: var(--font-weight-bold); color: var(--color-error);">€${results.scenarios.conservative.value.toLocaleString()}</div>
+                    <div class="scenario-return" style="color: var(--color-text-secondary);">${results.scenarios.conservative.return}%</div>
                 </div>
+                <div class="scenario expected" style="text-align: center; padding: var(--space-4); background: rgba(217, 119, 6, 0.1); border-radius: var(--radius-lg); border: 1px solid rgba(217, 119, 6, 0.2);">
+                    <h4 style="color: var(--color-warning); margin-bottom: var(--space-2);">🟡 Esperado</h4>
+                    <div class="scenario-value" style="font-size: var(--font-size-xl); font-weight: var(--font-weight-bold); color: var(--color-warning);">€${results.scenarios.expected.value.toLocaleString()}</div>
+                    <div class="scenario-return" style="color: var(--color-text-secondary);">${results.scenarios.expected.return}%</div>
+                </div>
+                <div class="scenario optimistic" style="text-align: center; padding: var(--space-4); background: rgba(5, 150, 105, 0.1); border-radius: var(--radius-lg); border: 1px solid rgba(5, 150, 105, 0.2);">
+                    <h4 style="color: var(--color-success); margin-bottom: var(--space-2);">🟢 Optimista</h4>
+                    <div class="scenario-value" style="font-size: var(--font-size-xl); font-weight: var(--font-weight-bold); color: var(--color-success);">€${results.scenarios.optimistic.value.toLocaleString()}</div>
+                    <div class="scenario-return" style="color: var(--color-text-secondary);">${results.scenarios.optimistic.return}%</div>
+                </div>
+            </div>
 
-                <div class="percentiles">
-                    <div class="percentile">
-                        <span class="percentile__value">€${results.percentiles.p25.toLocaleString()}</span>
-                        <span class="percentile__label">P25</span>
-                    </div>
-                    <div class="percentile">
-                        <span class="percentile__value">€${results.percentiles.p50.toLocaleString()}</span>
-                        <span class="percentile__label">Mediana</span>
-                    </div>
-                    <div class="percentile">
-                        <span class="percentile__value">€${results.percentiles.p75.toLocaleString()}</span>
-                        <span class="percentile__label">P75</span>
-                    </div>
-                </div>
-
-                <div class="monte-carlo-summary">
-                    <p><strong>Valor medio proyectado:</strong> €${results.mean.toLocaleString()}</p>
-                    <p><strong>Probabilidad de pérdida:</strong> ${((results.results.filter(r => r < currentSimulation.totalUsedInvestment).length / results.results.length) * 100).toFixed(1)}%</p>
-                    <p><strong>Rentabilidad esperada:</strong> ${(((results.mean - currentSimulation.totalUsedInvestment) / currentSimulation.totalUsedInvestment) * 100).toFixed(1)}%</p>
-                </div>
+            <div class="monte-carlo-summary" style="margin-top: var(--space-5); padding: var(--space-4); background: var(--color-secondary); border-radius: var(--radius-lg);">
+                <h4 style="margin-bottom: var(--space-3); color: var(--color-primary);">📈 Métricas de Riesgo</h4>
+                <p><strong>Valor medio proyectado:</strong> €${results.mean.toLocaleString()}</p>
+                <p><strong>Probabilidad de pérdida:</strong> ${((results.results.filter(r => r < currentSimulation.totalUsedInvestment).length / results.results.length) * 100).toFixed(1)}%</p>
+                <p><strong>Rentabilidad esperada:</strong> ${(((results.mean - currentSimulation.totalUsedInvestment) / currentSimulation.totalUsedInvestment) * 100).toFixed(1)}%</p>
+                <p style="margin: 0; font-size: var(--font-size-sm); color: var(--color-text-secondary); font-style: italic;">
+                    * Análisis basado en 3 años de permanencia mínima obligatoria
+                </p>
             </div>
         </div>
     `;
-
-    container.classList.add('fade-in');
 }
 
-// Document Export Functions
+// Funciones de Exportación
 function exportPDF() {
     if (!currentSimulation) {
         showNotification('No hay simulación para exportar', 'warning');
         return;
     }
 
-    showNotification('Generando PDF...', 'info');
+    showNotification('Generando informe PDF...', 'info');
     
     setTimeout(() => {
-        const doc = documentManager.addDocument(`Reporte PDF - ${currentSimulation.ccaa}`, 'pdf', currentSimulation);
-        loadDocumentsTable();
-        showNotification('PDF generado correctamente', 'success');
+        const doc = documentManager.addDocument(`Informe PDF - ${currentSimulation.ccaa}`, 'pdf', currentSimulation);
+        showNotification('Informe PDF generado correctamente', 'success');
     }, 1000);
 }
 
@@ -970,94 +785,12 @@ function exportJSON() {
     URL.revokeObjectURL(url);
     
     const doc = documentManager.addDocument(`Export JSON - ${currentSimulation.ccaa}`, 'json', currentSimulation);
-    loadDocumentsTable();
-    showNotification('JSON exportado correctamente', 'success');
+    showNotification('Datos JSON exportados correctamente', 'success');
 }
 
-function generateHash() {
-    const timestamp = new Date().toISOString();
-    const data = currentSimulation ? JSON.stringify(currentSimulation) : timestamp;
-    const hash = documentManager.generateSHA256(data);
-    
-    showNotification(`Hash generado: ${hash.substring(0, 16)}...`, 'success');
-}
-
-// Project and Document Management
-function showProjects(type) {
-    // Update tabs
-    document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
-    event.target.classList.add('active');
-    
-    // Show/hide projects
-    document.getElementById('proyectosEstatales').classList.toggle('hidden', type !== 'estatales');
-    document.getElementById('proyectosAutonomicos').classList.toggle('hidden', type !== 'autonomicos');
-}
-
-function selectProject(projectName, type) {
-    showNotification(`Proyecto "${projectName}" seleccionado para ${type === 'estatales' ? 'Proyecto A' : 'Proyecto B'}`, 'success');
-    
-    // Scroll to simulator
-    document.getElementById('simulator').scrollIntoView({ behavior: 'smooth' });
-}
-
-function downloadDocument(docId) {
-    const doc = documentManager.getDocuments().find(d => d.id === docId);
-    if (doc) {
-        showNotification(`Descargando ${doc.name}...`, 'info');
-        
-        setTimeout(() => {
-            showNotification('Descarga completada', 'success');
-        }, 1000);
-    }
-}
-
-function viewHash(hash) {
-    const modal = createHashModal(hash);
-    document.body.appendChild(modal);
-}
-
-function createHashModal(hash) {
-    const modal = document.createElement('div');
-    modal.className = 'modal-overlay';
-    modal.innerHTML = `
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3>🔗 Verificación de Integridad SHA-256</h3>
-                <button class="modal-close" onclick="this.closest('.modal-overlay').remove()">×</button>
-            </div>
-            <div class="modal-body">
-                <div class="hash-verification">
-                    <h4>Hash SHA-256 Completo:</h4>
-                    <code class="full-hash">${hash}</code>
-                    <p><strong>Timestamp:</strong> ${new Date().toISOString()}</p>
-                    <p><strong>Algoritmo:</strong> SHA-256</p>
-                    <p><strong>Estado:</strong> <span class="status status--success">Verificado</span></p>
-                </div>
-                <div class="verification-info">
-                    <h4>ℹ️ Información de Verificación</h4>
-                    <p>Este hash garantiza la integridad del documento. Cualquier modificación alteraría el hash completamente.</p>
-                    <p>Puedes usar este hash para verificar la autenticidad del documento en cualquier momento.</p>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button class="btn btn--outline" onclick="copyHash('${hash}')">📋 Copiar Hash</button>
-                <button class="btn btn--primary" onclick="this.closest('.modal-overlay').remove()">Cerrar</button>
-            </div>
-        </div>
-    `;
-    
-    return modal;
-}
-
-function copyHash(hash) {
-    navigator.clipboard.writeText(hash).then(() => {
-        showNotification('Hash copiado al portapapeles', 'success');
-    });
-}
-
-// Navigation and UI Functions
+// Navegación y UI
 function initializeNavigation() {
-    // Mobile menu toggle
+    // Toggle de menú móvil
     const toggleBtn = document.querySelector('.nav__toggle');
     const menu = document.querySelector('.nav__menu');
     
@@ -1068,7 +801,7 @@ function initializeNavigation() {
         });
     }
     
-    // Smooth scrolling for navigation links
+    // Scroll suave para enlaces de navegación
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             e.preventDefault();
@@ -1079,7 +812,7 @@ function initializeNavigation() {
                     block: 'start'
                 });
                 
-                // Close mobile menu
+                // Cerrar menú móvil
                 menu?.classList.remove('nav__menu--open');
                 toggleBtn?.classList.remove('nav__toggle--open');
             }
@@ -1096,11 +829,11 @@ function initializeContactForm() {
             const formData = new FormData(form);
             const data = Object.fromEntries(formData);
             
-            showNotification('Enviando mensaje...', 'info');
+            showNotification('Enviando consulta...', 'info');
             
-            // Simulate form submission
+            // Simular envío
             setTimeout(() => {
-                showNotification('Mensaje enviado correctamente. Te responderemos pronto.', 'success');
+                showNotification('Consulta enviada correctamente. Te responderemos en 24h laborables.', 'success');
                 form.reset();
             }, 1500);
         });
@@ -1109,7 +842,7 @@ function initializeContactForm() {
 
 // PWA Functions
 function initializePWA() {
-    // Register service worker
+    // Registrar service worker
     if ('serviceWorker' in navigator) {
         window.addEventListener('load', () => {
             navigator.serviceWorker.register('/sw.js')
@@ -1157,13 +890,13 @@ function dismissInstall() {
     }
 }
 
-// Utility Functions
+// Funciones de Utilidad
 function showMessage(container, message, type = 'info') {
-    const alertClass = type === 'error' ? 'status--error' : 
-                      type === 'success' ? 'status--success' : 'status--info';
+    const alertClass = type === 'error' ? 'alert--warning' : 
+                      type === 'success' ? 'alert--success' : 'alert--info';
     
     container.innerHTML = `
-        <div class="status ${alertClass}">
+        <div class="alert ${alertClass}">
             ${message}
         </div>
     `;
@@ -1178,7 +911,7 @@ function showNotification(message, type = 'info') {
         <button onclick="this.parentElement.remove()">×</button>
     `;
     
-    // Add notification styles if not present
+    // Añadir estilos si no están presentes
     if (!document.querySelector('#notification-styles')) {
         const styles = document.createElement('style');
         styles.id = 'notification-styles';
@@ -1186,18 +919,18 @@ function showNotification(message, type = 'info') {
             .notification-toast {
                 position: fixed;
                 top: 100px;
-                right: var(--space-20);
+                right: var(--space-5);
                 background: var(--color-surface);
                 border: 1px solid var(--color-border);
-                border-radius: var(--radius-base);
-                padding: var(--space-16);
+                border-radius: var(--radius-lg);
+                padding: var(--space-4);
                 box-shadow: var(--shadow-lg);
                 z-index: 1500;
                 display: flex;
                 align-items: center;
-                gap: var(--space-12);
+                gap: var(--space-3);
                 animation: slideIn 0.3s ease-out;
-                max-width: 300px;
+                max-width: 350px;
             }
             .notification-toast--success {
                 border-left: 4px solid var(--color-success);
@@ -1229,109 +962,13 @@ function showNotification(message, type = 'info') {
                     opacity: 1;
                 }
             }
-            .modal-overlay {
-                position: fixed;
-                top: 0;
-                left: 0;
-                right: 0;
-                bottom: 0;
-                background: rgba(0, 0, 0, 0.5);
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                z-index: 2000;
-            }
-            .modal-content {
-                background: var(--color-surface);
-                border-radius: var(--radius-lg);
-                max-width: 600px;
-                width: 90%;
-                max-height: 80vh;
-                overflow: auto;
-            }
-            .modal-header {
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                padding: var(--space-20);
-                border-bottom: 1px solid var(--color-border);
-            }
-            .modal-close {
-                background: none;
-                border: none;
-                font-size: var(--font-size-2xl);
-                cursor: pointer;
-                color: var(--color-text-secondary);
-            }
-            .modal-body {
-                padding: var(--space-20);
-            }
-            .modal-footer {
-                display: flex;
-                gap: var(--space-12);
-                padding: var(--space-20);
-                border-top: 1px solid var(--color-border);
-                justify-content: flex-end;
-            }
-            .hash-verification {
-                margin-bottom: var(--space-20);
-                padding: var(--space-16);
-                background: var(--color-secondary);
-                border-radius: var(--radius-base);
-            }
-            .full-hash {
-                display: block;
-                word-break: break-all;
-                background: var(--color-surface);
-                padding: var(--space-8);
-                border-radius: var(--radius-sm);
-                font-family: var(--font-family-mono);
-                font-size: var(--font-size-sm);
-                margin: var(--space-8) 0;
-            }
-            .scenarios-grid {
-                display: grid;
-                grid-template-columns: repeat(3, 1fr);
-                gap: var(--space-16);
-                margin: var(--space-20) 0;
-            }
-            .scenario {
-                text-align: center;
-                padding: var(--space-16);
-                border-radius: var(--radius-base);
-                border: 1px solid var(--color-border);
-            }
-            .scenario.conservative {
-                background: rgba(var(--color-error-rgb), 0.1);
-            }
-            .scenario.expected {
-                background: rgba(var(--color-warning-rgb), 0.1);
-            }
-            .scenario.optimistic {
-                background: rgba(var(--color-success-rgb), 0.1);
-            }
-            .scenario-value {
-                font-size: var(--font-size-xl);
-                font-weight: var(--font-weight-bold);
-                color: var(--color-primary);
-            }
-            .scenario-return {
-                font-size: var(--font-size-lg);
-                color: var(--color-text-secondary);
-            }
-            .monte-carlo-summary {
-                margin-top: var(--space-20);
-                padding: var(--space-16);
-                background: var(--color-secondary);
-                border-radius: var(--radius-base);
-            }
         `;
         document.head.appendChild(styles);
     }
     
     document.body.appendChild(notification);
     
-    // Auto-remove after 5 seconds
+    // Auto-remover después de 5 segundos
     setTimeout(() => {
         if (notification.parentElement) {
             notification.remove();
@@ -1339,18 +976,18 @@ function showNotification(message, type = 'info') {
     }, 5000);
 }
 
-// Error handling
+// Manejo de errores
 window.addEventListener('error', function(e) {
-    console.error('Application error:', e.error);
+    console.error('Error de aplicación:', e.error);
     showNotification('Se ha producido un error. Por favor, recarga la página.', 'error');
 });
 
 window.addEventListener('unhandledrejection', function(e) {
-    console.error('Unhandled promise rejection:', e.reason);
+    console.error('Promise rejection no manejada:', e.reason);
     showNotification('Error de conexión. Verifica tu conexión a internet.', 'warning');
 });
 
-// Accessibility enhancements
+// Accesibilidad
 document.addEventListener('keydown', function(e) {
     if (e.key === 'Escape') {
         const modal = document.querySelector('.modal-overlay');
@@ -1360,14 +997,14 @@ document.addEventListener('keydown', function(e) {
     }
 });
 
-// Analytics tracking (simulated)
+// Analytics tracking (simulado)
 function trackEvent(eventName, parameters = {}) {
     console.log(`Analytics: ${eventName}`, parameters);
 }
 
-// Track calculator usage - FIXED: Check for onclick attribute properly
+// Track calculator usage
 document.addEventListener('click', function(e) {
-    if (e.target.matches('button') && e.target.hasAttribute('onclick')) {
+    if (e.target.matches('button') && e.target.getAttribute('onclick')) {
         const onclickAttr = e.target.getAttribute('onclick');
         if (onclickAttr && onclickAttr.includes('calculate')) {
             trackEvent('calculator_used', { 
@@ -1380,4 +1017,3 @@ document.addEventListener('click', function(e) {
 console.log('🚀 INVERTAX Application loaded successfully');
 console.log('📊 Fiscal Engine initialized with INVERTAX Model');
 console.log('🏛️ CCAA data loaded:', Object.keys(CCAA_DATA).length, 'communities');
-console.log('💼 Projects loaded:', Object.keys(PROJECTS_DATA).reduce((acc, key) => acc + PROJECTS_DATA[key].length, 0), 'projects');
