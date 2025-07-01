@@ -347,6 +347,59 @@ function initializeFormElements() {
     setupFormValidation();
 }
 
+// Inicialización de navegación
+function initializeNavigation() {
+    const navToggle = document.querySelector('.nav__toggle');
+    const navMenu = document.querySelector('.nav__menu');
+    
+    if (navToggle && navMenu) {
+        // Configurar atributos ARIA iniciales
+        navToggle.setAttribute('aria-expanded', 'false');
+        navToggle.setAttribute('aria-controls', 'nav-menu');
+        navMenu.setAttribute('id', 'nav-menu');
+        
+        // Configurar navegación responsive
+        setupResponsiveNavigation();
+        
+        console.log('✅ Navegación inicializada correctamente');
+    } else {
+        console.warn('⚠️ Elementos de navegación no encontrados');
+    }
+}
+
+// Configurar navegación responsive
+function setupResponsiveNavigation() {
+    // Cerrar menú al hacer clic en enlaces
+    document.querySelectorAll('.nav__link').forEach(link => {
+        link.addEventListener('click', () => {
+            closeMobileMenu();
+        });
+    });
+    
+    // Cerrar menú al hacer clic fuera
+    document.addEventListener('click', (event) => {
+        const navMenu = document.querySelector('.nav__menu');
+        const navToggle = document.querySelector('.nav__toggle');
+        
+        if (navMenu && navToggle && 
+            navMenu.classList.contains('nav__menu--open') &&
+            !navMenu.contains(event.target) &&
+            !navToggle.contains(event.target)) {
+            closeMobileMenu();
+        }
+    });
+    
+    // Cerrar menú con tecla Escape
+    document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape') {
+            const navMenu = document.querySelector('.nav__menu');
+            if (navMenu && navMenu.classList.contains('nav__menu--open')) {
+                closeMobileMenu();
+            }
+        }
+    });
+}
+
 // Poblar select de CCAA
 function populateCCAASelect(select) {
     // Limpiar opciones existentes (excepto la primera)
@@ -886,6 +939,12 @@ function generateResultsHTML(result) {
             </div>
         </div>
     `;
+}
+
+// Inicializar gráficos de resultados (placeholder)
+function initializeResultCharts(result) {
+    // Placeholder para inicialización de gráficos
+    console.log('📊 Inicializando gráficos de resultados');
 }
 
 // Configurar acciones de resultados
