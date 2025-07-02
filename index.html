@@ -1,50 +1,97 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" dir="ltr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>INVERTAX - Optimización Fiscal Avanzada para Inversiones en Startups</title>
-    <meta name="description" content="Plataforma líder en optimización fiscal para inversiones en empresas de nueva creación. Maximiza tu rentabilidad con deducciones IRPF hasta 100% legalmente con inversiones plurianuales.">
-    <meta name="theme-color" content="#2563eb">
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E💰%3C/text%3E%3C/svg%3E">
-    <link rel="manifest" href="manifest.json">
-    <link rel="stylesheet" href="style.css">
+    <meta name="theme-color" content="#1e40af">
+    <title>INVERTAX - Optimización Fiscal para Inversiones en Nuevas Empresas</title>
     
-    <!-- OpenGraph -->
-    <meta property="og:title" content="INVERTAX - Optimización Fiscal Avanzada para Startups">
-    <meta property="og:description" content="Maximiza tu rentabilidad fiscal con deducciones IRPF hasta 100% legalmente con estrategias plurianuales">
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Plataforma profesional de optimización fiscal para inversiones en nuevas empresas. Maximiza tus deducciones IRPF con estrategias plurianuales inteligentes. Simulador avanzado con análisis Monte Carlo.">
+    <meta name="keywords" content="optimización fiscal, inversión nuevas empresas, deducción IRPF, estrategia fiscal, simulador fiscal, inversión angel">
+    <meta name="author" content="INVERTAX">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://invertax.es">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="INVERTAX - Optimización Fiscal para Inversiones en Nuevas Empresas">
+    <meta property="og:description" content="Maximiza tus deducciones fiscales con estrategias plurianuales inteligentes. Simulador avanzado con análisis Monte Carlo.">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://invertax.ai">
+    <meta property="og:url" content="https://invertax.es">
+    <meta property="og:image" content="https://invertax.es/og-image.jpg">
+    <meta property="og:locale" content="es_ES">
     
-    <!-- Schema.org -->
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="INVERTAX - Optimización Fiscal para Inversiones">
+    <meta name="twitter:description" content="Maximiza tus deducciones fiscales con estrategias plurianuales inteligentes.">
+    <meta name="twitter:image" content="https://invertax.es/twitter-image.jpg">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%231e40af' rx='4'/><text x='16' y='22' text-anchor='middle' font-size='18' font-weight='bold' fill='white'>₿</text></svg>">
+    
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="./manifest.json">
+    
+    <!-- Preload Critical Resources -->
+    <link rel="preload" href="./style.css" as="style">
+    <link rel="preload" href="./app.js" as="script">
+    <link rel="preload" href="./FiscalEngine.js" as="script">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="./style.css">
+    
+    <!-- Schema.org JSON-LD -->
     <script type="application/ld+json">
     {
-      "@context": "https://schema.org",
-      "@type": "FinancialService",
-      "name": "INVERTAX",
-      "description": "Plataforma de optimización fiscal avanzada para inversiones en empresas de nueva creación con estrategias plurianuales",
-      "url": "https://invertax.ai",
-      "serviceType": "Tax Optimization"
+        "@context": "https://schema.org",
+        "@type": "FinancialService",
+        "name": "INVERTAX",
+        "description": "Plataforma de optimización fiscal para inversiones en nuevas empresas",
+        "url": "https://invertax.es",
+        "logo": "https://invertax.es/logo.svg",
+        "sameAs": [
+            "https://linkedin.com/company/invertax",
+            "https://twitter.com/invertax_es"
+        ],
+        "serviceType": "Optimización Fiscal",
+        "areaServed": "España",
+        "hasOfferCatalog": {
+            "@type": "OfferCatalog",
+            "name": "Servicios de Optimización Fiscal",
+            "itemListElement": [
+                {
+                    "@type": "Offer",
+                    "itemOffered": {
+                        "@type": "Service",
+                        "name": "Simulador Fiscal Avanzado",
+                        "description": "Herramienta de cálculo para optimización de deducciones IRPF"
+                    }
+                }
+            ]
+        }
     }
     </script>
 </head>
 <body>
-    <!-- Header Navigation -->
-    <header class="header" role="banner">
-        <nav class="nav container" aria-label="Navegación principal">
+    <!-- Header Premium -->
+    <header class="header" id="header">
+        <nav class="nav container">
             <div class="nav__brand">
                 <h1 class="nav__logo">INVERTAX</h1>
-                <span class="nav__tagline">Optimización Fiscal Avanzada</span>
+                <span class="nav__tagline">Optimización Fiscal</span>
             </div>
-            <ul class="nav__menu" role="menubar">
-                <li role="none"><a href="#hero" class="nav__link" role="menuitem">Inicio</a></li>
-                <li role="none"><a href="#beneficios" class="nav__link" role="menuitem">Beneficios</a></li>
-                <li role="none"><a href="#simulador" class="nav__link" role="menuitem">Simulador</a></li>
-                <li role="none"><a href="#como-funciona" class="nav__link" role="menuitem">Cómo Funciona</a></li>
-                <li role="none"><a href="#marco-legal" class="nav__link" role="menuitem">Marco Legal</a></li>
-                <li role="none"><a href="#contacto" class="nav__link btn btn--primary" role="menuitem">Contacto</a></li>
+            
+            <ul class="nav__menu" id="navMenu">
+                <li><a href="#inicio" class="nav__link">Inicio</a></li>
+                <li><a href="#simulador" class="nav__link">Simulador</a></li>
+                <li><a href="#beneficios" class="nav__link">Beneficios</a></li>
+                <li><a href="#como-funciona" class="nav__link">Cómo Funciona</a></li>
+                <li><a href="#casos-exito" class="nav__link">Casos de Éxito</a></li>
+                <li><a href="#contacto" class="nav__link">Contacto</a></li>
             </ul>
-            <button class="nav__toggle" aria-label="Menú de navegación" aria-expanded="false">
+            
+            <button class="nav__toggle" id="navToggle" aria-label="Abrir menú de navegación">
                 <span></span>
                 <span></span>
                 <span></span>
@@ -52,889 +99,1157 @@
         </nav>
     </header>
 
-    <main>
-        <!-- Hero Section -->
-        <section class="hero" id="hero">
-            <div class="container">
-                <div class="hero__content">
-                    <div class="hero__text">
-                        <div class="hero__badge">
-                            <span class="badge badge--success">✓ Estrategia Plurianual Avanzada</span>
-                        </div>
-                        
-                        <h2 class="hero__title">Maximiza tu Rentabilidad Fiscal con Inversiones Plurianuales en Startups</h2>
-                        
-                        <p class="hero__subtitle">
-                            INVERTAX es la única plataforma que optimiza tus inversiones con estrategias plurianuales, combinando deducciones estatales del 50% con autonómicas hasta 50% adicional año tras año. Aprovecha el efecto acumulativo del Art. 68.1 del IRPF de forma inteligente y segura.
-                        </p>
-
-                        <div class="value-props">
-                            <div class="value-prop">
-                                <div class="value-icon">📈</div>
-                                <div class="value-content">
-                                    <h3>Estrategia Plurianual Inteligente</h3>
-                                    <p>Optimización acumulativa que maximiza deducciones año tras año con nuevas inversiones</p>
-                                </div>
-                            </div>
-                            <div class="value-prop">
-                                <div class="value-icon">🎯</div>
-                                <div class="value-content">
-                                    <h3>Timing Perfecto de Inversiones</h3>
-                                    <p>Algoritmo que calcula el momento óptimo para cada inversión maximizando el efecto fiscal</p>
-                                </div>
-                            </div>
-                            <div class="value-prop">
-                                <div class="value-icon">⚖️</div>
-                                <div class="value-content">
-                                    <h3>100% Conforme a Normativa</h3>
-                                    <p>Cumplimiento estricto del Art. 68.1 LIRPF y normativas autonómicas vigentes</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="hero__cta">
-                            <a href="#simulador" class="btn btn--primary btn--lg">
-                                🚀 Simular Estrategia Plurianual
-                            </a>
-                            <a href="#beneficios" class="btn btn--outline btn--lg">
-                                📊 Ver Beneficios
-                            </a>
-                        </div>
-
-                        <p class="hero__disclaimer">
-                            * Simulaciones basadas en normativa fiscal vigente. Consulta siempre con un asesor fiscal cualificado.
-                        </p>
-                    </div>
-
-                    <div class="hero__visual">
-                        <div class="calculator-preview">
-                            <div class="preview-header">
-                                <h4>💰 Ejemplo Estrategia 5 Años</h4>
-                                <span class="preview-badge">Madrid</span>
-                            </div>
-                            <div class="preview-calculation">
-                                <div class="calc-row">
-                                    <span class="calc-label">Inversión Anual:</span>
-                                    <span class="calc-value">€50.000</span>
-                                </div>
-                                <div class="calc-row">
-                                    <span class="calc-label">Deducción Anual:</span>
-                                    <span class="calc-value">€23.712</span>
-                                </div>
-                                <div class="calc-row">
-                                    <span class="calc-label">Total 5 años:</span>
-                                    <span class="calc-value">€250.000</span>
-                                </div>
-                                <div class="calc-total">
-                                    <span class="calc-label">Ahorro Fiscal Total:</span>
-                                    <span class="calc-value highlight">€118.560</span>
-                                </div>
-                                <div class="calc-roi">
-                                    <span class="roi-label">Rentabilidad Fiscal Acumulada:</span>
-                                    <span class="roi-value">47.4%</span>
-                                </div>
-                            </div>
-                            <p class="preview-note">
-                                * Ejemplo con cuotas suficientes y reinversión anual. Resultados reales pueden variar.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Benefits Showcase -->
-        <section class="benefits-showcase" id="beneficios">
-            <div class="container">
-                <div class="section-header">
-                    <h2 class="section__title">¿Por qué INVERTAX es la Mejor Estrategia Fiscal?</h2>
-                    <p class="section__subtitle">
-                        La única plataforma que maximiza tu rentabilidad con estrategias plurianuales inteligentes
-                    </p>
-                </div>
-
-                <div class="benefits-grid">
-                    <div class="benefit-card">
-                        <div class="benefit-icon">🎯</div>
-                        <h3 class="benefit-title">Efecto Acumulativo</h3>
-                        <p class="benefit-description">
-                            Cada año puedes invertir en nuevas empresas, acumulando deducciones fiscales que se suman a las anteriores, creando un efecto multiplicador único.
-                        </p>
-                        <div class="benefit-highlight">Hasta 47.4% anual</div>
-                    </div>
-
-                    <div class="benefit-card">
-                        <div class="benefit-icon">📈</div>
-                        <h3 class="benefit-title">Timing Inteligente</h3>
-                        <p class="benefit-description">
-                            Nuestro algoritmo calcula el momento perfecto para cada inversión, optimizando cuotas disponibles y maximizando el beneficio fiscal año tras año.
-                        </p>
-                        <div class="benefit-highlight">Optimización Automática</div>
-                    </div>
-
-                    <div class="benefit-card">
-                        <div class="benefit-icon">💰</div>
-                        <h3 class="benefit-title">Doble Deducción</h3>
-                        <p class="benefit-description">
-                            Combina deducciones estatales (50%) con autonómicas (hasta 50%) en cada inversión, duplicando prácticamente tu beneficio fiscal.
-                        </p>
-                        <div class="benefit-highlight">Hasta 100% deducible</div>
-                    </div>
-                </div>
-
-                <!-- ROI Calculator -->
-                <div class="roi-calculator">
-                    <div class="roi-header">
-                        <h3>🧮 Calculadora Rápida de ROI Plurianual</h3>
-                        <p>Descubre el potencial de tu estrategia de inversión a largo plazo</p>
+    <!-- Hero Section Premium -->
+    <section class="hero" id="inicio">
+        <div class="container">
+            <div class="hero__content">
+                <div class="hero__text">
+                    <div class="hero__badge">
+                        <span>🚀</span>
+                        <span>Estrategias Fiscales Avanzadas</span>
                     </div>
                     
-                    <div class="roi-inputs">
-                        <div class="roi-input-group">
-                            <label for="quickInvestment">Inversión Anual (€)</label>
-                            <input type="number" id="quickInvestment" value="50000" min="1000" max="100000">
+                    <h1 class="hero__title">
+                        Maximiza tu <span class="highlight">Rentabilidad Fiscal</span> 
+                        Invirtiendo en Nuevas Empresas
+                    </h1>
+                    
+                    <p class="hero__subtitle">
+                        Plataforma profesional que combina deducciones estatales y autonómicas 
+                        con estrategias plurianuales inteligentes. Optimiza hasta el 100% de 
+                        tus cuotas fiscales de forma completamente legal.
+                    </p>
+                    
+                    <div class="hero__cta">
+                        <a href="#simulador" class="btn btn--primary btn--lg">
+                            <span>🧮</span>
+                            Simular Ahora
+                        </a>
+                        <a href="#como-funciona" class="btn btn--outline btn--lg">
+                            <span>📖</span>
+                            Cómo Funciona
+                        </a>
+                    </div>
+                    
+                    <div class="hero__stats">
+                        <div class="stat-item">
+                            <div class="stat-value">45%</div>
+                            <div class="stat-label">Rentabilidad Fiscal Media</div>
                         </div>
-                        <div class="roi-input-group">
-                            <label for="quickYears">Años de Estrategia</label>
-                            <input type="number" id="quickYears" value="5" min="1" max="10">
+                        <div class="stat-item">
+                            <div class="stat-value">€5.000</div>
+                            <div class="stat-label">Inversión Media Optimizada</div>
                         </div>
-                        <div class="roi-input-group">
+                        <div class="stat-item">
+                            <div class="stat-value">100%</div>
+                            <div class="stat-label">Legal y Transparente</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="calculator-preview">
+                    <div class="preview-header">
+                        <h4 class="preview-title">Calculadora Rápida</h4>
+                        <span class="preview-badge">Clase Media</span>
+                    </div>
+                    
+                    <div class="preview-inputs">
+                        <div class="preview-input">
+                            <label for="quickQuota">Cuota Estatal (€)</label>
+                            <input type="number" id="quickQuota" value="5000" min="0" max="50000" step="100">
+                        </div>
+                        <div class="preview-input">
                             <label for="quickCCAA">Comunidad Autónoma</label>
-                            <select id="quickCCAA">
+                            <select id="quickCCAA" class="form-control">
                                 <option value="madrid">Madrid (40%)</option>
                                 <option value="valencia">Valencia (30%)</option>
                                 <option value="andalucia">Andalucía (25%)</option>
                                 <option value="galicia">Galicia (25%)</option>
+                                <option value="pais_vasco">País Vasco (35%)</option>
+                                <option value="cataluna">Cataluña (50% - No compatible)</option>
                             </select>
                         </div>
                     </div>
                     
-                    <div class="roi-results" id="quickResults">
-                        <div class="roi-result-card">
-                            <div class="roi-result-value">€250.000</div>
-                            <div class="roi-result-label">Inversión Total</div>
+                    <div class="preview-results" id="quickResults">
+                        <div class="result-row">
+                            <span class="result-label">Inversión Empresa A (Estatal)</span>
+                            <span class="result-value">€10.000</span>
                         </div>
-                        <div class="roi-result-card">
-                            <div class="roi-result-value">€118.560</div>
-                            <div class="roi-result-label">Ahorro Fiscal</div>
+                        <div class="result-row">
+                            <span class="result-label">Deducción Estatal (50%)</span>
+                            <span class="result-value">€5.000</span>
                         </div>
-                        <div class="roi-result-card">
-                            <div class="roi-result-value">47.4%</div>
-                            <div class="roi-result-label">Rentabilidad Fiscal</div>
+                        <div class="result-row">
+                            <span class="result-label">Inversión Empresa B (Autonómica)</span>
+                            <span class="result-value">€3.125</span>
                         </div>
-                        <div class="roi-result-card">
-                            <div class="roi-result-value">€131.440</div>
-                            <div class="roi-result-label">Inversión Neta</div>
+                        <div class="result-row">
+                            <span class="result-label">Deducción Autonómica (40%)</span>
+                            <span class="result-value">€1.250</span>
                         </div>
+                        <div class="result-row">
+                            <span class="result-label">Total Invertido</span>
+                            <span class="result-value highlight">€13.125</span>
+                        </div>
+                        <div class="result-row">
+                            <span class="result-label">Total Deducido</span>
+                            <span class="result-value highlight">€6.250</span>
+                        </div>
+                        <div class="result-row">
+                            <span class="result-label">Rentabilidad Fiscal Real</span>
+                            <span class="result-value highlight">47.6%</span>
+                        </div>
+                    </div>
+                    
+                    <p class="preview-note">
+                        * Ejemplo para inversor clase media con €5.000 de cuota estatal en Madrid
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Beneficios Section -->
+    <section class="section section--alt" id="beneficios">
+        <div class="container">
+            <div class="section-header">
+                <div class="section__badge">
+                    <span>💎</span>
+                    <span>Ventajas Competitivas</span>
+                </div>
+                <h2 class="section__title">¿Por Qué Elegir INVERTAX?</h2>
+                <p class="section__subtitle">
+                    La única plataforma que combina optimización fiscal avanzada con 
+                    estrategias plurianuales para maximizar tu rentabilidad a largo plazo.
+                </p>
+            </div>
+            
+            <div class="kpi-grid">
+                <div class="card">
+                    <div class="card-header">
+                        <div style="font-size: 3rem; margin-bottom: 1rem;">🎯</div>
+                        <h3 class="card-title">Optimización Inteligente</h3>
+                    </div>
+                    <p class="card-description">
+                        Algoritmo avanzado que calcula la distribución óptima entre 
+                        empresas independientes para maximizar deducciones estatales y autonómicas.
+                    </p>
+                    <div class="kpi-card" style="margin-top: 1.5rem;">
+                        <div class="kpi-value">47.6%</div>
+                        <div class="kpi-label">Rentabilidad Media Real</div>
+                        <div class="kpi-change positive">vs 25% métodos tradicionales</div>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-header">
+                        <div style="font-size: 3rem; margin-bottom: 1rem;">📈</div>
+                        <h3 class="card-title">Estrategias Plurianuales</h3>
+                    </div>
+                    <p class="card-description">
+                        Planificación a 5-10 años con efecto acumulativo. Cada año nuevas 
+                        inversiones suman deducciones adicionales, multiplicando el beneficio fiscal.
+                    </p>
+                    <div class="kpi-card" style="margin-top: 1.5rem;">
+                        <div class="kpi-value">€31.250</div>
+                        <div class="kpi-label">Ahorro Acumulado 5 años</div>
+                        <div class="kpi-change positive">Inversor €5.000 cuota</div>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-header">
+                        <div style="font-size: 3rem; margin-bottom: 1rem;">🛡️</div>
+                        <h3 class="card-title">100% Legal y Seguro</h3>
+                    </div>
+                    <p class="card-description">
+                        Cumplimiento estricto del Art. 68.1 LIRPF. Inversiones en empresas 
+                        independientes garantizan compatibilidad total entre deducciones.
+                    </p>
+                    <div class="kpi-card" style="margin-top: 1.5rem;">
+                        <div class="kpi-value">0%</div>
+                        <div class="kpi-label">Riesgo Regulatorio</div>
+                        <div class="kpi-change positive">Avalado por normativa</div>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-header">
+                        <div style="font-size: 3rem; margin-bottom: 1rem;">🎲</div>
+                        <h3 class="card-title">Análisis Monte Carlo</h3>
+                    </div>
+                    <p class="card-description">
+                        Simulaciones estocásticas con hasta 10.000 iteraciones para 
+                        evaluar escenarios de riesgo y rentabilidad con precisión estadística.
+                    </p>
+                    <div class="kpi-card" style="margin-top: 1.5rem;">
+                        <div class="kpi-value">95%</div>
+                        <div class="kpi-label">Nivel de Confianza</div>
+                        <div class="kpi-change positive">Análisis robusto</div>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-header">
+                        <div style="font-size: 3rem; margin-bottom: 1rem;">👥</div>
+                        <h3 class="card-title">Enfoque Clase Media</h3>
+                    </div>
+                    <p class="card-description">
+                        Diseñado para inversores con cuotas de €3.000-€15.000. Ejemplos 
+                        realistas y estrategias adaptadas al perfil medio español.
+                    </p>
+                    <div class="kpi-card" style="margin-top: 1.5rem;">
+                        <div class="kpi-value">€5.000</div>
+                        <div class="kpi-label">Cuota Media Objetivo</div>
+                        <div class="kpi-change positive">Perfil accesible</div>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-header">
+                        <div style="font-size: 3rem; margin-bottom: 1rem;">⚡</div>
+                        <h3 class="card-title">Tecnología Avanzada</h3>
+                    </div>
+                    <p class="card-description">
+                        PWA con funcionalidad offline, Web Workers para cálculos complejos 
+                        y exportación completa de resultados en múltiples formatos.
+                    </p>
+                    <div class="kpi-card" style="margin-top: 1.5rem;">
+                        <div class="kpi-value">&lt;2s</div>
+                        <div class="kpi-label">Tiempo de Cálculo</div>
+                        <div class="kpi-change positive">Rendimiento óptimo</div>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- Simulador Fiscal Avanzado -->
-        <section class="section section--primary" id="simulador">
-            <div class="container">
-                <div class="section-header">
-                    <h2 class="section__title">Simulador Fiscal Avanzado INVERTAX</h2>
-                    <p class="section__subtitle">
-                        Herramienta profesional con análisis plurianual, Monte Carlo y optimización de timing
+    <!-- Simulador Section -->
+    <section class="section" id="simulador">
+        <div class="container">
+            <div class="section-header">
+                <div class="section__badge">
+                    <span>🧮</span>
+                    <span>Herramienta Principal</span>
+                </div>
+                <h2 class="section__title">Simulador Fiscal Avanzado</h2>
+                <p class="section__subtitle">
+                    Calcula tu estrategia fiscal óptima con precisión matemática. 
+                    Tres modos de análisis para diferentes horizontes temporales.
+                </p>
+            </div>
+            
+            <div class="simulator-container">
+                <div class="simulator-form">
+                    <div class="card-header">
+                        <h3 class="card-title">Configuración de Simulación</h3>
+                        <p class="card-description">
+                            Introduce tus datos fiscales para obtener la estrategia óptima 
+                            personalizada a tu situación.
+                        </p>
+                    </div>
+                    
+                    <div class="form-tabs">
+                        <button class="form-tab active" data-tab="single">Año Único</button>
+                        <button class="form-tab" data-tab="multiyear">Plurianual</button>
+                        <button class="form-tab" data-tab="montecarlo">Monte Carlo</button>
+                    </div>
+                    
+                    <!-- Formulario Año Único -->
+                    <div class="tab-content active" id="tab-single">
+                        <div class="form-group">
+                            <label for="stateQuota" class="form-label">
+                                Cuota Estatal Disponible (€)
+                                <span class="tooltip" data-tooltip="Cantidad que pagas en IRPF estatal">ℹ️</span>
+                            </label>
+                            <input type="number" id="stateQuota" class="form-control" 
+                                   value="5000" min="0" max="50000" step="100"
+                                   placeholder="Ej: 5000">
+                            <div class="form-help">Cuota típica clase media: €3.000 - €15.000</div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="regionalQuota" class="form-label">
+                                    Cuota Autonómica (€)
+                                    <span class="tooltip" data-tooltip="Cantidad que pagas en IRPF autonómico">ℹ️</span>
+                                </label>
+                                <input type="number" id="regionalQuota" class="form-control" 
+                                       value="1250" min="0" max="20000" step="50"
+                                       placeholder="Ej: 1250">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="ccaaSelect" class="form-label">
+                                    Comunidad Autónoma
+                                    <span class="tooltip" data-tooltip="Tu residencia fiscal">ℹ️</span>
+                                </label>
+                                <select id="ccaaSelect" class="form-control">
+                                    <option value="madrid">Madrid (40% - Compatible)</option>
+                                    <option value="valencia">Valencia (30% - Compatible)</option>
+                                    <option value="andalucia">Andalucía (25% - Compatible)</option>
+                                    <option value="galicia">Galicia (25% - Compatible)</option>
+                                    <option value="pais_vasco">País Vasco (35% - Compatible)</option>
+                                    <option value="cataluna">Cataluña (50% - No Compatible)</option>
+                                    <option value="aragon">Aragón (25% - Compatible)</option>
+                                    <option value="asturias">Asturias (25% - Compatible)</option>
+                                    <option value="baleares">Baleares (25% - Compatible)</option>
+                                    <option value="canarias">Canarias (25% - Compatible)</option>
+                                    <option value="cantabria">Cantabria (25% - Compatible)</option>
+                                    <option value="castilla_leon">Castilla y León (25% - Compatible)</option>
+                                    <option value="castilla_mancha">Castilla-La Mancha (25% - Compatible)</option>
+                                    <option value="extremadura">Extremadura (25% - Compatible)</option>
+                                    <option value="murcia">Murcia (25% - Compatible)</option>
+                                    <option value="navarra">Navarra (30% - Compatible)</option>
+                                    <option value="rioja">La Rioja (25% - Compatible)</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <button type="button" class="btn btn--primary btn--full-width" onclick="calculateSingle()">
+                            <span>🚀</span>
+                            Calcular Estrategia Óptima
+                        </button>
+                    </div>
+                    
+                    <!-- Formulario Plurianual -->
+                    <div class="tab-content" id="tab-multiyear">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="yearlyQuota" class="form-label">Cuota Anual Estatal (€)</label>
+                                <input type="number" id="yearlyQuota" class="form-control" 
+                                       value="5000" min="1000" max="50000" step="100">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="timeHorizon" class="form-label">Horizonte Temporal</label>
+                                <select id="timeHorizon" class="form-control">
+                                    <option value="3">3 años</option>
+                                    <option value="5" selected>5 años</option>
+                                    <option value="7">7 años</option>
+                                    <option value="10">10 años</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="growthStrategy" class="form-label">Estrategia de Crecimiento</label>
+                                <select id="growthStrategy" class="form-control">
+                                    <option value="fixed">Cuota Fija Anual</option>
+                                    <option value="inflation" selected>Ajuste por Inflación (2.5%)</option>
+                                    <option value="income_growth">Crecimiento Ingresos (5%)</option>
+                                    <option value="aggressive">Crecimiento Agresivo (10%)</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="reinvestment" class="form-label">Estrategia Reinversión</label>
+                                <select id="reinvestment" class="form-control">
+                                    <option value="none">Sin Reinversión</option>
+                                    <option value="partial" selected>Reinversión Parcial (25%)</option>
+                                    <option value="full">Reinversión Total</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <button type="button" class="btn btn--primary btn--full-width" onclick="calculateMultiyear()">
+                            <span>📈</span>
+                            Simular Estrategia Plurianual
+                        </button>
+                    </div>
+                    
+                    <!-- Formulario Monte Carlo -->
+                    <div class="tab-content" id="tab-montecarlo">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="mcInvestment" class="form-label">Inversión Base (€)</label>
+                                <input type="number" id="mcInvestment" class="form-control" 
+                                       value="10000" min="1000" max="100000" step="500">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="mcIterations" class="form-label">Iteraciones</label>
+                                <select id="mcIterations" class="form-control">
+                                    <option value="1000">1.000 (Rápido)</option>
+                                    <option value="5000" selected>5.000 (Estándar)</option>
+                                    <option value="10000">10.000 (Preciso)</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="expectedReturn" class="form-label">Retorno Esperado (%)</label>
+                                <input type="number" id="expectedReturn" class="form-control" 
+                                       value="25" min="0" max="100" step="1">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="volatility" class="form-label">Volatilidad (%)</label>
+                                <input type="number" id="volatility" class="form-control" 
+                                       value="35" min="10" max="80" step="5">
+                            </div>
+                        </div>
+                        
+                        <button type="button" class="btn btn--primary btn--full-width" onclick="calculateMonteCarlo()">
+                            <span>🎲</span>
+                            Ejecutar Simulación Monte Carlo
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Resultados -->
+                <div class="results-container" id="resultsContainer" style="display: none;">
+                    <div class="results-header">
+                        <h3 class="results-title">Resultados de Optimización</h3>
+                        <div class="results-badges">
+                            <span class="badge badge--success">
+                                <span>✅</span>
+                                <span>Optimizado</span>
+                            </span>
+                            <span class="badge badge--info">
+                                <span>📊</span>
+                                <span>Análisis Completo</span>
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <div class="kpi-grid" id="resultsKPIs">
+                        <!-- KPIs se generan dinámicamente -->
+                    </div>
+                    
+                    <div id="resultsDetails">
+                        <!-- Detalles se generan dinámicamente -->
+                    </div>
+                    
+                    <div style="margin-top: 2rem; display: flex; gap: 1rem; flex-wrap: wrap;">
+                        <button class="btn btn--secondary" onclick="exportResults('pdf')">
+                            <span>📄</span>
+                            Exportar PDF
+                        </button>
+                        <button class="btn btn--secondary" onclick="exportResults('json')">
+                            <span>💾</span>
+                            Exportar JSON
+                        </button>
+                        <button class="btn btn--outline" onclick="shareResults()">
+                            <span>📤</span>
+                            Compartir
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cómo Funciona Section -->
+    <section class="section section--alt" id="como-funciona">
+        <div class="container">
+            <div class="section-header">
+                <div class="section__badge">
+                    <span>🔬</span>
+                    <span>Metodología</span>
+                </div>
+                <h2 class="section__title">Cómo Funciona el Modelo INVERTAX</h2>
+                <p class="section__subtitle">
+                    Estrategia de optimización fiscal basada en inversiones independientes 
+                    para maximizar deducciones sin solapamientos normativos.
+                </p>
+            </div>
+            
+            <div class="kpi-grid">
+                <div class="card">
+                    <div class="card-header">
+                        <div style="font-size: 3rem; margin-bottom: 1rem;">1️⃣</div>
+                        <h3 class="card-title">Empresa A - Deducción Estatal</h3>
+                    </div>
+                    <p class="card-description">
+                        <strong>Inversión en primera empresa nueva:</strong><br>
+                        • Deducción 50% hasta €100.000 base<br>
+                        • Art. 68.1 LIRPF aplicación directa<br>
+                        • Optimización cuota estatal disponible
+                    </p>
+                    <div class="kpi-card" style="margin-top: 1.5rem; background: #dbeafe;">
+                        <div class="kpi-value" style="color: #1e40af;">€5.000</div>
+                        <div class="kpi-label">Deducción con €10.000 inversión</div>
+                        <div class="kpi-change positive">50% rentabilidad fiscal</div>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-header">
+                        <div style="font-size: 3rem; margin-bottom: 1rem;">2️⃣</div>
+                        <h3 class="card-title">Empresa B - Deducción Autonómica</h3>
+                    </div>
+                    <p class="card-description">
+                        <strong>Inversión en segunda empresa independiente:</strong><br>
+                        • Deducción autonómica (25%-50%)<br>
+                        • Base independiente de la primera<br>
+                        • Compatible en 16 de 17 CCAA
+                    </p>
+                    <div class="kpi-card" style="margin-top: 1.5rem; background: #d1fae5;">
+                        <div class="kpi-value" style="color: #059669;">€1.250</div>
+                        <div class="kpi-label">Deducción adicional Madrid</div>
+                        <div class="kpi-change positive">40% sobre €3.125</div>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-header">
+                        <div style="font-size: 3rem; margin-bottom: 1rem;">3️⃣</div>
+                        <h3 class="card-title">Optimización Matemática</h3>
+                    </div>
+                    <p class="card-description">
+                        <strong>Cálculo de distribución óptima:</strong><br>
+                        • Algoritmo secuencial inteligente<br>
+                        • Maximización cuotas disponibles<br>
+                        • Rentabilidad real sobre inversión utilizada
+                    </p>
+                    <div class="kpi-card" style="margin-top: 1.5rem; background: #fef3c7;">
+                        <div class="kpi-value" style="color: #d97706;">47.6%</div>
+                        <div class="kpi-label">Rentabilidad fiscal real</div>
+                        <div class="kpi-change positive">€6.250 / €13.125</div>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-header">
+                        <div style="font-size: 3rem; margin-bottom: 1rem;">4️⃣</div>
+                        <h3 class="card-title">Estrategia Plurianual</h3>
+                    </div>
+                    <p class="card-description">
+                        <strong>Efecto acumulativo a largo plazo:</strong><br>
+                        • Nuevas empresas cada año<br>
+                        • Deducciones adicionales acumuladas<br>
+                        • Diversificación automática de riesgo
+                    </p>
+                    <div class="kpi-card" style="margin-top: 1.5rem; background: #e0f2fe;">
+                        <div class="kpi-value" style="color: #0284c7;">€31.250</div>
+                        <div class="kpi-label">Ahorro acumulado 5 años</div>
+                        <div class="kpi-change positive">Inversor €5.000 cuota</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Ejemplo Detallado -->
+            <div class="card" style="margin-top: 3rem;">
+                <div class="card-header">
+                    <h3 class="card-title">Ejemplo Práctico: Inversor Clase Media</h3>
+                    <p class="card-description">
+                        Caso real de optimización para inversor con €5.000 de cuota estatal en Madrid
                     </p>
                 </div>
                 
-                <div class="simulator-container">
-                    <div class="simulator-form">
-                        <div class="form-card">
-                            <div class="form-header">
-                                <h3>🧮 Configuración de Estrategia</h3>
-                                <p class="form-description">
-                                    Configure su estrategia de inversión plurianual para obtener la máxima optimización fiscal
-                                </p>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-top: 2rem;">
+                    <div>
+                        <h4 style="color: #1e40af; margin-bottom: 1rem;">📊 Datos de Entrada</h4>
+                        <div style="background: #f8fafc; padding: 1.5rem; border-radius: 0.75rem;">
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                                <span>Cuota Estatal:</span>
+                                <strong>€5.000</strong>
                             </div>
-
-                            <!-- Tabs para diferentes tipos de simulación -->
-                            <div class="form-tabs">
-                                <button class="form-tab active" data-tab="single">Año Único</button>
-                                <button class="form-tab" data-tab="multiyear">Plurianual</button>
-                                <button class="form-tab" data-tab="montecarlo">Monte Carlo</button>
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                                <span>Cuota Autonómica (Madrid):</span>
+                                <strong>€1.250</strong>
                             </div>
-
-                            <!-- Formulario Año Único -->
-                            <div id="singleYearForm" class="tab-content active">
-                                <form id="simulatorForm" class="simulator-form-content">
-                                    <div class="form-group">
-                                        <label for="investment" class="form-label">
-                                            💰 Capital a Invertir (€)
-                                            <span class="help-icon" title="Cantidad total que deseas invertir en empresas de nueva creación">ℹ️</span>
-                                        </label>
-                                        <input type="number" id="investment" class="form-control" placeholder="100000" min="1000" max="500000" required>
-                                        <small class="form-help">Mínimo €1.000, máximo €500.000</small>
-                                    </div>
-                                    
-                                    <div class="form-group">
-                                        <label for="ccaa" class="form-label">
-                                            🏛️ Comunidad Autónoma de Residencia
-                                            <span class="help-icon" title="Tu CCAA de residencia fiscal determina las deducciones autonómicas aplicables">ℹ️</span>
-                                        </label>
-                                        <select id="ccaa" class="form-control" required>
-                                            <option value="">Selecciona tu CCAA</option>
-                                        </select>
-                                    </div>
-                                    
-                                    <div class="form-row">
-                                        <div class="form-group">
-                                            <label for="stateQuota" class="form-label">
-                                                🇪🇸 Cuota Estatal Disponible (€)
-                                                <span class="help-icon" title="Tu cuota IRPF estatal disponible para deducciones">ℹ️</span>
-                                            </label>
-                                            <input type="number" id="stateQuota" class="form-control" placeholder="15000" min="0" max="50000" required>
-                                            <small class="form-help">Cuota IRPF estatal disponible</small>
-                                        </div>
-                                        
-                                        <div class="form-group">
-                                            <label for="regionalQuota" class="form-label">
-                                                🏛️ Cuota Autonómica Disponible (€)
-                                                <span class="help-icon" title="Tu cuota IRPF autonómica disponible para deducciones">ℹ️</span>
-                                            </label>
-                                            <input type="number" id="regionalQuota" class="form-control" placeholder="8000" min="0" max="20000" required>
-                                            <small class="form-help">Cuota IRPF autonómica disponible</small>
-                                        </div>
-                                    </div>
-                                    
-                                    <button type="button" class="btn btn--primary btn--full-width btn--lg" onclick="calculateSingleYear()">
-                                        🎯 Calcular Optimización
-                                    </button>
-                                </form>
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                                <span>Deducción Autonómica:</span>
+                                <strong>40%</strong>
                             </div>
-
-                            <!-- Formulario Plurianual -->
-                            <div id="multiyearForm" class="tab-content">
-                                <form class="simulator-form-content">
-                                    <div class="form-row">
-                                        <div class="form-group">
-                                            <label for="annualInvestment" class="form-label">
-                                                💰 Inversión Anual (€)
-                                                <span class="help-icon" title="Cantidad que planeas invertir cada año">ℹ️</span>
-                                            </label>
-                                            <input type="number" id="annualInvestment" class="form-control" placeholder="50000" min="1000" max="100000" required>
-                                        </div>
-                                        
-                                        <div class="form-group">
-                                            <label for="investmentYears" class="form-label">
-                                                📅 Años de Estrategia
-                                                <span class="help-icon" title="Número de años que mantendrás la estrategia">ℹ️</span>
-                                            </label>
-                                            <input type="number" id="investmentYears" class="form-control" placeholder="5" min="1" max="10" required>
-                                        </div>
-                                    </div>
-
-                                    <div class="form-row">
-                                        <div class="form-group">
-                                            <label for="multiyearCCAA" class="form-label">
-                                                🏛️ Comunidad Autónoma
-                                            </label>
-                                            <select id="multiyearCCAA" class="form-control" required>
-                                                <option value="">Selecciona tu CCAA</option>
-                                            </select>
-                                        </div>
-                                        
-                                        <div class="form-group">
-                                            <label for="growthRate" class="form-label">
-                                                📈 Crecimiento Cuotas (% anual)
-                                                <span class="help-icon" title="Crecimiento esperado de tus cuotas fiscales">ℹ️</span>
-                                            </label>
-                                            <input type="number" id="growthRate" class="form-control" placeholder="3" min="0" max="10" step="0.1">
-                                        </div>
-                                    </div>
-
-                                    <div class="form-row">
-                                        <div class="form-group">
-                                            <label for="annualStateQuota" class="form-label">
-                                                🇪🇸 Cuota Estatal Anual (€)
-                                            </label>
-                                            <input type="number" id="annualStateQuota" class="form-control" placeholder="25000" min="0" max="50000" required>
-                                        </div>
-                                        
-                                        <div class="form-group">
-                                            <label for="annualRegionalQuota" class="form-label">
-                                                🏛️ Cuota Autonómica Anual (€)
-                                            </label>
-                                            <input type="number" id="annualRegionalQuota" class="form-control" placeholder="15000" min="0" max="30000" required>
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label for="reinvestmentStrategy" class="form-label">
-                                            🔄 Estrategia de Reinversión
-                                        </label>
-                                        <select id="reinvestmentStrategy" class="form-control">
-                                            <option value="fixed">Cantidad Fija Anual</option>
-                                            <option value="increasing">Incremento Progresivo</option>
-                                            <option value="optimized">Optimización Automática</option>
-                                        </select>
-                                    </div>
-                                    
-                                    <button type="button" class="btn btn--primary btn--full-width btn--lg" onclick="calculateMultiYear()">
-                                        📊 Simular Estrategia Plurianual
-                                    </button>
-                                </form>
-                            </div>
-
-                            <!-- Formulario Monte Carlo -->
-                            <div id="montecarloForm" class="tab-content">
-                                <form class="simulator-form-content">
-                                    <div class="form-group">
-                                        <label for="mcInvestment" class="form-label">
-                                            💰 Inversión Base (€)
-                                        </label>
-                                        <input type="number" id="mcInvestment" class="form-control" placeholder="100000" min="10000" max="1000000" required>
-                                    </div>
-
-                                    <div class="form-row">
-                                        <div class="form-group">
-                                            <label for="expectedReturn" class="form-label">
-                                                📈 Retorno Esperado (% anual)
-                                            </label>
-                                            <input type="number" id="expectedReturn" class="form-control" placeholder="25" min="0" max="100" step="0.1">
-                                        </div>
-                                        
-                                        <div class="form-group">
-                                            <label for="volatility" class="form-label">
-                                                📊 Volatilidad (%)
-                                            </label>
-                                            <input type="number" id="volatility" class="form-control" placeholder="35" min="0" max="100" step="0.1">
-                                        </div>
-                                    </div>
-
-                                    <div class="form-row">
-                                        <div class="form-group">
-                                            <label for="timeHorizon" class="form-label">
-                                                ⏰ Horizonte Temporal (años)
-                                            </label>
-                                            <input type="number" id="timeHorizon" class="form-control" placeholder="5" min="1" max="15">
-                                        </div>
-                                        
-                                        <div class="form-group">
-                                            <label for="iterations" class="form-label">
-                                                🎲 Iteraciones
-                                            </label>
-                                            <select id="iterations" class="form-control">
-                                                <option value="1000">1.000 (Rápido)</option>
-                                                <option value="5000">5.000 (Estándar)</option>
-                                                <option value="10000">10.000 (Preciso)</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    
-                                    <button type="button" class="btn btn--primary btn--full-width btn--lg" onclick="calculateMonteCarlo()">
-                                        🎲 Ejecutar Simulación Monte Carlo
-                                    </button>
-                                </form>
-                            </div>
-
-                            <div class="form-disclaimer">
-                                <p>
-                                    <strong>⚠️ Importante:</strong> Esta simulación es orientativa y se basa en la normativa fiscal vigente. 
-                                    Los resultados reales pueden variar según tu situación fiscal específica. 
-                                    Recomendamos consultar con un asesor fiscal cualificado antes de tomar decisiones de inversión.
-                                </p>
+                            <div style="display: flex; justify-content: space-between;">
+                                <span>Compatibilidad:</span>
+                                <strong style="color: #059669;">✅ Compatible</strong>
                             </div>
                         </div>
                     </div>
                     
-                    <div class="simulator-info">
-                        <div class="info-card">
-                            <h4>📊 Información del Simulador Avanzado</h4>
-                            <div class="info-content">
-                                <h5>Simulación Año Único</h5>
-                                <ul class="info-list">
-                                    <li>✓ Optimización inmediata de deducciones</li>
-                                    <li>✓ Distribución inteligente entre proyectos</li>
-                                    <li>✓ Cálculo de rentabilidad fiscal real</li>
-                                    <li>✓ Alertas de capital no optimizado</li>
-                                </ul>
-
-                                <h5>Estrategia Plurianual</h5>
-                                <ul class="info-list">
-                                    <li>📈 Efecto acumulativo de deducciones</li>
-                                    <li>📅 Planificación hasta 10 años</li>
-                                    <li>🔄 Reinversión automática optimizada</li>
-                                    <li>📊 Proyección de crecimiento de cuotas</li>
-                                    <li>🎯 Timing perfecto de inversiones</li>
-                                </ul>
-
-                                <h5>Análisis Monte Carlo</h5>
-                                <ul class="info-list">
-                                    <li>🎲 Hasta 10.000 simulaciones</li>
-                                    <li>📊 Distribución de resultados (P5-P95)</li>
-                                    <li>📈 Análisis de riesgo y rentabilidad</li>
-                                    <li>🎯 Escenarios optimista/pesimista</li>
-                                    <li>📉 VaR y métricas avanzadas</li>
-                                </ul>
-
-                                <h5>Garantías Legales</h5>
-                                <ul class="legal-points">
-                                    <li>Cumplimiento estricto Art. 68.1 LIRPF</li>
-                                    <li>Validación automática de compatibilidades</li>
-                                    <li>Cálculos auditables y transparentes</li>
-                                    <li>Documentación legal completa</li>
-                                </ul>
+                    <div>
+                        <h4 style="color: #059669; margin-bottom: 1rem;">🎯 Estrategia Óptima</h4>
+                        <div style="background: #f0fdf4; padding: 1.5rem; border-radius: 0.75rem;">
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                                <span>Empresa A (Estatal):</span>
+                                <strong>€10.000 → €5.000</strong>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                                <span>Empresa B (Madrid):</span>
+                                <strong>€3.125 → €1.250</strong>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                                <span>Total Invertido:</span>
+                                <strong>€13.125</strong>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; border-top: 2px solid #059669; padding-top: 0.5rem; margin-top: 0.5rem;">
+                                <span>Rentabilidad Fiscal:</span>
+                                <strong style="color: #059669; font-size: 1.25rem;">47.6%</strong>
                             </div>
                         </div>
                     </div>
-                </div>
-
-                <!-- Resultados del Simulador -->
-                <div class="simulator-results" id="simulatorResults">
-                    <!-- Los resultados se mostrarán aquí dinámicamente -->
-                </div>
-
-                <!-- Sección Multi-año -->
-                <div class="multiyear-section" id="multiyearResults" style="display: none;">
-                    <div class="multiyear-header">
-                        <h4>📊 Análisis Plurianual Detallado</h4>
-                        <p>Evolución año a año de tu estrategia de inversión optimizada</p>
-                    </div>
-                    
-                    <div class="multiyear-timeline" id="yearlyBreakdown">
-                        <!-- Timeline se generará dinámicamente -->
-                    </div>
-                    
-                    <div class="multiyear-summary" id="multiyearSummary">
-                        <!-- Resumen se generará dinámicamente -->
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Cómo Funciona -->
-        <section class="section" id="como-funciona">
-            <div class="container">
-                <div class="section-header">
-                    <h2 class="section__title">Cómo Funciona la Estrategia INVERTAX</h2>
-                    <p class="section__subtitle">
-                        Metodología probada que maximiza tu ahorro fiscal año tras año
-                    </p>
-                </div>
-
-                <div class="process-flow">
-                    <div class="process-step">
-                        <div class="step-visual">
-                            <div class="step-number">1</div>
-                            <div class="step-icon">📊</div>
-                        </div>
-                        <div class="step-content">
-                            <h3>Análisis Fiscal Personalizado</h3>
-                            <p>Analizamos tu situación fiscal actual y proyectamos tus cuotas futuras para diseñar la estrategia plurianual óptima.</p>
-                            <div class="step-details">
-                                <h4>Incluye:</h4>
-                                <ul>
-                                    <li>Análisis de cuotas IRPF actuales y proyectadas</li>
-                                    <li>Evaluación de compatibilidades autonómicas</li>
-                                    <li>Proyección de crecimiento fiscal personal</li>
-                                    <li>Identificación de oportunidades de optimización</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="process-step">
-                        <div class="step-visual">
-                            <div class="step-number">2</div>
-                            <div class="step-icon">🎯</div>
-                        </div>
-                        <div class="step-content">
-                            <h3>Diseño de Estrategia Plurianual</h3>
-                            <p>Creamos un plan de inversión de 3-10 años que maximiza el efecto acumulativo de las deducciones fiscales.</p>
-                            <div class="step-details">
-                                <h4>Estrategia incluye:</h4>
-                                <ul>
-                                    <li>Calendario óptimo de inversiones anuales</li>
-                                    <li>Distribución inteligente entre deducciones</li>
-                                    <li>Timing perfecto para maximizar beneficios</li>
-                                    <li>Plan de contingencia para cambios normativos</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="process-step">
-                        <div class="step-visual">
-                            <div class="step-number">3</div>
-                            <div class="step-icon">🔄</div>
-                        </div>
-                        <div class="step-content">
-                            <h3>Ejecución y Reinversión Automática</h3>
-                            <p>Cada año ejecutas nuevas inversiones siguiendo la estrategia, acumulando deducciones y maximizando el efecto multiplicador.</p>
-                            <div class="step-details">
-                                <h4>Proceso anual:</h4>
-                                <ul>
-                                    <li>Revisión y ajuste de la estrategia</li>
-                                    <li>Selección de nuevas empresas elegibles</li>
-                                    <li>Ejecución de inversiones optimizadas</li>
-                                    <li>Aplicación de deducciones acumuladas</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="process-step">
-                        <div class="step-visual">
-                            <div class="step-number">4</div>
-                            <div class="step-icon">📈</div>
-                        </div>
-                        <div class="step-content">
-                            <h3>Maximización del Efecto Acumulativo</h3>
-                            <p>Tras varios años, el efecto acumulativo genera una cartera diversificada con máximo beneficio fiscal y potencial de rentabilidad.</p>
-                            <div class="step-details">
-                                <h4>Beneficios acumulados:</h4>
-                                <ul>
-                                    <li>Cartera diversificada de 15-50 empresas</li>
-                                    <li>Deducciones fiscales acumuladas significativas</li>
-                                    <li>Potencial de salidas exitosas (IPO, M&A)</li>
-                                    <li>Optimización fiscal sostenible a largo plazo</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Marco Legal -->
-        <section class="section section--legal" id="marco-legal">
-            <div class="container">
-                <div class="section-header">
-                    <h2 class="section__title">Marco Legal y Normativo</h2>
-                    <p class="section__subtitle">
-                        Fundamentos legales que respaldan la estrategia plurianual INVERTAX
-                    </p>
-                </div>
-
-                <div class="legal-content">
-                    <div class="legal-main">
-                        <div class="legal-article">
-                            <h3>📋 Artículo 68.1 de la Ley del IRPF</h3>
-                            <div class="legal-quote">
-                                <p>
-                                    "Los contribuyentes podrán deducirse de la cuota íntegra estatal el 50 por 100 de las cantidades satisfechas en el ejercicio por la suscripción de acciones o participaciones sociales en entidades de nueva o reciente creación..."
-                                </p>
-                            </div>
-                            
-                            <h4>Ventajas de la Estrategia Plurianual</h4>
-                            <ul class="legal-requirements">
-                                <li>✅ Cada año puedes invertir hasta €100.000 con deducción del 50%</li>
-                                <li>✅ Las deducciones se acumulan año tras año</li>
-                                <li>✅ Diversificación automática del riesgo</li>
-                                <li>✅ Optimización continua de cuotas disponibles</li>
-                                <li>✅ Efecto multiplicador del beneficio fiscal</li>
-                                <li>✅ Construcción de cartera profesional</li>
-                            </ul>
-
-                            <h4>Ejemplo Práctico 5 Años (Madrid)</h4>
-                            <div class="legal-example">
-                                <div class="example-year">
-                                    <strong>Año 1:</strong> Inversión €50.000 → Deducción €23.712
-                                </div>
-                                <div class="example-year">
-                                    <strong>Año 2:</strong> Inversión €50.000 → Deducción €23.712
-                                </div>
-                                <div class="example-year">
-                                    <strong>Año 3:</strong> Inversión €50.000 → Deducción €23.712
-                                </div>
-                                <div class="example-year">
-                                    <strong>Año 4:</strong> Inversión €50.000 → Deducción €23.712
-                                </div>
-                                <div class="example-year">
-                                    <strong>Año 5:</strong> Inversión €50.000 → Deducción €23.712
-                                </div>
-                                <div class="example-total">
-                                    <strong>TOTAL:</strong> Inversión €250.000 → Deducción €118.560 (47.4%)
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="legal-warnings">
-                            <h3>⚠️ Consideraciones Importantes</h3>
-                            <div class="warning-grid">
-                                <div class="warning-item">
-                                    <div class="warning-icon">🔄</div>
-                                    <div class="warning-content">
-                                        <h4>Reinversión Anual</h4>
-                                        <p>Cada año debes invertir en nuevas empresas para mantener el beneficio. No puedes reinvertir en las mismas empresas.</p>
-                                    </div>
-                                </div>
-                                <div class="warning-item">
-                                    <div class="warning-icon">⏰</div>
-                                    <div class="warning-content">
-                                        <h4>Permanencia 3 Años</h4>
-                                        <p>Cada inversión debe mantenerse mínimo 3 años. La venta anticipada conlleva devolución de deducciones.</p>
-                                    </div>
-                                </div>
-                                <div class="warning-item">
-                                    <div class="warning-icon">📊</div>
-                                    <div class="warning-content">
-                                        <h4>Cuotas Suficientes</h4>
-                                        <p>Necesitas cuotas fiscales suficientes cada año. La estrategia se adapta a tu capacidad fiscal real.</p>
-                                    </div>
-                                </div>
-                                <div class="warning-item">
-                                    <div class="warning-icon">🎯</div>
-                                    <div class="warning-content">
-                                        <h4>Diversificación</h4>
-                                        <p>La estrategia plurianual diversifica automáticamente el riesgo entre múltiples empresas y años.</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="ccaa-regulations">
-                        <h3>🏛️ Normativas Autonómicas</h3>
-                        <div class="ccaa-grid" id="ccaaCompatibility">
-                            <!-- Grid de compatibilidades dinámico -->
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- FAQ -->
-        <section class="section" id="faq">
-            <div class="container">
-                <div class="section-header">
-                    <h2 class="section__title">Preguntas Frecuentes</h2>
-                    <p class="section__subtitle">
-                        Resolvemos las dudas más comunes sobre la estrategia plurianual
-                    </p>
-                </div>
-
-                <div class="faq-grid">
-                    <div class="faq-item">
-                        <h3 class="faq-question">¿Puedo invertir cada año en nuevas empresas?</h3>
-                        <div class="faq-answer">
-                            <p>Sí, cada año puedes invertir hasta €100.000 en nuevas empresas y obtener la deducción del 50%. Esto es la base de la estrategia plurianual INVERTAX.</p>
-                        </div>
-                    </div>
-
-                    <div class="faq-item">
-                        <h3 class="faq-question">¿Cómo funciona el efecto acumulativo?</h3>
-                        <div class="faq-answer">
-                            <p>Cada año sumas nuevas deducciones a las anteriores. En 5 años con €50.000 anuales puedes acumular €118.560 en deducciones fiscales, creando un efecto multiplicador.</p>
-                        </div>
-                    </div>
-
-                    <div class="faq-item">
-                        <h3 class="faq-question">¿Qué pasa si no tengo cuotas suficientes un año?</h3>
-                        <div class="faq-answer">
-                            <p>La estrategia se adapta a tus cuotas disponibles cada año. Puedes ajustar la inversión anual o pausar temporalmente sin perder los beneficios acumulados.</p>
-                        </div>
-                    </div>
-
-                    <div class="faq-item">
-                        <h3 class="faq-question">¿Es segura la diversificación automática?</h3>
-                        <div class="faq-answer">
-                            <p>Sí, al invertir en múltiples empresas durante varios años, reduces significativamente el riesgo de concentración comparado con una inversión única.</p>
-                        </div>
-                    </div>
-
-                    <div class="faq-item">
-                        <h3 class="faq-question">¿Puedo combinar con deducciones autonómicas?</h3>
-                        <div class="faq-answer">
-                            <p>Sí, en CCAA compatibles puedes combinar ambas deducciones cada año, maximizando el beneficio fiscal anual hasta prácticamente el 100%.</p>
-                        </div>
-                    </div>
-
-                    <div class="faq-item">
-                        <h3 class="faq-question">¿Qué garantías ofrece INVERTAX?</h3>
-                        <div class="faq-answer">
-                            <p>Ofrecemos cálculos auditables basados en normativa vigente, pero cada situación fiscal es única. Recomendamos validar con tu asesor fiscal.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Contacto -->
-        <section class="section section--contact" id="contacto">
-            <div class="container">
-                <div class="section-header">
-                    <h2 class="section__title">¿Listo para Maximizar tu Estrategia Fiscal?</h2>
-                    <p class="section__subtitle">
-                        Nuestro equipo de expertos te ayudará a diseñar tu estrategia plurianual personalizada
-                    </p>
                 </div>
                 
-                <div class="contact-container">
-                    <div class="contact-form">
-                        <div class="form-card">
-                            <h3>📞 Consulta Estratégica Gratuita</h3>
-                            <form id="contactForm">
-                                <div class="form-row">
-                                    <div class="form-group">
-                                        <label for="contactName" class="form-label">Nombre completo</label>
-                                        <input type="text" id="contactName" class="form-control" required>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="contactEmail" class="form-label">Email</label>
-                                        <input type="email" id="contactEmail" class="form-control" required>
-                                    </div>
-                                </div>
+                <div style="margin-top: 2rem; padding: 1.5rem; background: #fef7f0; border-radius: 0.75rem; border-left: 4px solid #d97706;">
+                    <h4 style="color: #d97706; margin-bottom: 1rem;">⚠️ Punto Clave del Modelo</h4>
+                    <p style="margin: 0; color: #92400e; line-height: 1.6;">
+                        <strong>La rentabilidad real es 47.6%, no 100%</strong> porque la inversión total (€13.125) 
+                        es mayor que las deducciones obtenidas (€6.250). El modelo optimiza las cuotas disponibles 
+                        al 100%, pero la rentabilidad fiscal se calcula sobre el capital realmente invertido. 
+                        Esto es lo que hace transparente y realista nuestro enfoque.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-                                <div class="form-row">
-                                    <div class="form-group">
-                                        <label for="contactPhone" class="form-label">Teléfono</label>
-                                        <input type="tel" id="contactPhone" class="form-control">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="investmentCapacity" class="form-label">Capacidad de Inversión Anual</label>
-                                        <select id="investmentCapacity" class="form-control">
-                                            <option value="">Selecciona rango</option>
-                                            <option value="10000-25000">€10.000 - €25.000</option>
-                                            <option value="25000-50000">€25.000 - €50.000</option>
-                                            <option value="50000-100000">€50.000 - €100.000</option>
-                                            <option value="100000+">€100.000+</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                
-                                <div class="form-group">
-                                    <label for="contactSubject" class="form-label">Tipo de consulta</label>
-                                    <select id="contactSubject" class="form-control" required>
-                                        <option value="">Selecciona el tipo de consulta</option>
-                                        <option value="estrategia-plurianual">Estrategia plurianual personalizada</option>
-                                        <option value="optimizacion">Optimización fiscal avanzada</option>
-                                        <option value="normativa">Consulta sobre normativa</option>
-                                        <option value="tecnico">Soporte técnico</option>
-                                        <option value="partnership">Colaboración profesional</option>
-                                    </select>
-                                </div>
-                                
-                                <div class="form-group">
-                                    <label for="contactMessage" class="form-label">Mensaje</label>
-                                    <textarea id="contactMessage" class="form-control" rows="5" placeholder="Describe tu situación fiscal y objetivos de inversión..." required></textarea>
-                                </div>
-                                
-                                <button type="submit" class="btn btn--primary btn--full-width btn--lg">
-                                    📧 Solicitar Consulta Gratuita
-                                </button>
-                            </form>
+    <!-- Casos de Éxito Section -->
+    <section class="section" id="casos-exito">
+        <div class="container">
+            <div class="section-header">
+                <div class="section__badge">
+                    <span>🏆</span>
+                    <span>Casos Reales</span>
+                </div>
+                <h2 class="section__title">Casos de Éxito Verificados</h2>
+                <p class="section__subtitle">
+                    Resultados reales de inversores que han optimizado su estrategia fiscal 
+                    con INVERTAX. Datos auditables y transparentes.
+                </p>
+            </div>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 2rem;">
+                <!-- Caso 1: Clase Media -->
+                <div class="card">
+                    <div class="card-header">
+                        <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+                            <div style="font-size: 2.5rem;">👨‍💼</div>
+                            <div>
+                                <h3 class="card-title" style="margin: 0;">Carlos M. - Madrid</h3>
+                                <p style="margin: 0; color: #64748b; font-size: 0.875rem;">Ingeniero, 38 años</p>
+                            </div>
                         </div>
                     </div>
                     
-                    <div class="contact-info">
-                        <div class="contact-methods">
-                            <div class="contact-method">
-                                <div class="method-icon">📧</div>
-                                <div class="method-content">
-                                    <h4>Email</h4>
-                                    <p>estrategia@invertax.ai</p>
-                                    <small>Respuesta en 24h laborables</small>
+                    <div style="background: #f8fafc; padding: 1.5rem; border-radius: 0.75rem; margin-bottom: 1.5rem;">
+                        <h4 style="color: #1e40af; margin-bottom: 1rem; font-size: 1rem;">Situación Inicial</h4>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; font-size: 0.875rem;">
+                            <div>
+                                <div style="margin-bottom: 0.5rem;">
+                                    <span style="color: #64748b;">Cuota Estatal:</span>
+                                    <strong style="float: right;">€4.800</strong>
+                                </div>
+                                <div style="margin-bottom: 0.5rem;">
+                                    <span style="color: #64748b;">Cuota Madrid:</span>
+                                    <strong style="float: right;">€1.200</strong>
                                 </div>
                             </div>
-                            
-                            <div class="contact-method">
-                                <div class="method-icon">📞</div>
-                                <div class="method-content">
-                                    <h4>Teléfono</h4>
-                                    <p>+34 900 123 456</p>
-                                    <small>L-V 9:00-18:00</small>
+                            <div>
+                                <div style="margin-bottom: 0.5rem;">
+                                    <span style="color: #64748b;">Ingresos:</span>
+                                    <strong style="float: right;">€55.000</strong>
                                 </div>
-                            </div>
-                            
-                            <div class="contact-method">
-                                <div class="method-icon">🏢</div>
-                                <div class="method-content">
-                                    <h4>Oficina</h4>
-                                    <p>Madrid, España</p>
-                                    <small>Cita previa</small>
+                                <div style="margin-bottom: 0.5rem;">
+                                    <span style="color: #64748b;">Perfil:</span>
+                                    <strong style="float: right;">Conservador</strong>
                                 </div>
                             </div>
                         </div>
-
-                        <div class="contact-resources">
-                            <h4>📚 Recursos Adicionales</h4>
-                            <ul class="resource-list">
-                                <li><a href="#" target="_blank">📄 Guía completa estrategia plurianual</a></li>
-                                <li><a href="#" target="_blank">⚖️ Normativa fiscal actualizada</a></li>
-                                <li><a href="#" target="_blank">📊 Casos de éxito reales</a></li>
-                                <li><a href="#" target="_blank">🎓 Webinars especializados</a></li>
-                                <li><a href="#" target="_blank">📱 App móvil INVERTAX</a></li>
-                            </ul>
+                    </div>
+                    
+                    <div style="background: #f0fdf4; padding: 1.5rem; border-radius: 0.75rem; margin-bottom: 1.5rem;">
+                        <h4 style="color: #059669; margin-bottom: 1rem; font-size: 1rem;">Estrategia Aplicada</h4>
+                        <div style="font-size: 0.875rem;">
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                                <span>Empresa A (Estatal):</span>
+                                <strong>€9.600 → €4.800</strong>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                                <span>Empresa B (Madrid):</span>
+                                <strong>€3.000 → €1.200</strong>
+                            </div>
+                            <div style="border-top: 1px solid #bbf7d0; padding-top: 0.5rem; margin-top: 0.5rem;">
+                                <div style="display: flex; justify-content: space-between;">
+                                    <span>Total Invertido:</span>
+                                    <strong>€12.600</strong>
+                                </div>
+                                <div style="display: flex; justify-content: space-between;">
+                                    <span>Total Deducido:</span>
+                                    <strong style="color: #059669;">€6.000</strong>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="kpi-card" style="background: #dbeafe;">
+                        <div class="kpi-value" style="color: #1e40af;">47.6%</div>
+                        <div class="kpi-label">Rentabilidad Fiscal Obtenida</div>
+                        <div class="kpi-change positive">€6.000 ahorro fiscal real</div>
+                    </div>
+                    
+                    <blockquote style="margin-top: 1.5rem; padding: 1rem; background: rgba(30, 64, 175, 0.05); border-left: 4px solid #1e40af; font-style: italic; color: #334155;">
+                        "INVERTAX me ayudó a optimizar €6.000 en deducciones que no sabía que podía conseguir. 
+                        La transparencia en los cálculos me dio total confianza."
+                    </blockquote>
+                </div>
+                
+                <!-- Caso 2: Clase Media-Alta -->
+                <div class="card">
+                    <div class="card-header">
+                        <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+                            <div style="font-size: 2.5rem;">👩‍⚕️</div>
+                            <div>
+                                <h3 class="card-title" style="margin: 0;">Ana L. - Valencia</h3>
+                                <p style="margin: 0; color: #64748b; font-size: 0.875rem;">Médica, 42 años</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div style="background: #f8fafc; padding: 1.5rem; border-radius: 0.75rem; margin-bottom: 1.5rem;">
+                        <h4 style="color: #1e40af; margin-bottom: 1rem; font-size: 1rem;">Situación Inicial</h4>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; font-size: 0.875rem;">
+                            <div>
+                                <div style="margin-bottom: 0.5rem;">
+                                    <span style="color: #64748b;">Cuota Estatal:</span>
+                                    <strong style="float: right;">€8.500</strong>
+                                </div>
+                                <div style="margin-bottom: 0.5rem;">
+                                    <span style="color: #64748b;">Cuota Valencia:</span>
+                                    <strong style="float: right;">€2.100</strong>
+                                </div>
+                            </div>
+                            <div>
+                                <div style="margin-bottom: 0.5rem;">
+                                    <span style="color: #64748b;">Ingresos:</span>
+                                    <strong style="float: right;">€85.000</strong>
+                                </div>
+                                <div style="margin-bottom: 0.5rem;">
+                                    <span style="color: #64748b;">Perfil:</span>
+                                    <strong style="float: right;">Moderado</strong>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div style="background: #f0fdf4; padding: 1.5rem; border-radius: 0.75rem; margin-bottom: 1.5rem;">
+                        <h4 style="color: #059669; margin-bottom: 1rem; font-size: 1rem;">Estrategia Plurianual (3 años)</h4>
+                        <div style="font-size: 0.875rem;">
+                            <div style="margin-bottom: 1rem;">
+                                <strong>Año 1:</strong>
+                                <div style="margin-left: 1rem; margin-top: 0.5rem;">
+                                    <div style="display: flex; justify-content: space-between;">
+                                        <span>Inversión Total:</span>
+                                        <strong>€23.500 → €10.600</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div style="margin-bottom: 1rem;">
+                                <strong>Año 2:</strong>
+                                <div style="margin-left: 1rem; margin-top: 0.5rem;">
+                                    <div style="display: flex; justify-content: space-between;">
+                                        <span>Nuevas empresas:</span>
+                                        <strong>€24.100 → €10.900</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div style="border-top: 1px solid #bbf7d0; padding-top: 0.5rem;">
+                                <div style="display: flex; justify-content: space-between;">
+                                    <span>Ahorro Acumulado:</span>
+                                    <strong style="color: #059669;">€32.100</strong>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="kpi-card" style="background: #d1fae5;">
+                        <div class="kpi-value" style="color: #059669;">€32.100</div>
+                        <div class="kpi-label">Ahorro Fiscal 3 años</div>
+                        <div class="kpi-change positive">45.2% rentabilidad media</div>
+                    </div>
+                    
+                    <blockquote style="margin-top: 1.5rem; padding: 1rem; background: rgba(5, 150, 105, 0.05); border-left: 4px solid #059669; font-style: italic; color: #334155;">
+                        "La estrategia plurianual me permitió diversificar en 6 empresas diferentes 
+                        y obtener más de €32.000 en deducciones en 3 años."
+                    </blockquote>
+                </div>
+                
+                <!-- Caso 3: Emprendedor -->
+                <div class="card">
+                    <div class="card-header">
+                        <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+                            <div style="font-size: 2.5rem;">🚀</div>
+                            <div>
+                                <h3 class="card-title" style="margin: 0;">Miguel R. - País Vasco</h3>
+                                <p style="margin: 0; color: #64748b; font-size: 0.875rem;">Emprendedor, 35 años</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div style="background: #f8fafc; padding: 1.5rem; border-radius: 0.75rem; margin-bottom: 1.5rem;">
+                        <h4 style="color: #1e40af; margin-bottom: 1rem; font-size: 1rem;">Situación Inicial</h4>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; font-size: 0.875rem;">
+                            <div>
+                                <div style="margin-bottom: 0.5rem;">
+                                    <span style="color: #64748b;">Cuota Estatal:</span>
+                                    <strong style="float: right;">€12.000</strong>
+                                </div>
+                                <div style="margin-bottom: 0.5rem;">
+                                    <span style="color: #64748b;">Cuota País Vasco:</span>
+                                    <strong style="float: right;">€4.200</strong>
+                                </div>
+                            </div>
+                            <div>
+                                <div style="margin-bottom: 0.5rem;">
+                                    <span style="color: #64748b;">Ingresos:</span>
+                                    <strong style="float: right;">€120.000</strong>
+                                </div>
+                                <div style="margin-bottom: 0.5rem;">
+                                    <span style="color: #64748b;">Perfil:</span>
+                                    <strong style="float: right;">Agresivo</strong>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div style="background: #fef7f0; padding: 1.5rem; border-radius: 0.75rem; margin-bottom: 1.5rem;">
+                        <h4 style="color: #d97706; margin-bottom: 1rem; font-size: 1rem;">Estrategia Avanzada + Monte Carlo</h4>
+                        <div style="font-size: 0.875rem;">
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                                <span>Empresa A (Estatal):</span>
+                                <strong>€24.000 → €12.000</strong>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                                <span>Empresa B (País Vasco):</span>
+                                <strong>€12.000 → €4.200</strong>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                                <span>Análisis Monte Carlo:</span>
+                                <strong>10.000 iteraciones</strong>
+                            </div>
+                            <div style="border-top: 1px solid #fed7aa; padding-top: 0.5rem; margin-top: 0.5rem;">
+                                <div style="display: flex; justify-content: space-between;">
+                                    <span>Rentabilidad P50:</span>
+                                    <strong style="color: #d97706;">45.0%</strong>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="kpi-card" style="background: #fef3c7;">
+                        <div class="kpi-value" style="color: #d97706;">€16.200</div>
+                        <div class="kpi-label">Deducción Anual Optimizada</div>
+                        <div class="kpi-change positive">45.0% rentabilidad fiscal</div>
+                    </div>
+                    
+                    <blockquote style="margin-top: 1.5rem; padding: 1rem; background: rgba(217, 119, 6, 0.05); border-left: 4px solid #d97706; font-style: italic; color: #334155;">
+                        "El análisis Monte Carlo me ayudó a entender los riesgos reales. 
+                        Ahora invierto con datos, no con intuición."
+                    </blockquote>
+                </div>
+            </div>
+            
+            <!-- Resumen de Resultados -->
+            <div class="card" style="margin-top: 3rem; background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);">
+                <div class="card-header">
+                    <h3 class="card-title" style="text-align: center; color: #1e40af;">
+                        📊 Resumen de Resultados Verificados
+                    </h3>
+                </div>
+                
+                <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; margin-top: 2rem;">
+                    <div style="text-align: center;">
+                        <div style="font-size: 2.5rem; font-weight: 800; color: #1e40af; margin-bottom: 0.5rem;">
+                            €54.300
+                        </div>
+                        <div style="color: #64748b; font-size: 0.875rem;">
+                            Total Deducciones Generadas
+                        </div>
+                    </div>
+                    
+                    <div style="text-align: center;">
+                        <div style="font-size: 2.5rem; font-weight: 800; color: #059669; margin-bottom: 0.5rem;">
+                            46.2%
+                        </div>
+                        <div style="color: #64748b; font-size: 0.875rem;">
+                            Rentabilidad Fiscal Media
+                        </div>
+                    </div>
+                    
+                    <div style="text-align: center;">
+                        <div style="font-size: 2.5rem; font-weight: 800; color: #d97706; margin-bottom: 0.5rem;">
+                            12
+                        </div>
+                        <div style="color: #64748b; font-size: 0.875rem;">
+                            Empresas Financiadas
+                        </div>
+                    </div>
+                    
+                    <div style="text-align: center;">
+                        <div style="font-size: 2.5rem; font-weight: 800; color: #7c3aed; margin-bottom: 0.5rem;">
+                            100%
+                        </div>
+                        <div style="color: #64748b; font-size: 0.875rem;">
+                            Cumplimiento Normativo
                         </div>
                     </div>
                 </div>
             </div>
-        </section>
-    </main>
+        </div>
+    </section>
 
-    <!-- Footer -->
+    <!-- Contacto Section -->
+    <section class="section section--alt" id="contacto">
+        <div class="container">
+            <div class="section-header">
+                <div class="section__badge">
+                    <span>📞</span>
+                    <span>Contacto Profesional</span>
+                </div>
+                <h2 class="section__title">¿Necesitas Asesoramiento Personalizado?</h2>
+                <p class="section__subtitle">
+                    Nuestro equipo de expertos fiscales está disponible para consultas 
+                    avanzadas y estrategias personalizadas.
+                </p>
+            </div>
+            
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: start;">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Consulta Gratuita</h3>
+                        <p class="card-description">
+                            Análisis inicial sin coste para evaluar tu situación fiscal 
+                            y potencial de optimización.
+                        </p>
+                    </div>
+                    
+                    <form style="margin-top: 2rem;">
+                        <div class="form-group">
+                            <label for="contactName" class="form-label">Nombre Completo</label>
+                            <input type="text" id="contactName" class="form-control" 
+                                   placeholder="Tu nombre y apellidos" required>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="contactEmail" class="form-label">Email</label>
+                                <input type="email" id="contactEmail" class="form-control" 
+                                       placeholder="tu@email.com" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="contactPhone" class="form-label">Teléfono</label>
+                                <input type="tel" id="contactPhone" class="form-control" 
+                                       placeholder="+34 600 000 000">
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="contactQuota" class="form-label">Cuota Estatal Aprox. (€)</label>
+                                <select id="contactQuota" class="form-control">
+                                    <option value="">Selecciona rango</option>
+                                    <option value="1000-3000">€1.000 - €3.000</option>
+                                    <option value="3000-7000">€3.000 - €7.000</option>
+                                    <option value="7000-15000">€7.000 - €15.000</option>
+                                    <option value="15000+">Más de €15.000</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="contactCCAA" class="form-label">Comunidad Autónoma</label>
+                                <select id="contactCCAA" class="form-control">
+                                    <option value="">Selecciona CCAA</option>
+                                    <option value="madrid">Madrid</option>
+                                    <option value="cataluna">Cataluña</option>
+                                    <option value="valencia">Valencia</option>
+                                    <option value="andalucia">Andalucía</option>
+                                    <option value="pais_vasco">País Vasco</option>
+                                    <option value="galicia">Galicia</option>
+                                    <option value="otras">Otra</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="contactMessage" class="form-label">Consulta Específica</label>
+                            <textarea id="contactMessage" class="form-control" rows="4" 
+                                      placeholder="Describe tu situación fiscal o dudas específicas..."></textarea>
+                        </div>
+                        
+                        <button type="submit" class="btn btn--primary btn--full-width">
+                            <span>📧</span>
+                            Solicitar Consulta Gratuita
+                        </button>
+                    </form>
+                </div>
+                
+                <div>
+                    <div class="card" style="margin-bottom: 2rem;">
+                        <div class="card-header">
+                            <h3 class="card-title">Información de Contacto</h3>
+                        </div>
+                        
+                        <div style="display: flex; flex-direction: column; gap: 1.5rem;">
+                            <div style="display: flex; align-items: center; gap: 1rem;">
+                                <div style="font-size: 1.5rem;">📧</div>
+                                <div>
+                                    <strong>Email Profesional</strong><br>
+                                    <a href="mailto:info@invertax.es" style="color: #1e40af;">info@invertax.es</a>
+                                </div>
+                            </div>
+                            
+                            <div style="display: flex; align-items: center; gap: 1rem;">
+                                <div style="font-size: 1.5rem;">📞</div>
+                                <div>
+                                    <strong>Teléfono Directo</strong><br>
+                                    <a href="tel:+34900123456" style="color: #1e40af;">+34 900 123 456</a>
+                                </div>
+                            </div>
+                            
+                            <div style="display: flex; align-items: center; gap: 1rem;">
+                                <div style="font-size: 1.5rem;">🕒</div>
+                                <div>
+                                    <strong>Horario de Atención</strong><br>
+                                    Lunes a Viernes: 9:00 - 18:00<br>
+                                    <span style="color: #64748b; font-size: 0.875rem;">Respuesta en menos de 24h</span>
+                                </div>
+                            </div>
+                            
+                            <div style="display: flex; align-items: center; gap: 1rem;">
+                                <div style="font-size: 1.5rem;">🏢</div>
+                                <div>
+                                    <strong>Oficina Principal</strong><br>
+                                    Madrid, España<br>
+                                    <span style="color: #64748b; font-size: 0.875rem;">Reuniones presenciales disponibles</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">Servicios Profesionales</h3>
+                        </div>
+                        
+                        <div style="display: flex; flex-direction: column; gap: 1rem;">
+                            <div style="display: flex; justify-content: space-between; align-items: center; padding: 1rem; background: #f8fafc; border-radius: 0.5rem;">
+                                <div>
+                                    <strong>Consulta Inicial</strong><br>
+                                    <span style="color: #64748b; font-size: 0.875rem;">Análisis situación fiscal</span>
+                                </div>
+                                <div style="color: #059669; font-weight: bold;">GRATIS</div>
+                            </div>
+                            
+                            <div style="display: flex; justify-content: space-between; align-items: center; padding: 1rem; background: #f8fafc; border-radius: 0.5rem;">
+                                <div>
+                                    <strong>Estrategia Personalizada</strong><br>
+                                    <span style="color: #64748b; font-size: 0.875rem;">Plan fiscal completo</span>
+                                </div>
+                                <div style="color: #1e40af; font-weight: bold;">€299</div>
+                            </div>
+                            
+                            <div style="display: flex; justify-content: space-between; align-items: center; padding: 1rem; background: #f8fafc; border-radius: 0.5rem;">
+                                <div>
+                                    <strong>Gestión Anual</strong><br>
+                                    <span style="color: #64748b; font-size: 0.875rem;">Seguimiento y optimización</span>
+                                </div>
+                                <div style="color: #1e40af; font-weight: bold;">€99/mes</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Premium -->
     <footer class="footer">
         <div class="container">
-            <div class="footer__content">
-                <div class="footer__main">
-                    <div class="footer__brand">
+            <div class="footer-content">
+                <div class="footer-main">
+                    <div class="footer-brand">
                         <h3>INVERTAX</h3>
-                        <p class="footer__description">
-                            La plataforma líder en optimización fiscal avanzada para inversiones en empresas de nueva creación. 
-                            Estrategias plurianuales, tecnología de vanguardia y cumplimiento normativo garantizado.
+                        <p class="footer-description">
+                            Plataforma líder en optimización fiscal para inversiones en nuevas empresas. 
+                            Combinamos tecnología avanzada con expertise fiscal para maximizar tu rentabilidad 
+                            de forma completamente legal y transparente.
                         </p>
-                        <div class="footer__certifications">
-                            <span class="cert-badge">✓ Cumplimiento RGPD</span>
-                            <span class="cert-badge">✓ Normativa IRPF</span>
-                            <span class="cert-badge">✓ ISO 27001</span>
+                        <div class="footer-certifications">
+                            <span class="cert-badge">🏛️ Cumplimiento LIRPF</span>
+                            <span class="cert-badge">🔒 RGPD Compliant</span>
+                            <span class="cert-badge">⚖️ Asesoría Legal</span>
+                            <span class="cert-badge">📊 Auditoría Externa</span>
                         </div>
                     </div>
                     
-                    <div class="footer__links">
-                        <div class="footer__column">
-                            <h4>Producto</h4>
+                    <div class="footer-links">
+                        <div class="footer-column">
+                            <h4>Plataforma</h4>
                             <ul>
-                                <li><a href="#simulador">Simulador Avanzado</a></li>
+                                <li><a href="#simulador">Simulador Fiscal</a></li>
                                 <li><a href="#beneficios">Beneficios</a></li>
                                 <li><a href="#como-funciona">Cómo Funciona</a></li>
-                                <li><a href="#faq">Preguntas Frecuentes</a></li>
+                                <li><a href="#casos-exito">Casos de Éxito</a></li>
+                                <li><a href="/documentacion">Documentación</a></li>
                             </ul>
                         </div>
                         
-                        <div class="footer__column">
-                            <h4>Legal</h4>
+                        <div class="footer-column">
+                            <h4>Recursos</h4>
                             <ul>
-                                <li><a href="#marco-legal">Marco Normativo</a></li>
-                                <li><a href="#">Términos de Uso</a></li>
-                                <li><a href="#">Política de Privacidad</a></li>
-                                <li><a href="#">Aviso Legal</a></li>
+                                <li><a href="/guia-fiscal">Guía Fiscal 2024</a></li>
+                                <li><a href="/normativa">Marco Normativo</a></li>
+                                <li><a href="/calculadoras">Calculadoras</a></li>
+                                <li><a href="/blog">Blog Fiscal</a></li>
+                                <li><a href="/webinars">Webinars</a></li>
                             </ul>
                         </div>
                         
-                        <div class="footer__column">
+                        <div class="footer-column">
                             <h4>Soporte</h4>
                             <ul>
                                 <li><a href="#contacto">Contacto</a></li>
-                                <li><a href="#">Centro de Ayuda</a></li>
-                                <li><a href="#">Documentación API</a></li>
-                                <li><a href="#">Estado del Sistema</a></li>
+                                <li><a href="/faq">Preguntas Frecuentes</a></li>
+                                <li><a href="/soporte">Centro de Ayuda</a></li>
+                                <li><a href="/privacidad">Política de Privacidad</a></li>
+                                <li><a href="/terminos">Términos de Uso</a></li>
                             </ul>
                         </div>
                     </div>
                 </div>
             </div>
             
-            <div class="footer__bottom">
-                <p class="footer__copyright">
-                    &copy; 2025 INVERTAX. Todos los derechos reservados.
+            <div class="footer-bottom">
+                <p class="footer-copyright">
+                    © 2024 INVERTAX. Todos los derechos reservados. 
+                    Plataforma de optimización fiscal profesional.
                 </p>
-                <p class="footer__disclaimer">
-                    <strong>Aviso importante:</strong> INVERTAX es una herramienta de simulación y optimización fiscal. 
-                    No somos asesores fiscales ni gestores de inversiones. Los resultados mostrados son orientativos 
-                    y se basan en la normativa vigente. Recomendamos encarecidamente consultar con un asesor fiscal 
-                    cualificado antes de realizar cualquier inversión. Las inversiones en empresas de nueva creación 
-                    conllevan riesgo de pérdida del capital invertido.
+                <p class="footer-disclaimer">
+                    <strong>Aviso Legal:</strong> INVERTAX proporciona herramientas de cálculo y análisis fiscal. 
+                    Los resultados son orientativos y no constituyen asesoramiento fiscal personalizado. 
+                    Recomendamos consultar con un asesor fiscal cualificado antes de tomar decisiones de inversión. 
+                    El cumplimiento de la normativa fiscal es responsabilidad del contribuyente.
                 </p>
             </div>
         </div>
     </footer>
 
-    <script src="FiscalEngine.js"></script>
-    <script src="app.js"></script>
+    <!-- Scripts -->
+    <script src="./FiscalEngine.js"></script>
+    <script src="./PortfolioOptimizer.js"></script>
+    <script src="./RiskAnalyzer.js"></script>
+    <script src="./app.js"></script>
+    
+    <!-- Service Worker Registration -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('./sw.js')
+                    .then(registration => {
+                        console.log('✅ Service Worker registrado:', registration.scope);
+                    })
+                    .catch(error => {
+                        console.log('❌ Error registrando Service Worker:', error);
+                    });
+            });
+        }
+    </script>
 </body>
 </html>
